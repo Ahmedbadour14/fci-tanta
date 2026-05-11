@@ -19,10 +19,15 @@ import FacultyPortal from './pages/FacultyPortal';
 import NotFound from './pages/NotFound';
 import ServerError from './pages/ServerError';
 import SearchResults from './pages/SearchResults';
+import Store from './pages/Store';
+import CourseRegistration from './pages/CourseRegistration';
+import Grades from './pages/Grades';
+import ExamArchive from './pages/ExamArchive';
 import { AuthProvider } from './context/AuthContext';
 import ProtectedRoute from './components/layout/ProtectedRoute';
 import LoadingScreen from './components/ui/LoadingScreen';
 import CookieBanner from './components/ui/CookieBanner';
+import { ErrorBoundary } from './components/ui/ErrorBoundary';
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -30,53 +35,61 @@ function App() {
   if (loading) return <LoadingScreen onDone={() => setLoading(false)} />;
 
   return (
-    <AuthProvider>
-      <Router>
-        <Toaster
-          position="top-center"
-          toastOptions={{
-            duration: 4000,
-            style: {
-              background: 'var(--toast-bg, #1e293b)',
-              color: '#f8fafc',
-              borderRadius: '12px',
-              padding: '12px 16px',
-              boxShadow: '0 10px 40px rgba(0,0,0,0.3)',
-            },
-            success: { iconTheme: { primary: '#22c55e', secondary: '#fff' } },
-            error: { iconTheme: { primary: '#ef4444', secondary: '#fff' } },
-          }}
-        />
-        <CookieBanner />
-        <Routes>
-          <Route path="/" element={<Layout />}>
-            <Route index element={<Home />} />
-            <Route path="about" element={<About />} />
-            <Route path="departments" element={<Departments />} />
-            <Route path="departments/:id" element={<DepartmentDetail />} />
-            <Route path="programs" element={<Programs />} />
-            <Route path="research" element={<Research />} />
-            <Route path="news" element={<News />} />
-            <Route path="community" element={<Community />} />
-            <Route path="contact" element={<Contact />} />
-            <Route path="search" element={<SearchResults />} />
-            <Route path="login" element={<Login />} />
-            <Route path="register" element={<Register />} />
-            <Route path="500" element={<ServerError />} />
+    <ErrorBoundary>
+      <AuthProvider>
+        <Router>
+          <Toaster
+            position="top-center"
+            toastOptions={{
+              duration: 4000,
+              style: {
+                background: 'var(--toast-bg, #1e293b)',
+                color: '#f8fafc',
+                borderRadius: '12px',
+                padding: '12px 16px',
+                boxShadow: '0 10px 40px rgba(0,0,0,0.3)',
+              },
+              success: { iconTheme: { primary: '#22c55e', secondary: '#fff' } },
+              error: { iconTheme: { primary: '#ef4444', secondary: '#fff' } },
+            }}
+          />
+          <CookieBanner />
+          <Routes>
+            <Route path="/" element={<Layout />}>
+              <Route index element={<Home />} />
+              <Route path="about" element={<About />} />
+              <Route path="departments" element={<Departments />} />
+              <Route path="departments/:id" element={<DepartmentDetail />} />
+              <Route path="programs" element={<Programs />} />
+              <Route path="research" element={<Research />} />
+              <Route path="news" element={<News />} />
+              <Route path="community" element={<Community />} />
+              <Route path="contact" element={<Contact />} />
+              <Route path="search" element={<SearchResults />} />
+              <Route path="login" element={<Login />} />
+              <Route path="register" element={<Register />} />
+              <Route path="500" element={<ServerError />} />
 
-            {/* Protected Student Portal */}
-            <Route path="portal" element={<ProtectedRoute><Portal /></ProtectedRoute>} />
+              {/* Public new systems */}
+              <Route path="store" element={<Store />} />
+              <Route path="exams" element={<ExamArchive />} />
 
-            {/* Protected Admin/Faculty Routes */}
-            <Route path="admin" element={<ProtectedRoute allowedRoles={['admin']}><AdminDashboard /></ProtectedRoute>} />
-            <Route path="portal/staff" element={<ProtectedRoute allowedRoles={['staff', 'admin']}><FacultyPortal /></ProtectedRoute>} />
+              {/* Protected Student Portal */}
+              <Route path="portal" element={<ProtectedRoute><Portal /></ProtectedRoute>} />
+              <Route path="portal/student/registration" element={<ProtectedRoute><CourseRegistration /></ProtectedRoute>} />
+              <Route path="portal/student/grades" element={<ProtectedRoute><Grades /></ProtectedRoute>} />
 
-            {/* Catch all */}
-            <Route path="*" element={<NotFound />} />
-          </Route>
-        </Routes>
-      </Router>
-    </AuthProvider>
+              {/* Protected Admin/Faculty Routes */}
+              <Route path="admin" element={<ProtectedRoute allowedRoles={['admin']}><AdminDashboard /></ProtectedRoute>} />
+              <Route path="portal/staff" element={<ProtectedRoute allowedRoles={['staff', 'admin']}><FacultyPortal /></ProtectedRoute>} />
+
+              {/* Catch all */}
+              <Route path="*" element={<NotFound />} />
+            </Route>
+          </Routes>
+        </Router>
+      </AuthProvider>
+    </ErrorBoundary>
   );
 }
 

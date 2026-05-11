@@ -1,83 +1,184 @@
-import React from 'react';
-import { useTranslation } from 'react-i18next';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { MapPin, Phone, Mail } from 'lucide-react';
+import { MapPin, Phone, Mail, ExternalLink, Send, Share2, Rss, Globe, Video } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
+import { motion } from 'framer-motion';
 
 const Footer = () => {
   const { t } = useTranslation();
+  const [email, setEmail] = useState('');
+  const [subscribed, setSubscribed] = useState(false);
+
+  const handleNewsletter = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (email) {
+      setSubscribed(true);
+      setEmail('');
+      setTimeout(() => setSubscribed(false), 4000);
+    }
+  };
+
+  const quickLinks = [
+    { label: t('nav.about'), path: '/about' },
+    { label: t('nav.departments'), path: '/departments' },
+    { label: t('nav.programs'), path: '/programs' },
+    { label: t('nav.research'), path: '/research' },
+    { label: t('nav.news'), path: '/news' },
+    { label: 'تواصل معنا', path: '/contact' },
+  ];
+
+  const studentLinks = [
+    { label: 'بوابة الطالب', path: '/portal' },
+    { label: 'متجر الكتب', path: '/store' },
+    { label: 'تسجيل المواد', path: '/portal/student/registration' },
+    { label: 'النتائج والدرجات', path: '/portal/student/grades' },
+    { label: 'أرشيف الامتحانات', path: '/exams' },
+    { label: 'لوحة التحكم', path: '/admin' },
+  ];
+
+  const socials = [
+    { icon: <Share2 size={18} />, href: 'https://facebook.com', label: 'Facebook' },
+    { icon: <Rss size={18} />, href: 'https://twitter.com', label: 'Twitter' },
+    { icon: <Globe size={18} />, href: 'https://linkedin.com', label: 'LinkedIn' },
+    { icon: <Video size={18} />, href: 'https://youtube.com', label: 'YouTube' },
+  ];
 
   return (
-    <footer className="bg-slate-50 dark:bg-slate-950 text-slate-600 dark:text-slate-400 border-t border-slate-200 dark:border-slate-800 pt-16 pb-8">
+    <footer className="bg-slate-950 text-slate-300 pt-16 pb-6">
       <div className="container mx-auto px-4 md:px-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-          {/* About */}
+        {/* Main Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-14">
+          {/* Brand */}
           <div>
-            <div className="w-12 h-12 bg-blue-600 dark:bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold text-xl mb-4">
-              FCI
+            <div className="flex items-center gap-3 mb-5">
+              <div
+                className="w-12 h-12 rounded-xl flex items-center justify-center font-black text-xl text-white shadow-lg"
+                style={{ background: 'linear-gradient(135deg, #1d4ed8, #3b82f6)' }}
+              >
+                FCI
+              </div>
+              <div>
+                <p className="text-white font-extrabold leading-tight">كلية الحاسبات</p>
+                <p className="text-slate-400 text-xs">جامعة طنطا</p>
+              </div>
             </div>
-            <h3 className="text-slate-900 dark:text-white text-lg font-bold mb-4">{t('home.heroTitle')}</h3>
-            <p className="text-sm leading-relaxed mb-6 text-slate-600 dark:text-slate-400">
-              A leading institution in computer science and information technology education, research, and community service in the Middle East.
+            <p className="text-sm leading-relaxed text-slate-400 mb-6">
+              كلية رائدة في تعليم علوم الحاسب وتكنولوجيا المعلومات والبحث العلمي وخدمة المجتمع في منطقة الشرق الأوسط.
             </p>
-            <div className="flex gap-4">
-              <a href="#" className="hover:text-accent transition-colors"><span className="text-sm font-bold">f</span></a>
-              <a href="#" className="hover:text-accent transition-colors"><span className="text-sm font-bold">𝕏</span></a>
-              <a href="#" className="hover:text-accent transition-colors text-sm font-bold">in</a>
-              <a href="#" className="hover:text-accent transition-colors text-sm font-bold">yt</a>
+            <div className="flex gap-2">
+              {socials.map(s => (
+                <a
+                  key={s.label}
+                  href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={s.label}
+                  className="w-9 h-9 rounded-lg bg-slate-800 hover:bg-blue-600 flex items-center justify-center transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-blue-500/20"
+                >
+                  {s.icon}
+                </a>
+              ))}
             </div>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-slate-900 dark:text-white text-lg font-bold mb-4">Quick Links</h3>
-            <ul className="space-y-2">
-              <li><Link to="/about" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{t('nav.about')}</Link></li>
-              <li><Link to="/departments" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{t('nav.departments')}</Link></li>
-              <li><Link to="/programs" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{t('nav.programs')}</Link></li>
-              <li><Link to="/research" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{t('nav.research')}</Link></li>
-              <li><Link to="/news" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{t('nav.news')}</Link></li>
+            <h3 className="text-white font-bold mb-5 text-base">روابط سريعة</h3>
+            <ul className="space-y-2.5">
+              {quickLinks.map(l => (
+                <li key={l.path}>
+                  <Link
+                    to={l.path}
+                    className="text-sm text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-2 group"
+                  >
+                    <span className="w-1 h-1 rounded-full bg-blue-500 group-hover:w-2 transition-all" />
+                    {l.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Departments */}
+          {/* Student Links */}
           <div>
-            <h3 className="text-slate-900 dark:text-white text-lg font-bold mb-4">Departments</h3>
-            <ul className="space-y-2">
-              <li><Link to="/departments/cs" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Computer Science</Link></li>
-              <li><Link to="/departments/is" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Information Systems</Link></li>
-              <li><Link to="/departments/it" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Information Technology</Link></li>
-              <li><Link to="/departments/se" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Software Engineering</Link></li>
+            <h3 className="text-white font-bold mb-5 text-base">خدمات الطالب</h3>
+            <ul className="space-y-2.5">
+              {studentLinks.map(l => (
+                <li key={l.path}>
+                  <Link
+                    to={l.path}
+                    className="text-sm text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-2 group"
+                  >
+                    <span className="w-1 h-1 rounded-full bg-purple-500 group-hover:w-2 transition-all" />
+                    {l.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Contact Info */}
+          {/* Contact + Newsletter */}
           <div>
-            <h3 className="text-slate-900 dark:text-white text-lg font-bold mb-4">{t('nav.contact')}</h3>
-            <ul className="space-y-4">
+            <h3 className="text-white font-bold mb-5 text-base">{t('nav.contact')}</h3>
+            <ul className="space-y-3 mb-6">
               <li className="flex items-start gap-3">
-                <MapPin className="text-accent shrink-0 mt-1" size={20} />
-                <span>Medical Campus, Tanta University, El Geish Street, Tanta, Gharbia, Egypt</span>
+                <MapPin className="text-blue-400 shrink-0 mt-0.5" size={16} />
+                <span className="text-sm text-slate-400">حرم جامعة طنطا الطبي، شارع الجيش، طنطا، الغربية</span>
               </li>
               <li className="flex items-center gap-3">
-                <Phone className="text-accent shrink-0" size={20} />
-                <span dir="ltr">+20 40 3450536</span>
+                <Phone className="text-blue-400 shrink-0" size={16} />
+                <span className="text-sm text-slate-400" dir="ltr">+20 40 3450536</span>
               </li>
               <li className="flex items-center gap-3">
-                <Mail className="text-accent shrink-0" size={20} />
-                <span>info@fci.tanta.edu.eg</span>
+                <Mail className="text-blue-400 shrink-0" size={16} />
+                <span className="text-sm text-slate-400">info@fci.tanta.edu.eg</span>
               </li>
             </ul>
+
+            {/* Newsletter */}
+            <div>
+              <h4 className="text-white font-semibold mb-3 text-sm">النشرة البريدية</h4>
+              {subscribed ? (
+                <motion.p
+                  initial={{ opacity: 0, y: 5 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="text-green-400 text-sm font-medium"
+                >
+                  ✓ تم الاشتراك بنجاح!
+                </motion.p>
+              ) : (
+                <form onSubmit={handleNewsletter} className="flex gap-2">
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={e => setEmail(e.target.value)}
+                    placeholder="بريدك الإلكتروني"
+                    className="flex-1 px-3 py-2 rounded-lg bg-slate-800 border border-slate-700 text-slate-200 placeholder:text-slate-500 text-sm outline-none focus:border-blue-500 transition-colors"
+                  />
+                  <button
+                    type="submit"
+                    className="w-9 h-9 rounded-lg bg-blue-600 hover:bg-blue-500 flex items-center justify-center transition-colors shrink-0"
+                    aria-label="Subscribe"
+                  >
+                    <Send size={15} />
+                  </button>
+                </form>
+              )}
+            </div>
           </div>
         </div>
 
-        <div className="border-t border-slate-200 dark:border-slate-800 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-sm text-slate-500 dark:text-slate-400">
-            © {new Date().getFullYear()} Tanta University, Faculty of Computers & Information. All rights reserved.
+        {/* Bottom Bar */}
+        <div className="border-t border-slate-800 pt-6 flex flex-col md:flex-row items-center justify-between gap-3">
+          <p className="text-xs text-slate-500">
+            © {new Date().getFullYear()} جامعة طنطا — كلية الحاسبات والمعلومات. جميع الحقوق محفوظة.
           </p>
-          <div className="flex gap-6 text-sm text-slate-500 dark:text-slate-400">
-            <a href="#" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Terms of Service</a>
-            <a href="#" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Sitemap</a>
+          <div className="flex gap-5 text-xs text-slate-500">
+            <a href="/privacy-policy" className="hover:text-slate-300 transition-colors">سياسة الخصوصية</a>
+            <a href="/terms" className="hover:text-slate-300 transition-colors">شروط الاستخدام</a>
+            <a href="/sitemap.xml" className="hover:text-slate-300 transition-colors flex items-center gap-1">
+              خريطة الموقع <ExternalLink size={11} />
+            </a>
           </div>
         </div>
       </div>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Menu, X, Moon, Sun, Globe, Search } from 'lucide-react';
+import { Menu, X, Moon, Sun, Search, BookOpen, GraduationCap, ClipboardList, FileText } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import AnnouncementBanner from '../ui/AnnouncementBanner';
 
@@ -63,7 +63,9 @@ const Navbar = () => {
     { name: t('nav.programs'), path: '/programs' },
     { name: 'بحوث', path: '/research' },
     { name: t('nav.news'), path: '/news' },
-    { name: 'تواصل معنا', path: '/contact' },
+    { name: 'متجر', path: '/store' },
+    { name: 'امتحانات', path: '/exams' },
+    { name: 'تواصل', path: '/contact' },
   ];
 
   const scrolled = isScrolled || location.pathname !== '/';
@@ -71,21 +73,30 @@ const Navbar = () => {
   return (
     <div className="fixed top-0 w-full z-50">
       <AnnouncementBanner />
-      <header className={`w-full transition-all duration-500 ${
-        scrolled
-          ? 'backdrop-blur-xl shadow-lg py-2 border-b'
-          : 'bg-transparent py-4'
-      } ${scrolled
-          ? isDark
-            ? 'bg-slate-900/90 border-slate-700/50'
-            : 'bg-white/90 border-slate-200/50'
-          : ''
-      }`}>
+      <header
+        className={`w-full transition-all duration-500 ${
+          scrolled
+            ? 'py-2 shadow-xl border-b backdrop-blur-2xl'
+            : 'bg-transparent py-4'
+        } ${
+          scrolled
+            ? isDark
+              ? 'bg-slate-900/85 border-slate-700/40 shadow-slate-900/50'
+              : 'bg-white/85 border-slate-200/60 shadow-slate-200/40'
+            : ''
+        }`}
+        style={scrolled ? {
+          backdropFilter: 'blur(20px) saturate(180%)',
+          WebkitBackdropFilter: 'blur(20px) saturate(180%)',
+        } : undefined}
+      >
         <div className="container mx-auto px-4 md:px-6">
           <div className="flex items-center justify-between">
             <Link to="/" className="flex items-center gap-3 group">
-              <div className="w-10 h-10 rounded-xl flex items-center justify-center font-black text-lg text-white shadow-lg group-hover:scale-105 transition-transform"
-                style={{ background: 'linear-gradient(135deg, #1d4ed8, #3b82f6)' }}>
+              <div
+                className="w-10 h-10 rounded-xl flex items-center justify-center font-black text-lg text-white shadow-lg group-hover:scale-105 transition-transform"
+                style={{ background: 'linear-gradient(135deg, #1d4ed8, #3b82f6)' }}
+              >
                 FCI
               </div>
               <div className={`font-bold leading-tight hidden sm:block text-slate-900 dark:text-white ${!scrolled && 'dark:drop-shadow-md'}`}>
@@ -95,15 +106,15 @@ const Navbar = () => {
             </Link>
 
             {/* Desktop Nav */}
-            <nav className="hidden lg:flex items-center gap-1">
+            <nav className="hidden lg:flex items-center gap-0.5">
               {navLinks.map((link) => (
                 <Link
                   key={link.path}
                   to={link.path}
                   className={`px-3 py-2 text-sm font-semibold rounded-lg transition-all relative ${
                     location.pathname === link.path
-                      ? 'text-blue-600 dark:text-blue-400'
-                      : 'text-slate-700 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-slate-100 dark:hover:bg-slate-800'
+                      ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/50'
+                      : 'text-slate-700 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-slate-100/80 dark:hover:bg-slate-800/80'
                   }`}
                 >
                   {link.name}
@@ -118,8 +129,7 @@ const Navbar = () => {
             </nav>
 
             {/* Actions */}
-            <div className="hidden lg:flex items-center gap-2">
-              {/* Search */}
+            <div className="hidden lg:flex items-center gap-1.5">
               <AnimatePresence>
                 {showSearch && (
                   <motion.form
@@ -143,25 +153,25 @@ const Navbar = () => {
               <button
                 onClick={() => setShowSearch(!showSearch)}
                 className="p-2 rounded-lg transition-colors hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300"
+                aria-label="Search"
               >
                 <Search size={18} />
               </button>
               <button
                 onClick={toggleLanguage}
                 className="p-2 rounded-lg transition-colors font-bold text-xs hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300"
+                aria-label="Toggle language"
               >
                 {i18n.language === 'ar' ? 'EN' : 'ع'}
               </button>
               <button
                 onClick={() => setIsDark(!isDark)}
                 className="p-2 rounded-lg transition-colors hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300"
+                aria-label="Toggle dark mode"
               >
                 {isDark ? <Sun size={18} /> : <Moon size={18} />}
               </button>
-              <Link
-                to="/portal"
-                className="btn-primary text-sm !px-4 !py-2 ms-2"
-              >
+              <Link to="/portal" className="btn-primary text-sm !px-4 !py-2 ms-1">
                 {t('nav.portal')}
               </Link>
             </div>
@@ -170,8 +180,19 @@ const Navbar = () => {
             <button
               className="lg:hidden p-2 rounded-lg transition-colors text-slate-800 dark:text-white hover:bg-slate-100 dark:hover:bg-slate-800"
               onClick={() => setIsOpen(!isOpen)}
+              aria-label={isOpen ? 'Close menu' : 'Open menu'}
             >
-              {isOpen ? <X size={22} /> : <Menu size={22} />}
+              <AnimatePresence mode="wait">
+                {isOpen ? (
+                  <motion.div key="x" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }} transition={{ duration: 0.2 }}>
+                    <X size={22} />
+                  </motion.div>
+                ) : (
+                  <motion.div key="menu" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }} transition={{ duration: 0.2 }}>
+                    <Menu size={22} />
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </button>
           </div>
         </div>
@@ -183,22 +204,34 @@ const Navbar = () => {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
-              className="lg:hidden bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800 shadow-xl overflow-hidden"
+              transition={{ duration: 0.3, ease: 'easeInOut' }}
+              className="lg:hidden overflow-hidden"
+              style={{
+                background: isDark ? 'rgba(15,23,42,0.97)' : 'rgba(255,255,255,0.97)',
+                backdropFilter: 'blur(20px)',
+                borderTop: isDark ? '1px solid rgba(255,255,255,0.06)' : '1px solid rgba(0,0,0,0.06)',
+              }}
             >
               <div className="px-4 py-4 space-y-1">
-                {navLinks.map((link) => (
-                  <Link
+                {navLinks.map((link, i) => (
+                  <motion.div
                     key={link.path}
-                    to={link.path}
-                    onClick={() => setIsOpen(false)}
-                    className={`flex items-center px-4 py-3 rounded-xl font-semibold transition-colors ${
-                      location.pathname === link.path
-                        ? 'bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400'
-                        : 'text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800'
-                    }`}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: i * 0.05 }}
                   >
-                    {link.name}
-                  </Link>
+                    <Link
+                      to={link.path}
+                      onClick={() => setIsOpen(false)}
+                      className={`flex items-center px-4 py-3 rounded-xl font-semibold transition-colors ${
+                        location.pathname === link.path
+                          ? 'bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400'
+                          : 'text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800'
+                      }`}
+                    >
+                      {link.name}
+                    </Link>
+                  </motion.div>
                 ))}
                 <div className="border-t border-slate-100 dark:border-slate-800 pt-3 mt-3 flex items-center justify-between px-2">
                   <button onClick={() => setIsDark(!isDark)} className="flex items-center gap-2 text-slate-600 dark:text-slate-400 text-sm font-medium">

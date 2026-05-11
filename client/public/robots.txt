@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /portal/student/
+Disallow: /api/
+
+Sitemap: https://fci-tanta.vercel.app/sitemap.xml
