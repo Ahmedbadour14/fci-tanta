@@ -172,7 +172,7 @@ const AdminDashboard = () => {
                       data={stats?.usersByRole?.length ? stats.usersByRole.map((r: any) => ({ name: r.role, value: r.count })) : [
                         { name: 'student', value: 60 }, { name: 'staff', value: 25 }, { name: 'admin', value: 15 },
                       ]}
-                      cx="50%" cy="50%" outerRadius={80} dataKey="value" label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
+                      cx="50%" cy="50%" outerRadius={80} dataKey="value" label={({ name, percent }) => `${name} ${((percent ?? 0) * 100).toFixed(0)}%`}
                     >
                       {(stats?.usersByRole || [{},{},{}]).map((_: any, index: number) => (
                         <Cell key={index} fill={PIE_COLORS[index % PIE_COLORS.length]} />
