@@ -59,7 +59,7 @@ export const updateResearch = async (req: Request, res: Response) => {
   try {
     const { title, abstract, authors, publishedAt, url } = req.body;
     const paper = await prisma.researchPaper.update({
-      where: { id: req.params.id },
+      where: { id: String(req.params.id) },
       data: { title, abstract, authors, publishedAt: new Date(publishedAt), url },
     });
     res.json(paper);
@@ -70,7 +70,7 @@ export const updateResearch = async (req: Request, res: Response) => {
 
 export const deleteResearch = async (req: Request, res: Response) => {
   try {
-    await prisma.researchPaper.delete({ where: { id: req.params.id } });
+    await prisma.researchPaper.delete({ where: { id: String(req.params.id) } });
     res.json({ message: 'Research paper deleted' });
   } catch (error) {
     res.status(500).json({ message: 'Failed to delete research paper' });

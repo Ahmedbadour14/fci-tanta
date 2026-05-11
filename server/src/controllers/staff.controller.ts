@@ -7,8 +7,8 @@ export const getStaff = async (req: Request, res: Response) => {
   try {
     const page = parseInt(req.query.page as string) || 1;
     const limit = parseInt(req.query.limit as string) || 12;
-    const search = req.query.search as string;
-    const departmentId = req.query.departmentId as string;
+    const search = String(req.query.search || '');
+    const departmentId = String(req.query.departmentId || '');
     const skip = (page - 1) * limit;
 
     const where: any = {};
@@ -47,7 +47,7 @@ export const getStaff = async (req: Request, res: Response) => {
 export const getStaffById = async (req: Request, res: Response) => {
   try {
     const staff = await prisma.staffMember.findUnique({
-      where: { id: req.params.id },
+      where: { id: String(req.params.id) },
       include: {
         user: { select: { firstName: true, lastName: true, email: true } },
         department: true,

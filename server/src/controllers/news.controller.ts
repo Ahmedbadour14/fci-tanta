@@ -46,7 +46,7 @@ export const getNews = async (req: Request, res: Response) => {
 
 export const getNewsById = async (req: Request, res: Response) => {
   try {
-    const news = await prisma.news.findUnique({ where: { id: req.params.id } });
+    const news = await prisma.news.findUnique({ where: { id: String(req.params.id) } });
     if (!news) return res.status(404).json({ message: 'News not found' });
     res.json(news);
   } catch (error) {
@@ -58,7 +58,7 @@ export const createNews = async (req: Request, res: Response) => {
   try {
     const { title, content, category } = req.body;
     const imageUrl = req.file
-      ? `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`
+      ? `${String(req.protocol)}://${String(req.get('host'))}/uploads/${req.file.filename}`
       : undefined;
 
     const news = await prisma.news.create({
@@ -75,9 +75,9 @@ export const updateNews = async (req: Request, res: Response) => {
     const { title, content, category } = req.body;
     const data: any = { title, content, category };
     if (req.file) {
-      data.imageUrl = `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`;
+      data.imageUrl = `${String(req.protocol)}://${String(req.get('host'))}/uploads/${req.file.filename}`;
     }
-    const news = await prisma.news.update({ where: { id: req.params.id }, data });
+    const news = await prisma.news.update({ where: { id: String(req.params.id) }, data });
     res.json(news);
   } catch (error) {
     res.status(500).json({ message: 'Failed to update news' });
@@ -86,7 +86,7 @@ export const updateNews = async (req: Request, res: Response) => {
 
 export const deleteNews = async (req: Request, res: Response) => {
   try {
-    await prisma.news.delete({ where: { id: req.params.id } });
+    await prisma.news.delete({ where: { id: String(req.params.id) } });
     res.json({ message: 'News deleted successfully' });
   } catch (error) {
     res.status(500).json({ message: 'Failed to delete news' });
