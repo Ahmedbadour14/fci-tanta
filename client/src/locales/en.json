@@ -1,0 +1,29 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About Us",
+    "departments": "Departments",
+    "programs": "Programs",
+    "research": "Research",
+    "news": "News & Events",
+    "community": "Community Service",
+    "contact": "Contact Us",
+    "login": "Login",
+    "logout": "Logout",
+    "portal": "Student Portal"
+  },
+  "home": {
+    "heroTitle": "Faculty of Computers and Information",
+    "heroSubtitle": "Tanta University",
+    "applyNow": "Apply Now",
+    "explore": "Explore Programs",
+    "stats": {
+      "students": "Students",
+      "staff": "Faculty Members",
+      "programs": "Academic Programs",
+      "papers": "Research Papers"
+    },
+    "deanMessage": "Dean's Message",
+    "news": "Latest News"
+  }
+}
