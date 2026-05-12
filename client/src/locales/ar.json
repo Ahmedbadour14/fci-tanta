@@ -260,5 +260,212 @@
   },
   "darkMode": "الوضع الداكن",
   "lightMode": "الوضع الفاتح",
-  "back": "العودة"
+  "back": "العودة",
+  "studentPortalPage": {
+    "greeting": "أهلاً،",
+    "role_student": "طالب",
+    "back": "العودة",
+    "logout": "تسجيل الخروج",
+    "quickLinks": {
+      "courseReg": "تسجيل المقررات",
+      "courseRegDesc": "سجل مقرراتك",
+      "schedule": "الجدول الدراسي",
+      "scheduleDesc": "اعرض جدولك",
+      "grades": "الدرجات والسجل",
+      "gradesDesc": "درجاتك ومعدلك",
+      "absenceReq": "طلب إذن غياب",
+      "absenceReqDesc": "قدّم طلبًا"
+    },
+    "todaySchedule": "جدول اليوم",
+    "viewFull": "عرض الكامل",
+    "coursePerformance": "أداء المقررات",
+    "gradeTooltip": "الدرجة",
+    "notifications": "الإشعارات",
+    "academicProgress": "التقدم الأكاديمي",
+    "creditHours": "الساعات المعتمدة",
+    "cumulativeGPA": "المعدل التراكمي",
+    "studyLevel": "المستوى الدراسي",
+    "room": "قاعة",
+    "notif1Title": "موعد سداد الرسوم",
+    "notif1Desc": "يرجى إتمام السداد قبل 15 أكتوبر.",
+    "notif1Time": "منذ ساعتين",
+    "notif2Title": "تم تصحيح الواجب",
+    "notif2Desc": "تم رصد درجة مادة IS312.",
+    "notif2Time": "منذ يوم",
+    "notif3Title": "إجازة رسمية",
+    "notif3Desc": "الجامعة مغلقة يوم الخميس القادم.",
+    "notif3Time": "منذ يومين",
+    "grades": {
+      "algorithms": "خوارزميات",
+      "databases": "قواعد البيانات",
+      "networks": "الشبكات",
+      "ai": "الذكاء الاصطناعي",
+      "softwareEng": "هندسة البرمجيات",
+      "cyberSec": "الأمن السيبراني"
+    },
+    "schedule": {
+      "hallA": "قاعة أ",
+      "hallB": "قاعة ب",
+      "lab3": "معمل 3",
+      "cs311": "CS311 - هياكل البيانات",
+      "is312": "IS312 - قواعد البيانات",
+      "it313": "IT313 - شبكات الحاسوب"
+    }
+  },
+  "store": {
+    "title": "متجر الكتب",
+    "subtitle": "اشتر كتبك الدراسية بسهولة",
+    "breadcrumb": "الرئيسية / المتجر",
+    "searchPlaceholder": "ابحث عن كتاب...",
+    "allDepts": "كل الأقسام",
+    "allSemesters": "كل الفصول",
+    "semester": "الفصل",
+    "cart": "السلة",
+    "outOfStock": "نفذ",
+    "noResults": "لا توجد كتب مطابقة للبحث",
+    "currency": "ج.م.",
+    "cartTitle": "سلة التسوق",
+    "cartBreadcrumb": "المتجر / السلة",
+    "emptyCart": "السلة فارغة",
+    "browseBooks": "تصفح الكتب",
+    "total": "الإجمالي",
+    "proceedToCheckout": "متابعة الدفع",
+    "checkoutTitle": "إتمام الطلب",
+    "checkoutBreadcrumb": "المتجر / الدفع",
+    "deliveryInfo": "بيانات التسليم",
+    "fullName": "الاسم الكامل",
+    "studentId": "الرقم الجامعي",
+    "phone": "رقم الهاتف",
+    "address": "عنوان التسليم",
+    "fullNamePlaceholder": "محمد أحمد",
+    "studentIdPlaceholder": "2021XXXXXX",
+    "phonePlaceholder": "01XXXXXXXXX",
+    "addressPlaceholder": "طنطا، الغربية",
+    "back": "رجوع",
+    "confirmOrder": "تأكيد الطلب",
+    "orderConfirmed": "تم تأكيد طلبك!",
+    "orderConfirmedDesc": "سيتم التواصل معك قريباً على رقم الهاتف المسجل لتسليم الكتب.",
+    "continueShopping": "متابعة التسوق"
+  },
+  "courseReg": {
+    "title": "تسجيل المواد",
+    "subtitle": "اختر موادك للفصل الدراسي الجاري",
+    "breadcrumb": "البوابة / تسجيل المواد",
+    "creditHours": "ساعة معتمدة",
+    "coursesSelected": "مادة مختارة",
+    "scheduleConflict": "تعارض في المواعيد!",
+    "weeklySchedule": "الجدول الأسبوعي",
+    "registerBtn": "تسجيل",
+    "registered": "✓ مسجلة",
+    "full": "ممتلئة",
+    "registrationSummary": "ملخص التسجيل",
+    "noCoursesSelected": "لم تختر أي مادة بعد",
+    "total": "الإجمالي",
+    "hours": "ساعة",
+    "saveRegistration": "حفظ التسجيل",
+    "savedSuccess": "تم حفظ التسجيل!",
+    "days": {
+      "sat": "السبت",
+      "sun": "الأحد",
+      "mon": "الاثنين",
+      "tue": "الثلاثاء",
+      "wed": "الأربعاء",
+      "thu": "الخميس"
+    }
+  },
+  "gradesPage": {
+    "title": "الدرجات والنتائج",
+    "subtitle": "سجلك الأكاديمي الكامل",
+    "breadcrumb": "البوابة / الدرجات",
+    "cumulativeGPA": "المعدل التراكمي",
+    "academicStanding": "المستوى الأكاديمي",
+    "completedHours": "الساعات المكتملة",
+    "semesterGPA": "معدل الفصل",
+    "downloadPDF": "تحميل PDF",
+    "gpaLabel": "المعدل:",
+    "inProgress": "جارٍ",
+    "standing": {
+      "excellent": "ممتاز",
+      "veryGood": "جيد جداً",
+      "good": "جيد",
+      "pass": "مقبول",
+      "fail": "راسب"
+    },
+    "tableHeaders": {
+      "code": "الكود",
+      "course": "المادة",
+      "creditHours": "الساعات",
+      "midterm": "نصف الفصل",
+      "final": "النهائي",
+      "practical": "العملي",
+      "total": "الإجمالي",
+      "grade": "التقدير"
+    },
+    "semesters": {
+      "y1s1": "السنة 1 - الفصل 1",
+      "y1s2": "السنة 1 - الفصل 2",
+      "y2s1": "السنة 2 - الفصل 1",
+      "y2s2": "السنة 2 - الفصل 2 (جارٍ)"
+    }
+  },
+  "exams": {
+    "title": "أرشيف الامتحانات",
+    "subtitle": "تصفح وحمّل امتحانات السنوات السابقة",
+    "breadcrumb": "الرئيسية / الامتحانات",
+    "searchPlaceholder": "ابحث باسم المادة أو الكود...",
+    "allDepts": "كل الأقسام",
+    "allYears": "كل السنوات",
+    "examType": "نوع الامتحان",
+    "midterm": "نصف فصل",
+    "final": "نهائي",
+    "results": "نتيجة",
+    "noResults": "لا توجد امتحانات مطابقة",
+    "downloadPDF": "تحميل PDF",
+    "downloadSoon": "سيتم تحميل الملف قريباً بعد الاتصال بالخادم."
+  },
+  "admin": {
+    "back": "العودة",
+    "welcome": "مرحبًا،",
+    "systemAdmin": "مدير النظام",
+    "refreshData": "تحديث البيانات",
+    "tabs": {
+      "overview": "نظرة عامة",
+      "news": "إدارة الأخبار",
+      "users": "المستخدمون",
+      "contacts": "الرسائل",
+      "gallery": "المعرض"
+    },
+    "overview": {
+      "monthlyPublications": "المنشورات الشهرية",
+      "userDistribution": "توزيع المستخدمين",
+      "students": "الطلاب",
+      "staff": "أعضاء التدريس",
+      "totalNews": "الأخبار",
+      "research": "الأبحاث"
+    },
+    "news": {
+      "title": "إدارة الأخبار",
+      "addNew": "خبر جديد",
+      "tableTitle": "العنوان",
+      "tableCategory": "الفئة",
+      "tableDate": "التاريخ",
+      "tableActions": "إجراءات",
+      "deleteConfirm": "هل أنت متأكد من حذف هذا الخبر؟",
+      "deleteSuccess": "تم حذف الخبر",
+      "deleteError": "فشل حذف الخبر",
+      "loadError": "فشل تحميل البيانات"
+    },
+    "contacts": {
+      "title": "رسائل التواصل",
+      "empty": "لا توجد رسائل حتى الآن"
+    },
+    "users": {
+      "title": "إدارة المستخدمين",
+      "comingSoon": "قسم إدارة المستخدمين قيد التطوير"
+    },
+    "gallery": {
+      "title": "إدارة المعرض",
+      "uploadImage": "رفع صورة"
+    }
+  }
 }

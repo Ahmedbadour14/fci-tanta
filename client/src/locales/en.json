@@ -260,5 +260,212 @@
   },
   "darkMode": "Dark Mode",
   "lightMode": "Light Mode",
-  "back": "Back"
+  "back": "Back",
+  "studentPortalPage": {
+    "greeting": "Welcome,",
+    "role_student": "Student",
+    "back": "Back",
+    "logout": "Logout",
+    "quickLinks": {
+      "courseReg": "Course Registration",
+      "courseRegDesc": "Register your courses",
+      "schedule": "Class Schedule",
+      "scheduleDesc": "View your schedule",
+      "grades": "Grades & Records",
+      "gradesDesc": "Your grades and GPA",
+      "absenceReq": "Absence Request",
+      "absenceReqDesc": "Submit a request"
+    },
+    "todaySchedule": "Today's Schedule",
+    "viewFull": "View Full",
+    "coursePerformance": "Course Performance",
+    "gradeTooltip": "Grade",
+    "notifications": "Notifications",
+    "academicProgress": "Academic Progress",
+    "creditHours": "Credit Hours",
+    "cumulativeGPA": "Cumulative GPA",
+    "studyLevel": "Study Level",
+    "room": "Room",
+    "notif1Title": "Fee Payment Deadline",
+    "notif1Desc": "Please complete payment before October 15.",
+    "notif1Time": "2 hours ago",
+    "notif2Title": "Assignment Graded",
+    "notif2Desc": "IS312 grade has been posted.",
+    "notif2Time": "1 day ago",
+    "notif3Title": "Official Holiday",
+    "notif3Desc": "The university is closed next Thursday.",
+    "notif3Time": "2 days ago",
+    "grades": {
+      "algorithms": "Algorithms",
+      "databases": "Databases",
+      "networks": "Networks",
+      "ai": "Artificial Intelligence",
+      "softwareEng": "Software Engineering",
+      "cyberSec": "Cybersecurity"
+    },
+    "schedule": {
+      "hallA": "Hall A",
+      "hallB": "Hall B",
+      "lab3": "Lab 3",
+      "cs311": "CS311 - Data Structures",
+      "is312": "IS312 - Databases",
+      "it313": "IT313 - Computer Networks"
+    }
+  },
+  "store": {
+    "title": "Book Store",
+    "subtitle": "Buy your academic books easily",
+    "breadcrumb": "Home / Store",
+    "searchPlaceholder": "Search for a book...",
+    "allDepts": "All Departments",
+    "allSemesters": "All Semesters",
+    "semester": "Semester",
+    "cart": "Cart",
+    "outOfStock": "Out of Stock",
+    "noResults": "No books match your search",
+    "currency": "EGP",
+    "cartTitle": "Shopping Cart",
+    "cartBreadcrumb": "Store / Cart",
+    "emptyCart": "Cart is empty",
+    "browseBooks": "Browse Books",
+    "total": "Total",
+    "proceedToCheckout": "Proceed to Checkout",
+    "checkoutTitle": "Complete Order",
+    "checkoutBreadcrumb": "Store / Checkout",
+    "deliveryInfo": "Delivery Information",
+    "fullName": "Full Name",
+    "studentId": "Student ID",
+    "phone": "Phone Number",
+    "address": "Delivery Address",
+    "fullNamePlaceholder": "Ahmed Mohamed",
+    "studentIdPlaceholder": "2021XXXXXX",
+    "phonePlaceholder": "+20 1XXXXXXXXX",
+    "addressPlaceholder": "Tanta, El Gharbia",
+    "back": "Back",
+    "confirmOrder": "Confirm Order",
+    "orderConfirmed": "Order Confirmed!",
+    "orderConfirmedDesc": "We will contact you shortly on your registered phone number to deliver the books.",
+    "continueShopping": "Continue Shopping"
+  },
+  "courseReg": {
+    "title": "Course Registration",
+    "subtitle": "Select your courses for the current semester",
+    "breadcrumb": "Portal / Course Registration",
+    "creditHours": "Credit Hours",
+    "coursesSelected": "Course(s) Selected",
+    "scheduleConflict": "Schedule Conflict!",
+    "weeklySchedule": "Weekly Schedule",
+    "registerBtn": "Register",
+    "registered": "✓ Registered",
+    "full": "Full",
+    "registrationSummary": "Registration Summary",
+    "noCoursesSelected": "No courses selected yet",
+    "total": "Total",
+    "hours": "hours",
+    "saveRegistration": "Save Registration",
+    "savedSuccess": "Registration saved!",
+    "days": {
+      "sat": "Saturday",
+      "sun": "Sunday",
+      "mon": "Monday",
+      "tue": "Tuesday",
+      "wed": "Wednesday",
+      "thu": "Thursday"
+    }
+  },
+  "gradesPage": {
+    "title": "Grades & Results",
+    "subtitle": "Your complete academic record",
+    "breadcrumb": "Portal / Grades",
+    "cumulativeGPA": "Cumulative GPA",
+    "academicStanding": "Academic Standing",
+    "completedHours": "Completed Hours",
+    "semesterGPA": "Semester GPA",
+    "downloadPDF": "Download PDF",
+    "gpaLabel": "GPA:",
+    "inProgress": "In Progress",
+    "standing": {
+      "excellent": "Excellent",
+      "veryGood": "Very Good",
+      "good": "Good",
+      "pass": "Pass",
+      "fail": "Fail"
+    },
+    "tableHeaders": {
+      "code": "Code",
+      "course": "Course",
+      "creditHours": "Cr.Hrs",
+      "midterm": "Midterm",
+      "final": "Final",
+      "practical": "Practical",
+      "total": "Total",
+      "grade": "Grade"
+    },
+    "semesters": {
+      "y1s1": "Year 1 - Semester 1",
+      "y1s2": "Year 1 - Semester 2",
+      "y2s1": "Year 2 - Semester 1",
+      "y2s2": "Year 2 - Semester 2 (Current)"
+    }
+  },
+  "exams": {
+    "title": "Exam Archive",
+    "subtitle": "Browse and download previous exam papers",
+    "breadcrumb": "Home / Exams",
+    "searchPlaceholder": "Search by course name or code...",
+    "allDepts": "All Departments",
+    "allYears": "All Years",
+    "examType": "Exam Type",
+    "midterm": "Midterm",
+    "final": "Final",
+    "results": "result(s)",
+    "noResults": "No matching exams",
+    "downloadPDF": "Download PDF",
+    "downloadSoon": "The file will be available for download after connecting to the server."
+  },
+  "admin": {
+    "back": "Back",
+    "welcome": "Welcome,",
+    "systemAdmin": "System Administrator",
+    "refreshData": "Refresh Data",
+    "tabs": {
+      "overview": "Overview",
+      "news": "Manage News",
+      "users": "Users",
+      "contacts": "Messages",
+      "gallery": "Gallery"
+    },
+    "overview": {
+      "monthlyPublications": "Monthly Publications",
+      "userDistribution": "User Distribution",
+      "students": "Students",
+      "staff": "Faculty",
+      "totalNews": "News",
+      "research": "Research"
+    },
+    "news": {
+      "title": "Manage News",
+      "addNew": "Add News",
+      "tableTitle": "Title",
+      "tableCategory": "Category",
+      "tableDate": "Date",
+      "tableActions": "Actions",
+      "deleteConfirm": "Are you sure you want to delete this news item?",
+      "deleteSuccess": "News deleted successfully",
+      "deleteError": "Failed to delete news",
+      "loadError": "Failed to load data"
+    },
+    "contacts": {
+      "title": "Contact Messages",
+      "empty": "No messages yet"
+    },
+    "users": {
+      "title": "Manage Users",
+      "comingSoon": "User management is under development"
+    },
+    "gallery": {
+      "title": "Manage Gallery",
+      "uploadImage": "Upload Image"
+    }
+  }
 }

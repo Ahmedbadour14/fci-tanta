@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import {
   RadarChart, Radar, PolarGrid, PolarAngleAxis, PolarRadiusAxis,
   ResponsiveContainer, Tooltip
@@ -12,16 +13,8 @@ import {
 } from 'lucide-react';
 import api from '../services/api';
 
-const gradeData = [
-  { subject: 'خوارزميات', grade: 88 },
-  { subject: 'قواعد البيانات', grade: 92 },
-  { subject: 'الشبكات', grade: 75 },
-  { subject: 'الذكاء الاصطناعي', grade: 95 },
-  { subject: 'هندسة البرمجيات', grade: 80 },
-  { subject: 'الأمن السيبراني', grade: 85 },
-];
-
 const Portal = () => {
+  const { t } = useTranslation();
   const { user, logout } = useAuth();
   const navigate = useNavigate();
   const [stats, setStats] = useState<any>(null);
@@ -33,23 +26,32 @@ const Portal = () => {
   const handleLogout = () => { logout(); navigate('/login'); };
   if (!user) return null;
 
+  const gradeData = [
+    { subject: t('studentPortalPage.grades.algorithms'), grade: 88 },
+    { subject: t('studentPortalPage.grades.databases'), grade: 92 },
+    { subject: t('studentPortalPage.grades.networks'), grade: 75 },
+    { subject: t('studentPortalPage.grades.ai'), grade: 95 },
+    { subject: t('studentPortalPage.grades.softwareEng'), grade: 80 },
+    { subject: t('studentPortalPage.grades.cyberSec'), grade: 85 },
+  ];
+
   const quickLinks = [
-    { title: 'تسجيل المقررات', icon: BookOpen, color: 'from-blue-500 to-blue-600', desc: 'سجل مقرراتك' },
-    { title: 'الجدول الدراسي', icon: Calendar, color: 'from-emerald-500 to-emerald-600', desc: 'اعرض جدولك' },
-    { title: 'الدرجات والسجل', icon: GraduationCap, color: 'from-violet-500 to-violet-600', desc: 'درجاتك ومعدلك' },
-    { title: 'طلب إذن غياب', icon: AlertCircle, color: 'from-orange-500 to-orange-600', desc: 'قدّم طلبًا' },
+    { titleKey: 'studentPortalPage.quickLinks.courseReg', icon: BookOpen, color: 'from-blue-500 to-blue-600', descKey: 'studentPortalPage.quickLinks.courseRegDesc' },
+    { titleKey: 'studentPortalPage.quickLinks.schedule', icon: Calendar, color: 'from-emerald-500 to-emerald-600', descKey: 'studentPortalPage.quickLinks.scheduleDesc' },
+    { titleKey: 'studentPortalPage.quickLinks.grades', icon: GraduationCap, color: 'from-violet-500 to-violet-600', descKey: 'studentPortalPage.quickLinks.gradesDesc' },
+    { titleKey: 'studentPortalPage.quickLinks.absenceReq', icon: AlertCircle, color: 'from-orange-500 to-orange-600', descKey: 'studentPortalPage.quickLinks.absenceReqDesc' },
   ];
 
   const notifications = [
-    { title: 'موعد سداد الرسوم', desc: 'يرجى إتمام السداد قبل 15 أكتوبر.', time: 'منذ ساعتين', type: 'warning' },
-    { title: 'تم تصحيح الواجب', desc: 'تم رصد درجة مادة IS312.', time: 'منذ يوم', type: 'info' },
-    { title: 'إجازة رسمية', desc: 'الجامعة مغلقة يوم الخميس القادم.', time: 'منذ يومين', type: 'normal' },
+    { titleKey: 'studentPortalPage.notif1Title', descKey: 'studentPortalPage.notif1Desc', timeKey: 'studentPortalPage.notif1Time', type: 'warning' },
+    { titleKey: 'studentPortalPage.notif2Title', descKey: 'studentPortalPage.notif2Desc', timeKey: 'studentPortalPage.notif2Time', type: 'info' },
+    { titleKey: 'studentPortalPage.notif3Title', descKey: 'studentPortalPage.notif3Desc', timeKey: 'studentPortalPage.notif3Time', type: 'normal' },
   ];
 
   const schedule = [
-    { time: '09:00 - 11:00 ص', course: 'CS311 - هياكل البيانات', room: 'قاعة أ', color: 'border-blue-500' },
-    { time: '11:30 - 01:30 م', course: 'IS312 - قواعد البيانات', room: 'معمل 3', color: 'border-emerald-500' },
-    { time: '02:00 - 04:00 م', course: 'IT313 - شبكات الحاسوب', room: 'قاعة ب', color: 'border-violet-500' },
+    { timeStr: '09:00 - 11:00', courseKey: 'studentPortalPage.schedule.cs311', roomKey: 'studentPortalPage.schedule.hallA', color: 'border-blue-500' },
+    { timeStr: '11:30 - 01:30', courseKey: 'studentPortalPage.schedule.is312', roomKey: 'studentPortalPage.schedule.lab3', color: 'border-emerald-500' },
+    { timeStr: '02:00 - 04:00', courseKey: 'studentPortalPage.schedule.it313', roomKey: 'studentPortalPage.schedule.hallB', color: 'border-violet-500' },
   ];
 
   return (
@@ -61,19 +63,19 @@ const Portal = () => {
           className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
           <div>
             <button onClick={() => navigate(-1)} className="flex items-center gap-2 text-slate-500 hover:text-blue-600 transition-colors text-sm font-semibold mb-4">
-              <ArrowLeft size={16} className="rtl:rotate-180" /> العودة
+              <ArrowLeft size={16} className="rtl:rotate-180" /> {t('studentPortalPage.back')}
             </button>
             <p className="text-slate-500 dark:text-slate-400 text-sm font-medium mb-1">
               <User size={14} className="inline me-1" />
-              {user.email} — {user.role === 'student' ? 'طالب' : user.role}
+              {user.email} — {user.role === 'student' ? t('studentPortalPage.role_student') : user.role}
             </p>
             <h1 className="text-3xl font-black text-slate-800 dark:text-white">
-              أهلاً، <span className="gradient-text">{user.firstName}!</span>
+              {t('studentPortalPage.greeting')} <span className="gradient-text">{user.firstName}!</span>
             </h1>
           </div>
           <button onClick={handleLogout}
             className="flex items-center gap-2 px-4 py-2 rounded-xl bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 font-semibold text-sm hover:bg-red-100 dark:hover:bg-red-900/40 transition-colors">
-            <LogOut size={16} /> تسجيل الخروج
+            <LogOut size={16} /> {t('studentPortalPage.logout')}
           </button>
         </motion.div>
 
@@ -91,8 +93,8 @@ const Portal = () => {
                   <Icon size={22} />
                 </div>
                 <div>
-                  <p className="font-bold text-slate-800 dark:text-white text-sm">{link.title}</p>
-                  <p className="text-slate-400 text-xs mt-0.5">{link.desc}</p>
+                  <p className="font-bold text-slate-800 dark:text-white text-sm">{t(link.titleKey)}</p>
+                  <p className="text-slate-400 text-xs mt-0.5">{t(link.descKey)}</p>
                 </div>
               </motion.button>
             );
@@ -100,28 +102,26 @@ const Portal = () => {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-
-          {/* Left column: Schedule + Grades */}
+          {/* Left: Schedule + Grades */}
           <div className="lg:col-span-2 space-y-6">
-
             {/* Today's Schedule */}
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }}
               className="bg-white dark:bg-slate-900 rounded-2xl p-6 shadow-sm border border-slate-100 dark:border-slate-800">
               <div className="flex justify-between items-center mb-5">
                 <h2 className="text-lg font-bold text-slate-800 dark:text-white flex items-center gap-2">
-                  <Calendar size={18} className="text-blue-500" /> جدول اليوم
+                  <Calendar size={18} className="text-blue-500" /> {t('studentPortalPage.todaySchedule')}
                 </h2>
-                <button className="text-blue-600 dark:text-blue-400 text-xs font-semibold hover:underline">عرض الكامل</button>
+                <button className="text-blue-600 dark:text-blue-400 text-xs font-semibold hover:underline">{t('studentPortalPage.viewFull')}</button>
               </div>
               <div className="space-y-3">
                 {schedule.map((cls, idx) => (
                   <div key={idx} className={`flex gap-4 p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border-s-4 ${cls.color}`}>
                     <div className="flex items-center gap-2 text-slate-500 dark:text-slate-400 text-xs font-medium w-36 shrink-0">
-                      <Clock size={13} className="text-blue-500" /> {cls.time}
+                      <Clock size={13} className="text-blue-500" /> {cls.timeStr}
                     </div>
                     <div>
-                      <p className="font-bold text-slate-800 dark:text-white text-sm">{cls.course}</p>
-                      <p className="text-slate-500 dark:text-slate-400 text-xs mt-0.5">{cls.room}</p>
+                      <p className="font-bold text-slate-800 dark:text-white text-sm">{t(cls.courseKey)}</p>
+                      <p className="text-slate-500 dark:text-slate-400 text-xs mt-0.5">{t(cls.roomKey)}</p>
                     </div>
                   </div>
                 ))}
@@ -132,35 +132,34 @@ const Portal = () => {
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4 }}
               className="bg-white dark:bg-slate-900 rounded-2xl p-6 shadow-sm border border-slate-100 dark:border-slate-800">
               <h2 className="text-lg font-bold text-slate-800 dark:text-white flex items-center gap-2 mb-4">
-                <TrendingUp size={18} className="text-violet-500" /> أداء المقررات
+                <TrendingUp size={18} className="text-violet-500" /> {t('studentPortalPage.coursePerformance')}
               </h2>
               <ResponsiveContainer width="100%" height={260}>
                 <RadarChart data={gradeData}>
                   <PolarGrid stroke="#e2e8f0" />
                   <PolarAngleAxis dataKey="subject" tick={{ fontSize: 11, fill: '#94a3b8' }} />
                   <PolarRadiusAxis angle={90} domain={[0, 100]} tick={{ fontSize: 10 }} />
-                  <Radar name="الدرجات" dataKey="grade" stroke="#3b82f6" fill="#3b82f6" fillOpacity={0.25} strokeWidth={2} />
-                  <Tooltip formatter={(v: any) => [`${v}%`, 'الدرجة']} />
+                  <Radar name={t('studentPortalPage.gradeTooltip')} dataKey="grade" stroke="#3b82f6" fill="#3b82f6" fillOpacity={0.25} strokeWidth={2} />
+                  <Tooltip formatter={(v: any) => [`${v}%`, t('studentPortalPage.gradeTooltip')]} />
                 </RadarChart>
               </ResponsiveContainer>
             </motion.div>
           </div>
 
-          {/* Right column: Notifications + Progress */}
+          {/* Right: Notifications + Progress */}
           <div className="space-y-6">
-
             {/* Notifications */}
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.35 }}
               className="bg-white dark:bg-slate-900 rounded-2xl p-6 shadow-sm border border-slate-100 dark:border-slate-800">
               <h2 className="text-lg font-bold text-slate-800 dark:text-white flex items-center gap-2 mb-5">
-                <Bell size={18} className="text-orange-500" /> الإشعارات
+                <Bell size={18} className="text-orange-500" /> {t('studentPortalPage.notifications')}
               </h2>
               <div className="space-y-3">
                 {notifications.map((n, idx) => (
                   <div key={idx} className={`p-3.5 rounded-xl border-s-4 text-sm ${n.type === 'warning' ? 'border-orange-500 bg-orange-50 dark:bg-orange-900/10' : 'border-blue-500 bg-slate-50 dark:bg-slate-800/50'}`}>
-                    <p className="font-bold text-slate-800 dark:text-white">{n.title}</p>
-                    <p className="text-slate-500 dark:text-slate-400 text-xs mt-0.5">{n.desc}</p>
-                    <p className="text-slate-400 text-[10px] uppercase font-bold mt-1.5">{n.time}</p>
+                    <p className="font-bold text-slate-800 dark:text-white">{t(n.titleKey)}</p>
+                    <p className="text-slate-500 dark:text-slate-400 text-xs mt-0.5">{t(n.descKey)}</p>
+                    <p className="text-slate-400 text-[10px] uppercase font-bold mt-1.5">{t(n.timeKey)}</p>
                   </div>
                 ))}
               </div>
@@ -170,12 +169,12 @@ const Portal = () => {
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.45 }}
               className="bg-white dark:bg-slate-900 rounded-2xl p-6 shadow-sm border border-slate-100 dark:border-slate-800">
               <h2 className="text-lg font-bold text-slate-800 dark:text-white flex items-center gap-2 mb-5">
-                <GraduationCap size={18} className="text-emerald-500" /> التقدم الأكاديمي
+                <GraduationCap size={18} className="text-emerald-500" /> {t('studentPortalPage.academicProgress')}
               </h2>
               <div className="space-y-4">
                 <div>
                   <div className="flex justify-between text-sm mb-2">
-                    <span className="text-slate-600 dark:text-slate-400 font-medium">الساعات المعتمدة</span>
+                    <span className="text-slate-600 dark:text-slate-400 font-medium">{t('studentPortalPage.creditHours')}</span>
                     <span className="font-bold text-slate-800 dark:text-white">85 / 132</span>
                   </div>
                   <div className="w-full bg-slate-100 dark:bg-slate-800 rounded-full h-2.5 overflow-hidden">
@@ -189,11 +188,11 @@ const Portal = () => {
                 <div className="border-t border-slate-100 dark:border-slate-800 pt-4 grid grid-cols-2 gap-4">
                   <div className="text-center p-3 rounded-xl bg-slate-50 dark:bg-slate-800/50">
                     <p className="text-2xl font-black text-slate-800 dark:text-white">3.42</p>
-                    <p className="text-slate-500 text-xs mt-1">المعدل التراكمي</p>
+                    <p className="text-slate-500 text-xs mt-1">{t('studentPortalPage.cumulativeGPA')}</p>
                   </div>
                   <div className="text-center p-3 rounded-xl bg-slate-50 dark:bg-slate-800/50">
                     <p className="text-2xl font-black text-slate-800 dark:text-white">3</p>
-                    <p className="text-slate-500 text-xs mt-1">المستوى الدراسي</p>
+                    <p className="text-slate-500 text-xs mt-1">{t('studentPortalPage.studyLevel')}</p>
                   </div>
                 </div>
               </div>
