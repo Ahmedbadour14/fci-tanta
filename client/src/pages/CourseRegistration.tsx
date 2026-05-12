@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { CheckCircle, AlertTriangle, Clock, Users, BookOpen, Save, ChevronDown, ChevronUp } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { CheckCircle, AlertTriangle, Clock, Users, BookOpen, Save, ChevronDown, ChevronUp, ChevronLeft, ChevronRight } from 'lucide-react';
 import PageHeader from '../components/ui/PageHeader';
 
 interface Course {
@@ -41,11 +42,15 @@ function hasConflict(a: Course, b: Course): boolean {
 }
 
 const CourseRegistration: React.FC = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const navigate = useNavigate();
+  const isRTL = i18n.language === 'ar';
   const [selected, setSelected] = useState<string[]>([]);
   const [saved, setSaved] = useState(false);
   const [conflicts, setConflicts] = useState<string[]>([]);
   const [expanded, setExpanded] = useState<string | null>(null);
+
+  useEffect(() => { window.scrollTo(0, 0); }, []);
 
   const totalHours = selected.reduce((s, id) => s + (COURSES.find(c => c.id === id)?.creditHours || 0), 0);
 
@@ -74,8 +79,18 @@ const CourseRegistration: React.FC = () => {
   const selectedCourses = COURSES.filter(c => selected.includes(c.id));
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-950">
+    <div className="bg-slate-50 dark:bg-slate-950 pb-16">
       <PageHeader title={t('courseReg.title')} subtitle={t('courseReg.subtitle')} breadcrumb={t('courseReg.breadcrumb')} />
+
+      <div className="container mx-auto px-4 pt-6">
+        <button
+          onClick={() => navigate(-1)}
+          className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-sm font-medium"
+        >
+          {isRTL ? <ChevronRight size={16} /> : <ChevronLeft size={16} />}
+          {t('back')}
+        </button>
+      </div>
 
       <div className="container mx-auto px-4 py-10">
         {/* Status bar */}
@@ -111,7 +126,7 @@ const CourseRegistration: React.FC = () => {
               const isExpanded = expanded === course.id;
 
               return (
-                <motion.div key={course.id} layout initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
+                <motion.div key={course.id} layout initial={{ opacity: 1 }} animate={{ opacity: 1 }}
                   className={`bg-white dark:bg-slate-900 rounded-2xl shadow-sm border-2 transition-all duration-200 overflow-hidden ${
                     isConflict ? 'border-red-400 bg-red-50/50 dark:bg-red-900/10' :
                     isSelected ? 'border-blue-500 shadow-blue-100 dark:shadow-blue-900/20' :

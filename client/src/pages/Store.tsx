@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ShoppingCart, Search, Plus, Minus, Trash2, Book, CheckCircle, ArrowRight } from 'lucide-react';
+import { ShoppingCart, Search, Plus, Minus, Trash2, Book, CheckCircle, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 import PageHeader from '../components/ui/PageHeader';
 
 interface BookItem {
@@ -48,7 +49,9 @@ const BookCover: React.FC<{ book: BookItem; size?: 'sm' | 'lg' }> = ({ book, siz
 );
 
 const Store: React.FC = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const navigate = useNavigate();
+  const isRTL = i18n.language === 'ar';
   const [cart, setCart] = useState<CartItem[]>(() => {
     try { return JSON.parse(localStorage.getItem('fci_cart') || '[]'); } catch { return []; }
   });
@@ -59,6 +62,7 @@ const Store: React.FC = () => {
   const [form, setForm] = useState({ name: '', studentId: '', phone: '', address: '' });
 
   useEffect(() => { localStorage.setItem('fci_cart', JSON.stringify(cart)); }, [cart]);
+  useEffect(() => { window.scrollTo(0, 0); }, []);
 
   const filtered = BOOKS.filter(b => {
     const matchDept = dept === 'All' || b.department === dept;
@@ -181,6 +185,16 @@ const Store: React.FC = () => {
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950">
       <PageHeader title={t('store.title')} subtitle={t('store.subtitle')} breadcrumb={t('store.breadcrumb')} />
+
+      <div className="container mx-auto px-4 pt-6">
+        <button
+          onClick={() => navigate(-1)}
+          className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-sm font-medium"
+        >
+          {isRTL ? <ChevronRight size={16} /> : <ChevronLeft size={16} />}
+          {t('back')}
+        </button>
+      </div>
 
       <div className="container mx-auto px-4 py-10">
         {/* Toolbar */}

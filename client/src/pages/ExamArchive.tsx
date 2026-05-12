@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { Search, Download, FileText, Filter, Eye } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { Search, Download, FileText, Filter, Eye, ChevronLeft, ChevronRight } from 'lucide-react';
 import PageHeader from '../components/ui/PageHeader';
 
 interface Exam {
@@ -36,11 +37,15 @@ const YEARS = ['All', 2024, 2023, 2022];
 const TYPES = ['All', 'midterm', 'final'];
 
 const ExamArchive: React.FC = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const navigate = useNavigate();
+  const isRTL = i18n.language === 'ar';
   const [search, setSearch] = useState('');
   const [dept, setDept] = useState('All');
   const [year, setYear] = useState<string | number>('All');
   const [type, setType] = useState('All');
+
+  useEffect(() => { window.scrollTo(0, 0); }, []);
   const [downloadCounts, setDownloadCounts] = useState<Record<string, number>>({});
 
   const filtered = EXAMS.filter(e => {
@@ -61,6 +66,16 @@ const ExamArchive: React.FC = () => {
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950">
       <PageHeader title={t('exams.title')} subtitle={t('exams.subtitle')} breadcrumb={t('exams.breadcrumb')} />
+
+      <div className="container mx-auto px-4 pt-6">
+        <button
+          onClick={() => navigate(-1)}
+          className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-sm font-medium"
+        >
+          {isRTL ? <ChevronRight size={16} /> : <ChevronLeft size={16} />}
+          {t('back')}
+        </button>
+      </div>
 
       <div className="container mx-auto px-4 py-10">
         {/* Search & Filters */}

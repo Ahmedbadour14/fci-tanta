@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { Download, TrendingUp, Award, BookOpen } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { Download, TrendingUp, Award, BookOpen, ChevronLeft, ChevronRight } from 'lucide-react';
 import PageHeader from '../components/ui/PageHeader';
 
 interface CourseGrade { code: string; name: string; creditHours: number; midterm: number | null; final: number | null; practical: number | null; total: number | null; grade: string; }
@@ -50,8 +51,12 @@ function calcGPA(courses: CourseGrade[]) {
 }
 
 const Grades: React.FC = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const navigate = useNavigate();
+  const isRTL = i18n.language === 'ar';
   const [activeTab, setActiveTab] = useState(0);
+
+  useEffect(() => { window.scrollTo(0, 0); }, []);
 
   const allDone = SEMESTERS.flatMap(s => s.courses).filter(c => c.total !== null);
   const cumGPA = calcGPA(allDone);
@@ -112,6 +117,16 @@ const Grades: React.FC = () => {
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950">
       <PageHeader title={t('gradesPage.title')} subtitle={t('gradesPage.subtitle')} breadcrumb={t('gradesPage.breadcrumb')} />
+
+      <div className="container mx-auto px-4 pt-6">
+        <button
+          onClick={() => navigate(-1)}
+          className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-sm font-medium"
+        >
+          {isRTL ? <ChevronRight size={16} /> : <ChevronLeft size={16} />}
+          {t('back')}
+        </button>
+      </div>
 
       <div className="container mx-auto px-4 py-10">
         {/* Stats */}
