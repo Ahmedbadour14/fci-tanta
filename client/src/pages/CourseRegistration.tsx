@@ -18,16 +18,16 @@ interface Course {
 }
 
 const COURSES: Course[] = [
-  { id: 'c1', code: 'CS401', name: 'Machine Learning', creditHours: 3, professor: 'Dr. Ahmed Mohamed', schedule: [{ dayKey: 'courseReg.days.sat', start: 9, end: 11, room: 'C101' }, { dayKey: 'courseReg.days.tue', start: 9, end: 10, room: 'C101' }], seats: 40, enrolled: 28, department: 'CS' },
-  { id: 'c2', code: 'CS402', name: 'Computer Vision', creditHours: 3, professor: 'Dr. Sara Ali', schedule: [{ dayKey: 'courseReg.days.sun', start: 11, end: 13, room: 'C102' }, { dayKey: 'courseReg.days.wed', start: 11, end: 12, room: 'C102' }], seats: 35, enrolled: 35, department: 'CS' },
+  { id: 'c1', code: 'CS401', name: 'Machine Learning', creditHours: 3, professor: 'Dr. Mohamed Tarek', schedule: [{ dayKey: 'courseReg.days.sat', start: 9, end: 11, room: 'C101' }, { dayKey: 'courseReg.days.tue', start: 9, end: 10, room: 'C101' }], seats: 40, enrolled: 28, department: 'CS' },
+  { id: 'c2', code: 'CS402', name: 'Computer Vision', creditHours: 3, professor: 'Dr. Ahmed Badour', schedule: [{ dayKey: 'courseReg.days.sun', start: 11, end: 13, room: 'C102' }, { dayKey: 'courseReg.days.wed', start: 11, end: 12, room: 'C102' }], seats: 35, enrolled: 35, department: 'CS' },
   { id: 'c3', code: 'IS401', name: 'Enterprise Systems', creditHours: 3, professor: 'Dr. Mahmoud Khaled', schedule: [{ dayKey: 'courseReg.days.sat', start: 11, end: 13, room: 'B201' }, { dayKey: 'courseReg.days.tue', start: 11, end: 12, room: 'B201' }], seats: 45, enrolled: 20, department: 'IS' },
-  { id: 'c4', code: 'IT401', name: 'Network Security', creditHours: 3, professor: 'Dr. Noha Hassan', schedule: [{ dayKey: 'courseReg.days.sun', start: 9, end: 11, room: 'A301' }, { dayKey: 'courseReg.days.thu', start: 9, end: 10, room: 'A301' }], seats: 40, enrolled: 38, department: 'IT' },
-  { id: 'c5', code: 'SE401', name: 'Software Architecture', creditHours: 3, professor: 'Dr. Amro Salem', schedule: [{ dayKey: 'courseReg.days.mon', start: 9, end: 11, room: 'D401' }, { dayKey: 'courseReg.days.wed', start: 9, end: 10, room: 'D401' }], seats: 30, enrolled: 22, department: 'SE' },
-  { id: 'c6', code: 'CS403', name: 'Natural Language Processing', creditHours: 2, professor: 'Dr. Mona Ibrahim', schedule: [{ dayKey: 'courseReg.days.mon', start: 11, end: 13, room: 'C103' }], seats: 25, enrolled: 18, department: 'CS' },
-  { id: 'c7', code: 'IS402', name: 'Decision Support Systems', creditHours: 3, professor: 'Dr. Hesham Farouk', schedule: [{ dayKey: 'courseReg.days.sat', start: 9, end: 11, room: 'B202' }, { dayKey: 'courseReg.days.tue', start: 13, end: 14, room: 'B202' }], seats: 40, enrolled: 30, department: 'IS' },
-  { id: 'c8', code: 'GEN401', name: 'Professional Ethics', creditHours: 2, professor: 'Dr. Rania Yousef', schedule: [{ dayKey: 'courseReg.days.thu', start: 11, end: 13, room: 'A101' }], seats: 80, enrolled: 45, department: 'GEN' },
-  { id: 'c9', code: 'CS404', name: 'Parallel Computing', creditHours: 3, professor: 'Dr. Yasser Helmy', schedule: [{ dayKey: 'courseReg.days.sun', start: 13, end: 15, room: 'C104' }, { dayKey: 'courseReg.days.wed', start: 13, end: 14, room: 'C104' }], seats: 30, enrolled: 12, department: 'CS' },
-  { id: 'c10', code: 'IT402', name: 'Cloud Computing', creditHours: 3, professor: 'Dr. Shereen Mostafa', schedule: [{ dayKey: 'courseReg.days.mon', start: 13, end: 15, room: 'A302' }, { dayKey: 'courseReg.days.thu', start: 13, end: 14, room: 'A302' }], seats: 35, enrolled: 28, department: 'IT' },
+  { id: 'c4', code: 'IT401', name: 'Network Security', creditHours: 3, professor: 'Dr. Mano', schedule: [{ dayKey: 'courseReg.days.sun', start: 9, end: 11, room: 'A301' }, { dayKey: 'courseReg.days.thu', start: 9, end: 10, room: 'A301' }], seats: 40, enrolled: 38, department: 'IT' },
+  { id: 'c5', code: 'SE401', name: 'Software Architecture', creditHours: 3, professor: 'Dr. Ahmed Adel', schedule: [{ dayKey: 'courseReg.days.mon', start: 9, end: 11, room: 'D401' }, { dayKey: 'courseReg.days.wed', start: 9, end: 10, room: 'D401' }], seats: 30, enrolled: 22, department: 'SE' },
+  { id: 'c6', code: 'CS403', name: 'Natural Language Processing', creditHours: 2, professor: 'Dr. Mahmoud Ahmed', schedule: [{ dayKey: 'courseReg.days.mon', start: 11, end: 13, room: 'C103' }], seats: 25, enrolled: 18, department: 'CS' },
+  { id: 'c7', code: 'IS402', name: 'Decision Support Systems', creditHours: 3, professor: 'Dr. Hassan Rashed', schedule: [{ dayKey: 'courseReg.days.sat', start: 9, end: 11, room: 'B202' }, { dayKey: 'courseReg.days.tue', start: 13, end: 14, room: 'B202' }], seats: 40, enrolled: 30, department: 'IS' },
+  { id: 'c8', code: 'GEN401', name: 'Professional Ethics', creditHours: 2, professor: 'Dr. Rakan', schedule: [{ dayKey: 'courseReg.days.thu', start: 11, end: 13, room: 'A101' }], seats: 80, enrolled: 45, department: 'GEN' },
+  { id: 'c9', code: 'CS404', name: 'Parallel Computing', creditHours: 3, professor: 'Dr. Ahmed Walid', schedule: [{ dayKey: 'courseReg.days.sun', start: 13, end: 15, room: 'C104' }, { dayKey: 'courseReg.days.wed', start: 13, end: 14, room: 'C104' }], seats: 30, enrolled: 12, department: 'CS' },
+  { id: 'c10', code: 'IT402', name: 'Cloud Computing', creditHours: 3, professor: 'Dr. Mostafa Ellithy', schedule: [{ dayKey: 'courseReg.days.mon', start: 13, end: 15, room: 'A302' }, { dayKey: 'courseReg.days.thu', start: 13, end: 14, room: 'A302' }], seats: 35, enrolled: 28, department: 'IT' },
 ];
 
 const MAX_HOURS = 18;
@@ -95,11 +95,10 @@ const CourseRegistration: React.FC = () => {
       <div className="container mx-auto px-4 py-10">
         {/* Status bar */}
         <div className="flex flex-wrap items-center gap-4 mb-8">
-          <div className={`flex items-center gap-2 px-4 py-2.5 rounded-xl font-bold text-sm ${
-            totalHours >= MAX_HOURS ? 'bg-red-50 dark:bg-red-900/20 text-red-600' :
-            totalHours >= 12 ? 'bg-green-50 dark:bg-green-900/20 text-green-600' :
-            'bg-blue-50 dark:bg-blue-900/20 text-blue-600'
-          }`}>
+          <div className={`flex items-center gap-2 px-4 py-2.5 rounded-xl font-bold text-sm ${totalHours >= MAX_HOURS ? 'bg-red-50 dark:bg-red-900/20 text-red-600' :
+              totalHours >= 12 ? 'bg-green-50 dark:bg-green-900/20 text-green-600' :
+                'bg-blue-50 dark:bg-blue-900/20 text-blue-600'
+            }`}>
             <BookOpen size={16} />
             {totalHours} / {MAX_HOURS} {t('courseReg.creditHours')}
           </div>
@@ -127,11 +126,10 @@ const CourseRegistration: React.FC = () => {
 
               return (
                 <motion.div key={course.id} layout initial={{ opacity: 1 }} animate={{ opacity: 1 }}
-                  className={`bg-white dark:bg-slate-900 rounded-2xl shadow-sm border-2 transition-all duration-200 overflow-hidden ${
-                    isConflict ? 'border-red-400 bg-red-50/50 dark:bg-red-900/10' :
-                    isSelected ? 'border-blue-500 shadow-blue-100 dark:shadow-blue-900/20' :
-                    'border-transparent hover:border-slate-200 dark:hover:border-slate-700'
-                  }`}>
+                  className={`bg-white dark:bg-slate-900 rounded-2xl shadow-sm border-2 transition-all duration-200 overflow-hidden ${isConflict ? 'border-red-400 bg-red-50/50 dark:bg-red-900/10' :
+                      isSelected ? 'border-blue-500 shadow-blue-100 dark:shadow-blue-900/20' :
+                        'border-transparent hover:border-slate-200 dark:hover:border-slate-700'
+                    }`}>
                   <div className="p-4">
                     <div className="flex items-start justify-between gap-3">
                       <div className="flex-1">
@@ -149,11 +147,10 @@ const CourseRegistration: React.FC = () => {
                           {isExpanded ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
                         </button>
                         <button onClick={() => !isFull && toggle(course)} disabled={isFull || wouldExceed}
-                          className={`px-4 py-2 rounded-xl text-sm font-bold transition-all ${
-                            isFull || wouldExceed ? 'opacity-40 cursor-not-allowed bg-slate-100 dark:bg-slate-800 text-slate-400' :
-                            isSelected ? 'bg-blue-600 text-white hover:bg-blue-700' :
-                            'bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-blue-50 dark:hover:bg-blue-900/20'
-                          }`}>
+                          className={`px-4 py-2 rounded-xl text-sm font-bold transition-all ${isFull || wouldExceed ? 'opacity-40 cursor-not-allowed bg-slate-100 dark:bg-slate-800 text-slate-400' :
+                              isSelected ? 'bg-blue-600 text-white hover:bg-blue-700' :
+                                'bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-blue-50 dark:hover:bg-blue-900/20'
+                            }`}>
                           {isSelected ? t('courseReg.registered') : t('courseReg.registerBtn')}
                         </button>
                       </div>
