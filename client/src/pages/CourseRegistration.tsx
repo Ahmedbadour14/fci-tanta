@@ -79,7 +79,7 @@ const CourseRegistration: React.FC = () => {
   const selectedCourses = COURSES.filter(c => selected.includes(c.id));
 
   return (
-    <div className="bg-slate-50 dark:bg-slate-950 pb-16">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-950">
       <PageHeader title={t('courseReg.title')} subtitle={t('courseReg.subtitle')} breadcrumb={t('courseReg.breadcrumb')} />
 
       <div className="container mx-auto px-4 pt-6">
