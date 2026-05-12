@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import Layout from './components/layout/Layout';
 import Home from './pages/Home';
@@ -56,6 +56,7 @@ function App() {
           <CookieBanner />
           <Routes>
             <Route path="/" element={<Layout />}>
+              {/* Public pages */}
               <Route index element={<Home />} />
               <Route path="about" element={<About />} />
               <Route path="departments" element={<Departments />} />
@@ -69,21 +70,45 @@ function App() {
               <Route path="login" element={<Login />} />
               <Route path="register" element={<Register />} />
               <Route path="500" element={<ServerError />} />
-
-              {/* Public new systems */}
               <Route path="store" element={<Store />} />
               <Route path="exams" element={<ExamArchive />} />
 
+              {/* /portal → redirect to /portal/student */}
+              <Route path="portal" element={<Navigate to="/portal/student" replace />} />
+
               {/* Protected Student Portal */}
-              <Route path="portal" element={<ProtectedRoute><Portal /></ProtectedRoute>} />
-              <Route path="portal/student/registration" element={<ProtectedRoute><CourseRegistration /></ProtectedRoute>} />
-              <Route path="portal/student/grades" element={<ProtectedRoute><Grades /></ProtectedRoute>} />
+              <Route
+                path="portal/student"
+                element={<ProtectedRoute><Portal /></ProtectedRoute>}
+              />
+              <Route
+                path="portal/student/registration"
+                element={<ProtectedRoute><CourseRegistration /></ProtectedRoute>}
+              />
+              <Route
+                path="portal/student/grades"
+                element={<ProtectedRoute><Grades /></ProtectedRoute>}
+              />
+              {/* Schedule & Excuse — reuse Portal page until dedicated pages are built */}
+              <Route
+                path="portal/student/schedule"
+                element={<ProtectedRoute><Portal /></ProtectedRoute>}
+              />
+              <Route
+                path="portal/student/excuse"
+                element={<ProtectedRoute><Portal /></ProtectedRoute>}
+              />
 
-              {/* Protected Admin/Faculty Routes */}
-              <Route path="admin" element={<ProtectedRoute allowedRoles={['admin']}><AdminDashboard /></ProtectedRoute>} />
-              <Route path="portal/staff" element={<ProtectedRoute allowedRoles={['staff', 'admin']}><FacultyPortal /></ProtectedRoute>} />
+              {/* Admin / Faculty */}
+              <Route
+                path="admin"
+                element={<ProtectedRoute allowedRoles={['admin']}><AdminDashboard /></ProtectedRoute>}
+              />
+              <Route
+                path="portal/staff"
+                element={<ProtectedRoute allowedRoles={['staff', 'admin']}><FacultyPortal /></ProtectedRoute>}
+              />
 
-              {/* Catch all */}
               <Route path="*" element={<NotFound />} />
             </Route>
           </Routes>

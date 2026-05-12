@@ -39,10 +39,10 @@ const MENU_DATA = [
   {
     id: 'departments', labelKey: 'megaMenu.departments.label',
     items: [
-      { icon: Monitor,  labelKey: 'megaMenu.departments.cs', descKey: 'megaMenu.departments.csDesc', path: '/departments' },
-      { icon: Database, labelKey: 'megaMenu.departments.is', descKey: 'megaMenu.departments.isDesc', path: '/departments' },
-      { icon: Wifi,     labelKey: 'megaMenu.departments.it', descKey: 'megaMenu.departments.itDesc', path: '/departments' },
-      { icon: Code2,    labelKey: 'megaMenu.departments.se', descKey: 'megaMenu.departments.seDesc', path: '/departments' },
+      { icon: Monitor,  labelKey: 'megaMenu.departments.cs', descKey: 'megaMenu.departments.csDesc', path: '/departments/cs' },
+      { icon: Database, labelKey: 'megaMenu.departments.is', descKey: 'megaMenu.departments.isDesc', path: '/departments/is' },
+      { icon: Wifi,     labelKey: 'megaMenu.departments.it', descKey: 'megaMenu.departments.itDesc', path: '/departments/it' },
+      { icon: Code2,    labelKey: 'megaMenu.departments.se', descKey: 'megaMenu.departments.seDesc', path: '/departments/se' },
     ],
   },
   {
