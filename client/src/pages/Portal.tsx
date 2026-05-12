@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
+import React, { useEffect, useState, useRef, useCallback } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
   RadarChart, Radar, PolarGrid, PolarAngleAxis, PolarRadiusAxis,
@@ -36,10 +36,34 @@ const Portal = () => {
   ];
 
   const quickLinks = [
-    { titleKey: 'studentPortalPage.quickLinks.courseReg', icon: BookOpen, color: 'from-blue-500 to-blue-600', descKey: 'studentPortalPage.quickLinks.courseRegDesc' },
-    { titleKey: 'studentPortalPage.quickLinks.schedule', icon: Calendar, color: 'from-emerald-500 to-emerald-600', descKey: 'studentPortalPage.quickLinks.scheduleDesc' },
-    { titleKey: 'studentPortalPage.quickLinks.grades', icon: GraduationCap, color: 'from-violet-500 to-violet-600', descKey: 'studentPortalPage.quickLinks.gradesDesc' },
-    { titleKey: 'studentPortalPage.quickLinks.absenceReq', icon: AlertCircle, color: 'from-orange-500 to-orange-600', descKey: 'studentPortalPage.quickLinks.absenceReqDesc' },
+    {
+      titleKey: 'studentPortalPage.quickLinks.courseReg',
+      icon: BookOpen,
+      color: 'from-blue-500 to-blue-600',
+      descKey: 'studentPortalPage.quickLinks.courseRegDesc',
+      path: '/portal/student/registration'
+    },
+    {
+      titleKey: 'studentPortalPage.quickLinks.schedule',
+      icon: Calendar,
+      color: 'from-emerald-500 to-emerald-600',
+      descKey: 'studentPortalPage.quickLinks.scheduleDesc',
+      path: '/portal/student/schedule'
+    },
+    {
+      titleKey: 'studentPortalPage.quickLinks.grades',
+      icon: GraduationCap,
+      color: 'from-violet-500 to-violet-600',
+      descKey: 'studentPortalPage.quickLinks.gradesDesc',
+      path: '/portal/student/grades'
+    },
+    {
+      titleKey: 'studentPortalPage.quickLinks.absenceReq',
+      icon: AlertCircle,
+      color: 'from-orange-500 to-orange-600',
+      descKey: 'studentPortalPage.quickLinks.absenceReqDesc',
+      path: '/portal/student/excuse'
+    },
   ];
 
   const notifications = [
@@ -79,16 +103,21 @@ const Portal = () => {
           </button>
         </motion.div>
 
-        {/* Quick Actions */}
+        {/* Quick Actions — navigable cards */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
           {quickLinks.map((link, idx) => {
             const Icon = link.icon;
             return (
-              <motion.button key={idx}
-                initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
+              <motion.button
+                key={idx}
+                onClick={() => navigate(link.path)}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: idx * 0.08 }}
-                whileHover={{ y: -4, scale: 1.02 }} whileTap={{ scale: 0.98 }}
-                className="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-md transition-all flex flex-col items-center text-center gap-3">
+                whileHover={{ y: -4, scale: 1.02 }}
+                whileTap={{ scale: 0.97 }}
+                className="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-md transition-all flex flex-col items-center text-center gap-3 cursor-pointer"
+              >
                 <div className={`w-12 h-12 rounded-xl text-white flex items-center justify-center bg-gradient-to-br ${link.color} shadow-lg`}>
                   <Icon size={22} />
                 </div>
@@ -104,14 +133,18 @@ const Portal = () => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Left: Schedule + Grades */}
           <div className="lg:col-span-2 space-y-6">
-            {/* Today's Schedule */}
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }}
               className="bg-white dark:bg-slate-900 rounded-2xl p-6 shadow-sm border border-slate-100 dark:border-slate-800">
               <div className="flex justify-between items-center mb-5">
                 <h2 className="text-lg font-bold text-slate-800 dark:text-white flex items-center gap-2">
                   <Calendar size={18} className="text-blue-500" /> {t('studentPortalPage.todaySchedule')}
                 </h2>
-                <button className="text-blue-600 dark:text-blue-400 text-xs font-semibold hover:underline">{t('studentPortalPage.viewFull')}</button>
+                <button
+                  onClick={() => navigate('/portal/student/schedule')}
+                  className="text-blue-600 dark:text-blue-400 text-xs font-semibold hover:underline"
+                >
+                  {t('studentPortalPage.viewFull')}
+                </button>
               </div>
               <div className="space-y-3">
                 {schedule.map((cls, idx) => (
@@ -128,7 +161,6 @@ const Portal = () => {
               </div>
             </motion.div>
 
-            {/* Grade Radar Chart */}
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4 }}
               className="bg-white dark:bg-slate-900 rounded-2xl p-6 shadow-sm border border-slate-100 dark:border-slate-800">
               <h2 className="text-lg font-bold text-slate-800 dark:text-white flex items-center gap-2 mb-4">
@@ -148,7 +180,6 @@ const Portal = () => {
 
           {/* Right: Notifications + Progress */}
           <div className="space-y-6">
-            {/* Notifications */}
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.35 }}
               className="bg-white dark:bg-slate-900 rounded-2xl p-6 shadow-sm border border-slate-100 dark:border-slate-800">
               <h2 className="text-lg font-bold text-slate-800 dark:text-white flex items-center gap-2 mb-5">
@@ -165,7 +196,6 @@ const Portal = () => {
               </div>
             </motion.div>
 
-            {/* Academic Progress */}
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.45 }}
               className="bg-white dark:bg-slate-900 rounded-2xl p-6 shadow-sm border border-slate-100 dark:border-slate-800">
               <h2 className="text-lg font-bold text-slate-800 dark:text-white flex items-center gap-2 mb-5">
@@ -181,8 +211,7 @@ const Portal = () => {
                     <motion.div initial={{ width: 0 }} animate={{ width: '64%' }}
                       transition={{ delay: 0.6, duration: 1, ease: 'easeOut' }}
                       className="h-full rounded-full"
-                      style={{ background: 'linear-gradient(90deg, #3b82f6, #8b5cf6)' }}
-                    />
+                      style={{ background: 'linear-gradient(90deg, #3b82f6, #8b5cf6)' }} />
                   </div>
                 </div>
                 <div className="border-t border-slate-100 dark:border-slate-800 pt-4 grid grid-cols-2 gap-4">
