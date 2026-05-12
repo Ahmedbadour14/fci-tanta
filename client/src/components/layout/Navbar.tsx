@@ -179,14 +179,24 @@ const Navbar: React.FC = () => {
         <div className="container mx-auto px-4 md:px-6 h-16 flex items-center">
 
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2.5 shrink-0">
-            <div className="w-9 h-9 rounded-xl flex items-center justify-center text-white font-black text-xs shadow-md"
-              style={{ background: 'linear-gradient(135deg,#1d4ed8,#7c3aed)' }}>
-              FCI
-            </div>
-            <div className="hidden sm:block leading-none">
-              <p className="font-black text-sm text-slate-900 dark:text-white">{t('nav.brand')}</p>
-              <p className="text-[10px] text-slate-500 dark:text-slate-400">{t('nav.brandSub')}</p>
+          <Link to="/" className="flex items-center gap-2 shrink-0">
+            {/* FCI logo — always visible */}
+            <img
+              src="/images/fci-logo.png"
+              alt="FCI Logo"
+              className="h-12 w-12 rounded-full object-cover ring-2 ring-white/60 dark:ring-white/20 shadow-md"
+            />
+            {/* University logo + divider — desktop only */}
+            <span className="hidden md:block w-px h-8 bg-slate-300 dark:bg-slate-700 mx-1" />
+            <img
+              src="/images/uni-logo.png"
+              alt="Tanta University Logo"
+              className="hidden md:block h-12 w-12 rounded-full object-cover ring-2 ring-white/60 dark:ring-white/20 shadow-md"
+            />
+            {/* Faculty name text — desktop only */}
+            <div className="hidden sm:block leading-none ms-1">
+              <p className="font-black text-sm text-slate-900 dark:text-white">{t('nav.brandSub')}</p>
+              <p className="text-[10px] text-slate-500 dark:text-slate-400">{t('nav.brand')}</p>
             </div>
           </Link>
 

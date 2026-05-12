@@ -51,12 +51,16 @@ const Footer = () => {
           {/* Brand */}
           <div>
             <div className="flex items-center gap-3 mb-5">
-              <div
-                className="w-12 h-12 rounded-xl flex items-center justify-center font-black text-xl text-white shadow-lg"
-                style={{ background: 'linear-gradient(135deg, #1d4ed8, #3b82f6)' }}
-              >
-                FCI
-              </div>
+              <img
+                src="/images/fci-logo.png"
+                alt="FCI Logo"
+                className="h-12 w-12 rounded-full object-cover ring-2 ring-white/20 shadow-lg shrink-0"
+              />
+              <img
+                src="/images/uni-logo.png"
+                alt="Tanta University Logo"
+                className="h-12 w-12 rounded-full object-cover ring-2 ring-white/20 shadow-lg shrink-0"
+              />
               <div>
                 <p className="text-white font-extrabold leading-tight">{t('footer.brand')}</p>
                 <p className="text-slate-400 text-xs">{t('footer.university')}</p>
