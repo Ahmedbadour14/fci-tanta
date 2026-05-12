@@ -83,7 +83,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1 }}
-            className={`font-black leading-tight mb-6 text-slate-900 dark:text-white ${isRTL ? 'text-4xl sm:text-5xl lg:text-6xl' : 'text-5xl md:text-7xl lg:text-8xl'}`}
+            className={`font-black leading-tight mb-6 text-slate-900 dark:text-white ${isRTL ? 'text-3xl sm:text-4xl lg:text-5xl' : 'text-4xl md:text-5xl lg:text-6xl'}`}
           >
             <span className="block dark:text-transparent dark:bg-clip-text dark:bg-gradient-to-br dark:from-white dark:to-slate-300">
               {t('home.heroTitle')}

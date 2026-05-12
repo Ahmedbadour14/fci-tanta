@@ -176,32 +176,35 @@ const Navbar: React.FC = () => {
 
       {/* ── Header ── */}
       <header className={`transition-all duration-300 border-b border-slate-200/70 dark:border-slate-800/70 ${navBg}`}>
-        <div className="container mx-auto px-4 md:px-6 h-16 flex items-center">
+        <div className="container mx-auto px-4 md:px-6 h-16 flex items-center gap-3">
 
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2 shrink-0">
+          <Link to="/" className="flex items-center gap-1.5 shrink-0">
             {/* FCI logo — always visible */}
             <img
               src="/images/fci-logo.png"
               alt="FCI Logo"
-              className="h-12 w-12 rounded-full object-cover ring-2 ring-white/60 dark:ring-white/20 shadow-md"
+              className="h-9 w-9 rounded-full object-cover ring-2 ring-white/60 dark:ring-white/20 shadow-md"
             />
-            {/* University logo + divider — desktop only */}
-            <span className="hidden md:block w-px h-8 bg-slate-300 dark:bg-slate-700 mx-1" />
+            {/* University logo + divider — lg+ only */}
+            <span className="hidden lg:block w-px h-7 bg-slate-300 dark:bg-slate-700 mx-0.5" />
             <img
               src="/images/uni-logo.png"
               alt="Tanta University Logo"
-              className="hidden md:block h-12 w-12 rounded-full object-cover ring-2 ring-white/60 dark:ring-white/20 shadow-md"
+              className="hidden lg:block h-9 w-9 rounded-full object-cover ring-2 ring-white/60 dark:ring-white/20 shadow-md"
             />
-            {/* Faculty name text — desktop only */}
-            <div className="hidden sm:block leading-none ms-1">
-              <p className="font-black text-sm text-slate-900 dark:text-white">{t('nav.brandSub')}</p>
-              <p className="text-[10px] text-slate-500 dark:text-slate-400">{t('nav.brand')}</p>
+            {/* Faculty name text — lg+ only, hidden on smaller screens */}
+            <div className="hidden lg:block leading-none ms-1 max-w-[140px]">
+              <p className="font-black text-xs text-slate-900 dark:text-white truncate">{t('nav.brandSub')}</p>
+              <p className="text-[9px] text-slate-500 dark:text-slate-400">{t('nav.brand')}</p>
             </div>
           </Link>
 
-          {/* ── Desktop Nav (centered) ── */}
-          <nav className="hidden lg:flex items-center gap-0.5 mx-auto">
+          {/* Divider between logo block and nav — desktop only */}
+          <span className="hidden lg:block w-px h-7 bg-slate-200 dark:bg-slate-700/60 opacity-60 shrink-0" />
+
+          {/* ── Desktop Nav (fills remaining space) ── */}
+          <nav className="hidden lg:flex items-center gap-0 flex-1 justify-center">
             {/* Home — plain link */}
             <Link to="/"
               className={`px-3 py-2 rounded-lg text-sm font-semibold transition-colors ${location.pathname === '/' ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20' : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60'}`}>
@@ -233,28 +236,27 @@ const Navbar: React.FC = () => {
           </nav>
 
           {/* ── Right actions ── */}
-          <div className="flex items-center gap-1 ms-auto lg:ms-0 shrink-0">
+          <div className="flex items-center gap-0.5 ms-auto shrink-0">
             <button onClick={() => setShowSearch(s => !s)}
-              className="w-9 h-9 rounded-xl flex items-center justify-center text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-blue-600 transition-colors">
-              {showSearch ? <X size={16} /> : <Search size={16} />}
+              className="w-8 h-8 rounded-lg flex items-center justify-center text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-blue-600 transition-colors">
+              {showSearch ? <X size={15} /> : <Search size={15} />}
             </button>
 
             <button onClick={toggleLang}
-              className="w-9 h-9 rounded-xl flex items-center justify-center text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-blue-600 transition-colors font-bold text-sm">
+              className="w-8 h-8 rounded-lg flex items-center justify-center text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-blue-600 transition-colors font-bold text-xs">
               {i18n.language === 'ar' ? 'EN' : 'ع'}
             </button>
 
             <button onClick={toggleDark}
-              className="w-9 h-9 rounded-xl flex items-center justify-center text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-amber-500 transition-colors">
-              {isDark ? <Sun size={16} /> : <Moon size={16} />}
+              className="w-8 h-8 rounded-lg flex items-center justify-center text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-amber-500 transition-colors">
+              {isDark ? <Sun size={15} /> : <Moon size={15} />}
             </button>
 
             <Link to="/portal/student"
-              className="hidden md:flex items-center gap-1.5 ms-1 px-4 py-2 rounded-xl text-white text-sm font-bold shadow hover:opacity-90 hover:shadow-lg transition-all"
+              className="hidden lg:flex items-center gap-1 ms-1 px-3 py-1.5 rounded-lg text-white text-xs font-bold shadow hover:opacity-90 hover:shadow-lg transition-all whitespace-nowrap"
               style={{ background: 'linear-gradient(135deg,#1d4ed8,#7c3aed)' }}>
-              <LogIn size={14} />
-              <span className="hidden xl:inline">{t('nav.portal')}</span>
-              <span className="xl:hidden">Portal</span>
+              <LogIn size={13} />
+              <span>{t('nav.portal')}</span>
             </Link>
 
             <button onClick={() => setMobileOpen(o => !o)}
