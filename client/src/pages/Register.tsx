@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { UserPlus, Lock, Mail, User } from 'lucide-react';
 import api from '../services/api';
 import { useAuth } from '../context/AuthContext';
 
 const Register = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const { login } = useAuth();
-  
+
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -16,7 +18,7 @@ const Register = () => {
     password: '',
     confirmPassword: ''
   });
-  
+
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
@@ -29,25 +31,25 @@ const Register = () => {
     setError('');
 
     if (formData.password !== formData.confirmPassword) {
-      setError('Passwords do not match');
+      setError(t('register.passwordMismatch'));
       return;
     }
 
     setIsLoading(true);
 
     try {
-      const response = await api.post('/auth/register', { 
-        email: formData.email, 
+      const response = await api.post('/auth/register', {
+        email: formData.email,
         password: formData.password,
         firstName: formData.firstName,
         lastName: formData.lastName,
-        role: 'student' // Default registration is student
+        role: 'student'
       });
-      
+
       login(response.data.token, response.data.user);
       navigate('/portal');
     } catch (err: any) {
-      setError(err.response?.data?.message || 'Failed to register. Please try again.');
+      setError(err.response?.data?.message || t('register.failedRegister'));
     } finally {
       setIsLoading(false);
     }
@@ -55,7 +57,7 @@ const Register = () => {
 
   return (
     <div className="min-h-screen pt-24 pb-12 flex items-center justify-center bg-slate-50 dark:bg-slate-950 px-4">
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         className="w-full max-w-lg bg-white dark:bg-slate-900 rounded-2xl shadow-xl overflow-hidden border border-slate-100 dark:border-slate-800"
@@ -64,12 +66,12 @@ const Register = () => {
           <div className="w-16 h-16 bg-accent/10 rounded-2xl flex items-center justify-center text-accent mx-auto mb-6">
             <UserPlus size={32} />
           </div>
-          
+
           <h2 className="text-2xl font-bold text-center text-slate-800 dark:text-white mb-2">
-            Create an Account
+            {t('register.title')}
           </h2>
           <p className="text-center text-slate-500 dark:text-slate-400 mb-8">
-            Register as a new student to access the portal
+            {t('register.subtitle')}
           </p>
 
           {error && (
@@ -82,7 +84,7 @@ const Register = () => {
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
-                  First Name
+                  {t('register.firstName')}
                 </label>
                 <div className="relative">
                   <div className="absolute inset-y-0 start-0 ps-3 flex items-center pointer-events-none text-slate-400">
@@ -101,7 +103,7 @@ const Register = () => {
               </div>
               <div>
                 <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
-                  Last Name
+                  {t('register.lastName')}
                 </label>
                 <div className="relative">
                   <div className="absolute inset-y-0 start-0 ps-3 flex items-center pointer-events-none text-slate-400">
@@ -122,10 +124,10 @@ const Register = () => {
 
             <div>
               <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
-                University Email Address
+                {t('register.emailLabel')}
               </label>
               <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+                <div className="absolute inset-y-0 start-0 ps-3 flex items-center pointer-events-none text-slate-400">
                   <Mail size={18} />
                 </div>
                 <input
@@ -142,10 +144,10 @@ const Register = () => {
 
             <div>
               <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
-                Password
+                {t('register.passwordLabel')}
               </label>
               <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+                <div className="absolute inset-y-0 start-0 ps-3 flex items-center pointer-events-none text-slate-400">
                   <Lock size={18} />
                 </div>
                 <input
@@ -163,10 +165,10 @@ const Register = () => {
 
             <div>
               <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
-                Confirm Password
+                {t('register.confirmPassword')}
               </label>
               <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+                <div className="absolute inset-y-0 start-0 ps-3 flex items-center pointer-events-none text-slate-400">
                   <Lock size={18} />
                 </div>
                 <input
@@ -186,15 +188,15 @@ const Register = () => {
               disabled={isLoading}
               className="w-full bg-accent hover:bg-accent/90 text-white font-bold py-3 px-4 rounded-lg transition-colors flex justify-center items-center mt-6"
             >
-              {isLoading ? 'Creating account...' : 'Create Account'}
+              {isLoading ? t('register.creating') : t('register.createAccount')}
             </button>
           </form>
 
           <div className="mt-8 text-center">
             <p className="text-slate-600 dark:text-slate-400 text-sm">
-              Already have an account?{' '}
+              {t('register.alreadyHaveAccount')}{' '}
               <Link to="/login" className="text-primary font-bold hover:underline">
-                Sign in here
+                {t('register.signInHere')}
               </Link>
             </p>
           </div>

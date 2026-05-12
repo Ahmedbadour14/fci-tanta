@@ -10,20 +10,255 @@
     "contact": "Contact Us",
     "login": "Login",
     "logout": "Logout",
-    "portal": "Student Portal"
+    "portal": "Student Portal",
+    "store": "Store",
+    "exams": "Exams"
   },
   "home": {
     "heroTitle": "Faculty of Computers and Information",
     "heroSubtitle": "Tanta University",
+    "heroTagline": "Tanta University — Admissions Open 2026",
+    "heroDesc": "We prepare the next generation of technology leaders through innovative education, pioneering research, and community service.",
+    "heroStartJourney": "Start Your Journey",
     "applyNow": "Apply Now",
     "explore": "Explore Programs",
     "stats": {
-      "students": "Students",
+      "students": "Enrolled Students",
       "staff": "Faculty Members",
       "programs": "Academic Programs",
-      "papers": "Research Papers"
+      "papers": "Research Papers",
+      "departments": "Academic Departments"
     },
     "deanMessage": "Dean's Message",
-    "news": "Latest News"
-  }
+    "deanWord": "Dean's Word",
+    "deanQuote": "Welcome to the Faculty of Computers and Information at Tanta University. We are committed to excellence in education, innovative research, and active community engagement. Our goal is to prepare future leaders who will drive the digital transformation of Egypt and the world.",
+    "deanFullQuote": "It is my great pleasure to welcome you to the Faculty of Computers and Information at Tanta University. As we stand on the brink of the fourth industrial revolution, our faculty is dedicated to equipping students with the cutting-edge knowledge and practical skills required to thrive in the dynamic world of technology. We are proud of our distinguished faculty members, state-of-the-art facilities, and strong industry partnerships.",
+    "deanName": "Prof. Dr. Ahmed Youssef",
+    "deanTitle": "Dean of the Faculty",
+    "news": "Latest News",
+    "latestNews": "Latest News & Events",
+    "viewAll": "View All",
+    "partners": "Academic & Industry Partners",
+    "quickAccess": "Quick Access"
+  },
+  "about": {
+    "vision": "Our Vision",
+    "visionText": "To be a regional and international leader in computer science and information technology education, research, and community service, contributing effectively to the digital transformation and sustainable development of society.",
+    "mission": "Our Mission",
+    "missionText": "Providing distinguished academic programs to prepare highly qualified professionals capable of meeting labor market demands. Conducting innovative scientific research and offering specialized consulting to serve the community.",
+    "history": "Our History",
+    "accreditations": "Accreditations & Partnerships",
+    "timeline": {
+      "1995title": "Establishment",
+      "1995desc": "Faculty established by presidential decree to meet the growing demand for IT professionals.",
+      "2005title": "Postgraduate Programs",
+      "2005desc": "Introduction of Masters and PhD programs in Computer Science and Information Systems.",
+      "2015title": "New Departments",
+      "2015desc": "Added Software Engineering and Information Technology departments.",
+      "2023title": "National Accreditation",
+      "2023desc": "Received full academic accreditation from NAQAAE for all undergraduate programs."
+    }
+  },
+  "departments": {
+    "intro": "Discover our specialized academic departments driving innovation in computing.",
+    "faculty": "Faculty",
+    "courses": "Courses",
+    "labs": "Labs",
+    "explore": "Explore Department",
+    "cs": {
+      "name": "Computer Science",
+      "desc": "Focuses on algorithms, programming languages, and computing theory."
+    },
+    "is": {
+      "name": "Information Systems",
+      "desc": "Bridging the gap between business processes and technical solutions."
+    },
+    "it": {
+      "name": "Information Technology",
+      "desc": "Managing networks, cloud infrastructure, and cybersecurity."
+    },
+    "se": {
+      "name": "Software Engineering",
+      "desc": "Systematic approaches to software design, development, and testing."
+    }
+  },
+  "programs": {
+    "title": "Academic Programs",
+    "undergraduate": "Undergraduate Programs",
+    "postgraduate": "Postgraduate Programs",
+    "career": "Career",
+    "curriculum": "Curriculum",
+    "admissionRequirements": "Admission Requirements",
+    "admissionReq1": "High School Certificate (Thanaweya Amma) Math section or equivalent.",
+    "admissionReq2": "Meeting the minimum coordination score set by the Supreme Council of Universities.",
+    "admissionReq3": "Passing the internal medical examination.",
+    "readyToApply": "Ready to Apply?",
+    "readyToApplyDesc": "Start your journey at FCI Tanta University today.",
+    "bachelor": [
+      { "title": "B.Sc. in Computer Science", "duration": "4 Years", "credits": "132 Hours", "path": "Software Developer, AI Engineer" },
+      { "title": "B.Sc. in Information Systems", "duration": "4 Years", "credits": "132 Hours", "path": "Systems Analyst, Database Admin" },
+      { "title": "B.Sc. in Information Technology", "duration": "4 Years", "credits": "132 Hours", "path": "Network Admin, Security Analyst" },
+      { "title": "B.Sc. in Software Engineering", "duration": "4 Years", "credits": "132 Hours", "path": "Software Architect, QA Engineer" }
+    ],
+    "postgrad": [
+      { "title": "Diploma in Web Technologies", "duration": "1 Year", "credits": "24 Hours", "path": "Full-stack Developer" },
+      { "title": "M.Sc. in Artificial Intelligence", "duration": "2 Years", "credits": "36 Hours", "path": "AI Researcher, Data Scientist" },
+      { "title": "Ph.D. in Computer Science", "duration": "3-5 Years", "credits": "48 Hours", "path": "University Professor, Lead Researcher" }
+    ]
+  },
+  "research": {
+    "title": "Research & Innovation",
+    "subtitle": "Latest research and scientific publications by faculty members",
+    "breadcrumb": "Research",
+    "groups": "Research Groups",
+    "papers": "Research Papers",
+    "funded": "Funded Projects",
+    "latestPublications": "Latest Research Publications",
+    "search": "Search research...",
+    "noResults": "No results found"
+  },
+  "news": {
+    "title": "News & Events",
+    "subtitle": "Stay updated with the latest faculty news and events",
+    "breadcrumb": "Updates",
+    "newsTab": "📰 News",
+    "galleryTab": "🖼 Gallery",
+    "search": "Search news...",
+    "all": "All",
+    "noResults": "No results found"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "We are here to answer your inquiries",
+    "breadcrumb": "Contact",
+    "info": "Contact Information",
+    "address": "Address",
+    "addressValue": "Medical Campus, Tanta University, El Geish Street, Tanta, El Gharbeya, Egypt",
+    "phone": "Phone",
+    "email": "Email",
+    "sendMessage": "Send Us a Message",
+    "fullName": "Full Name *",
+    "emailLabel": "Email Address *",
+    "subject": "Subject *",
+    "message": "Message *",
+    "send": "Send Message",
+    "sending": "Sending...",
+    "successTitle": "Sent Successfully!",
+    "successDesc": "Thank you for contacting us. We will reply as soon as possible.",
+    "sendAnother": "Send Another Message",
+    "namePlaceholder": "Ahmed Mohamed",
+    "subjectPlaceholder": "How can we help you?",
+    "messagePlaceholder": "Write your message here...",
+    "nameRequired": "Name is required",
+    "emailRequired": "Email is required",
+    "invalidEmail": "Invalid email address",
+    "subjectRequired": "Subject is required",
+    "messageRequired": "Message is required",
+    "messageMinLength": "Message must be at least 10 characters"
+  },
+  "community": {
+    "title": "Community Service",
+    "itUnit": "IT Training Unit",
+    "itUnitDesc": "We offer specialized training courses in programming, networking, graphic design, and ICDL for both university students and the local community to bridge the digital divide.",
+    "viewCourses": "View Available Courses →",
+    "alumniUnit": "Alumni & Follow-up Unit",
+    "alumniUnitDesc": "We maintain strong ties with our graduates, offering career counseling, organizing employment fairs, and providing ongoing professional development opportunities.",
+    "alumniPortal": "Alumni Portal →"
+  },
+  "login": {
+    "title": "Welcome Back",
+    "subtitle": "Please sign in to access your portal",
+    "emailLabel": "Email Address",
+    "passwordLabel": "Password",
+    "forgotPassword": "Forgot password?",
+    "signingIn": "Signing in...",
+    "signIn": "Sign In",
+    "noAccount": "Don't have an account?",
+    "registerNow": "Register now",
+    "back": "Back",
+    "failedLogin": "Failed to login. Please try again."
+  },
+  "register": {
+    "title": "Create an Account",
+    "subtitle": "Register as a new student to access the portal",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "emailLabel": "University Email Address",
+    "passwordLabel": "Password",
+    "confirmPassword": "Confirm Password",
+    "creating": "Creating account...",
+    "createAccount": "Create Account",
+    "alreadyHaveAccount": "Already have an account?",
+    "signInHere": "Sign in here",
+    "passwordMismatch": "Passwords do not match",
+    "failedRegister": "Failed to register. Please try again."
+  },
+  "portal": {
+    "studentPortal": "Student Portal",
+    "myGrades": "My Grades",
+    "courseRegistration": "Course Registration",
+    "examSchedule": "Exam Schedule",
+    "myProfile": "My Profile"
+  },
+  "quickAccess": {
+    "studentPortal": "Student Portal",
+    "studentPortalDesc": "Course registration, grades, and schedule",
+    "facultyPortal": "Faculty Portal",
+    "facultyPortalDesc": "Manage courses and research publications",
+    "graduateStudies": "Graduate Studies",
+    "graduateStudiesDesc": "Masters and PhD programs information",
+    "trainingPrograms": "Training Programs",
+    "trainingProgramsDesc": "Community service and specialized training"
+  },
+  "footer": {
+    "brand": "Faculty of Computers",
+    "university": "Tanta University",
+    "brandDesc": "A leading faculty in computer science, information technology, research, and community service in the Middle East.",
+    "quickLinks": "Quick Links",
+    "studentServices": "Student Services",
+    "studentPortal": "Student Portal",
+    "bookStore": "Book Store",
+    "courseRegistration": "Course Registration",
+    "gradesResults": "Grades & Results",
+    "examArchive": "Exam Archive",
+    "adminPanel": "Admin Panel",
+    "newsletter": "Newsletter",
+    "newsletterPlaceholder": "Your email",
+    "subscribed": "✓ Subscribed successfully!",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Use",
+    "sitemap": "Sitemap",
+    "copyright": "Tanta University — Faculty of Computers and Information. All rights reserved.",
+    "contactUs": "Contact"
+  },
+  "notFound": {
+    "title": "Page Not Found",
+    "desc": "Sorry, the page you are looking for does not exist or has been moved.",
+    "search": "Search the site",
+    "home": "Back to Home"
+  },
+  "search": {
+    "backHome": "Back to Home",
+    "resultsFor": "Search results for:",
+    "results": "results",
+    "noResults": "No Results",
+    "noResultsDesc": "No results found for \"{q}\". Try different keywords.",
+    "news": "News",
+    "researchPapers": "Research Papers",
+    "faculty": "Faculty Members",
+    "error": "An error occurred while searching. Please try again."
+  },
+  "announcement": {
+    "message": "We are pleased to announce the opening of applications for new Master's programs! 🎓 — Apply before June 30, 2026"
+  },
+  "cookie": {
+    "title": "We use Cookies",
+    "desc": "We use cookies to improve your experience on the site, analyze visits, and personalize content.",
+    "privacy": "Privacy Policy",
+    "decline": "Decline",
+    "acceptAll": "Accept All"
+  },
+  "darkMode": "Dark Mode",
+  "lightMode": "Light Mode",
+  "back": "Back"
 }

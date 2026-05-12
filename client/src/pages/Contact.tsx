@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { MapPin, Phone, Mail, Send, CheckCircle } from 'lucide-react';
 import { useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 import toast from 'react-hot-toast';
 import api from '../services/api';
 import PageHeader from '../components/ui/PageHeader';
@@ -14,6 +15,7 @@ interface FormData {
 }
 
 const Contact = () => {
+  const { t } = useTranslation();
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const { register, handleSubmit, reset, formState: { errors } } = useForm<FormData>();
@@ -24,23 +26,23 @@ const Contact = () => {
       await api.post('/contact', data);
       setSubmitted(true);
       reset();
-      toast.success('تم إرسال رسالتك بنجاح! سنتواصل معك قريبًا.');
+      toast.success(t('contact.successDesc'));
     } catch {
-      toast.error('حدث خطأ أثناء إرسال الرسالة. يرجى المحاولة مرة أخرى.');
+      toast.error(t('contact.messageMinLength'));
     } finally {
       setSubmitting(false);
     }
   };
 
   const contactInfo = [
-    { icon: MapPin, title: 'العنوان', value: 'الحرم الطبي، جامعة طنطا، شارع الجيش، طنطا، الغربية، مصر', color: 'text-blue-500' },
-    { icon: Phone, title: 'الهاتف', value: '+20 40 3450536', color: 'text-emerald-500', dir: 'ltr' },
-    { icon: Mail, title: 'البريد الإلكتروني', value: 'info@fci.tanta.edu.eg', color: 'text-violet-500' },
+    { icon: MapPin, titleKey: 'contact.address', valueKey: 'contact.addressValue', color: 'text-blue-500' },
+    { icon: Phone, titleKey: 'contact.phone', value: '+20 40 3450536', color: 'text-emerald-500', dir: 'ltr' as const },
+    { icon: Mail, titleKey: 'contact.email', value: 'info@fci.tanta.edu.eg', color: 'text-violet-500' },
   ];
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950">
-      <PageHeader title="تواصل معنا" subtitle="نحن هنا للإجابة على استفساراتكم" breadcrumb="اتصل بنا" />
+      <PageHeader title={t('contact.title')} subtitle={t('contact.subtitle')} breadcrumb={t('contact.breadcrumb')} />
 
       <div className="container mx-auto px-4 md:px-6 py-12">
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-10">
@@ -49,16 +51,16 @@ const Contact = () => {
           <motion.div initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }} className="lg:col-span-2 space-y-6">
             <div className="bg-white dark:bg-slate-900 rounded-2xl p-6 shadow-sm border border-slate-100 dark:border-slate-800">
-              <h2 className="text-xl font-bold text-slate-800 dark:text-white mb-6">معلومات التواصل</h2>
+              <h2 className="text-xl font-bold text-slate-800 dark:text-white mb-6">{t('contact.info')}</h2>
               <ul className="space-y-5">
-                {contactInfo.map(({ icon: Icon, title, value, color, dir }) => (
-                  <li key={title} className="flex items-start gap-4">
+                {contactInfo.map(({ icon: Icon, titleKey, valueKey, value, color, dir }) => (
+                  <li key={titleKey} className="flex items-start gap-4">
                     <div className={`p-3 rounded-xl bg-slate-50 dark:bg-slate-800 shrink-0 ${color}`}>
                       <Icon size={20} />
                     </div>
                     <div>
-                      <h4 className="font-bold text-slate-700 dark:text-slate-200 text-sm mb-0.5">{title}</h4>
-                      <p className="text-slate-500 dark:text-slate-400 text-sm" dir={dir}>{value}</p>
+                      <h4 className="font-bold text-slate-700 dark:text-slate-200 text-sm mb-0.5">{t(titleKey)}</h4>
+                      <p className="text-slate-500 dark:text-slate-400 text-sm" dir={dir}>{valueKey ? t(valueKey) : value}</p>
                     </div>
                   </li>
                 ))}
@@ -84,50 +86,50 @@ const Contact = () => {
                 <div className="w-20 h-20 rounded-full bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center mb-4">
                   <CheckCircle size={40} className="text-emerald-500" />
                 </div>
-                <h3 className="text-2xl font-bold text-slate-800 dark:text-white mb-2">تم الإرسال بنجاح!</h3>
-                <p className="text-slate-500 dark:text-slate-400 mb-6">شكرًا لتواصلك معنا. سنرد عليك في أقرب وقت.</p>
-                <button onClick={() => setSubmitted(false)} className="btn-primary">إرسال رسالة أخرى</button>
+                <h3 className="text-2xl font-bold text-slate-800 dark:text-white mb-2">{t('contact.successTitle')}</h3>
+                <p className="text-slate-500 dark:text-slate-400 mb-6">{t('contact.successDesc')}</p>
+                <button onClick={() => setSubmitted(false)} className="btn-primary">{t('contact.sendAnother')}</button>
               </motion.div>
             ) : (
               <>
-                <h2 className="text-xl font-bold text-slate-800 dark:text-white mb-6">أرسل لنا رسالة</h2>
+                <h2 className="text-xl font-bold text-slate-800 dark:text-white mb-6">{t('contact.sendMessage')}</h2>
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                     <div>
-                      <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1.5">الاسم الكامل *</label>
-                      <input {...register('name', { required: 'الاسم مطلوب' })}
+                      <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1.5">{t('contact.fullName')}</label>
+                      <input {...register('name', { required: t('contact.nameRequired') })}
                         className={`input-field ${errors.name ? 'border-red-400' : ''}`}
-                        placeholder="محمد أحمد" />
+                        placeholder={t('contact.namePlaceholder')} />
                       {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name.message}</p>}
                     </div>
                     <div>
-                      <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1.5">البريد الإلكتروني *</label>
-                      <input {...register('email', { required: 'البريد مطلوب', pattern: { value: /^\S+@\S+$/i, message: 'بريد إلكتروني غير صالح' } })}
+                      <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1.5">{t('contact.emailLabel')}</label>
+                      <input {...register('email', { required: t('contact.emailRequired'), pattern: { value: /^\S+@\S+$/i, message: t('contact.invalidEmail') } })}
                         type="email" className={`input-field ${errors.email ? 'border-red-400' : ''}`}
                         placeholder="example@gmail.com" dir="ltr" />
                       {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email.message}</p>}
                     </div>
                   </div>
                   <div>
-                    <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1.5">الموضوع *</label>
-                    <input {...register('subject', { required: 'الموضوع مطلوب' })}
+                    <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1.5">{t('contact.subject')}</label>
+                    <input {...register('subject', { required: t('contact.subjectRequired') })}
                       className={`input-field ${errors.subject ? 'border-red-400' : ''}`}
-                      placeholder="كيف يمكننا مساعدتك؟" />
+                      placeholder={t('contact.subjectPlaceholder')} />
                     {errors.subject && <p className="text-red-500 text-xs mt-1">{errors.subject.message}</p>}
                   </div>
                   <div>
-                    <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1.5">الرسالة *</label>
-                    <textarea {...register('message', { required: 'الرسالة مطلوبة', minLength: { value: 10, message: 'يجب أن تكون الرسالة 10 أحرف على الأقل' } })}
+                    <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1.5">{t('contact.message')}</label>
+                    <textarea {...register('message', { required: t('contact.messageRequired'), minLength: { value: 10, message: t('contact.messageMinLength') } })}
                       rows={5} className={`input-field resize-none ${errors.message ? 'border-red-400' : ''}`}
-                      placeholder="اكتب رسالتك هنا..." />
+                      placeholder={t('contact.messagePlaceholder')} />
                     {errors.message && <p className="text-red-500 text-xs mt-1">{errors.message.message}</p>}
                   </div>
                   <button type="submit" disabled={submitting}
                     className="btn-primary w-full flex justify-center items-center gap-2 !py-3.5 disabled:opacity-60 disabled:cursor-not-allowed">
                     {submitting ? (
-                      <><div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" /> جاري الإرسال...</>
+                      <><div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" /> {t('contact.sending')}</>
                     ) : (
-                      <><Send size={18} /> إرسال الرسالة</>
+                      <><Send size={18} /> {t('contact.send')}</>
                     )}
                   </button>
                 </form>

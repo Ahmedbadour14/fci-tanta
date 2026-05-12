@@ -1,6 +1,6 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { motion, useAnimation, useInView } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowRight, ArrowLeft, GraduationCap, BookOpen, Users } from 'lucide-react';
 
@@ -9,9 +9,9 @@ const Hero = () => {
   const isRTL = i18n.language === 'ar';
 
   const stats = [
-    { icon: GraduationCap, value: '+5,000', label: 'طالب مسجل' },
-    { icon: BookOpen, value: '+1,500', label: 'ورقة بحثية' },
-    { icon: Users, value: '+150', label: 'عضو هيئة تدريس' },
+    { icon: GraduationCap, value: '+5,000', label: t('home.stats.students') },
+    { icon: BookOpen, value: '+1,500', label: t('home.stats.papers') },
+    { icon: Users, value: '+150', label: t('home.stats.staff') },
   ];
 
   return (
@@ -76,7 +76,7 @@ const Hero = () => {
             className="inline-flex items-center gap-2 bg-white/60 dark:bg-white/10 backdrop-blur-sm border border-slate-200 dark:border-white/20 px-4 py-2 rounded-full text-sm font-semibold text-blue-700 dark:text-blue-300 mb-6 shadow-sm"
           >
             <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
-            جامعة طنطا — القبول مفتوح 2026
+            {t('home.heroTagline')}
           </motion.div>
 
           <motion.h1
@@ -96,7 +96,7 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="text-lg md:text-xl text-slate-600 dark:text-slate-300 mb-10 max-w-2xl mx-auto leading-relaxed"
           >
-            نُعِدُّ الجيل القادم من قادة التكنولوجيا من خلال التعليم المبتكر والبحث العلمي الرائد وخدمة المجتمع.
+            {t('home.heroDesc')}
           </motion.p>
 
           <motion.div
@@ -106,7 +106,7 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 0.5 }}
           >
             <Link to="/register" className="btn-primary flex items-center gap-2 text-base !px-8 !py-4">
-              ابدأ رحلتك الآن
+              {t('home.heroStartJourney')}
               {isRTL ? <ArrowLeft size={18} /> : <ArrowRight size={18} />}
             </Link>
             <Link

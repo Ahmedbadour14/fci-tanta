@@ -2,7 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Monitor, Database, Network, Code2, ArrowRight } from 'lucide-react';
+import { Monitor, Database, Network, Code2, ArrowRight, ArrowLeft } from 'lucide-react';
 
 const Departments = () => {
   const { t, i18n } = useTranslation();
@@ -11,42 +11,42 @@ const Departments = () => {
   const depts = [
     {
       id: 'cs',
-      name: 'Computer Science',
+      nameKey: 'departments.cs.name',
       icon: Monitor,
       color: 'bg-blue-500',
       textColor: 'text-blue-500',
       bgColor: 'bg-blue-50 dark:bg-blue-900/10',
-      desc: 'Focuses on algorithms, programming languages, and computing theory.',
+      descKey: 'departments.cs.desc',
       stats: { staff: 24, courses: 45, labs: 6 }
     },
     {
       id: 'is',
-      name: 'Information Systems',
+      nameKey: 'departments.is.name',
       icon: Database,
       color: 'bg-emerald-500',
       textColor: 'text-emerald-500',
       bgColor: 'bg-emerald-50 dark:bg-emerald-900/10',
-      desc: 'Bridging the gap between business processes and technical solutions.',
+      descKey: 'departments.is.desc',
       stats: { staff: 18, courses: 38, labs: 4 }
     },
     {
       id: 'it',
-      name: 'Information Technology',
+      nameKey: 'departments.it.name',
       icon: Network,
       color: 'bg-orange-500',
       textColor: 'text-orange-500',
       bgColor: 'bg-orange-50 dark:bg-orange-900/10',
-      desc: 'Managing networks, cloud infrastructure, and cybersecurity.',
+      descKey: 'departments.it.desc',
       stats: { staff: 15, courses: 32, labs: 5 }
     },
     {
       id: 'se',
-      name: 'Software Engineering',
+      nameKey: 'departments.se.name',
       icon: Code2,
       color: 'bg-purple-500',
       textColor: 'text-purple-500',
       bgColor: 'bg-purple-50 dark:bg-purple-900/10',
-      desc: 'Systematic approaches to software design, development, and testing.',
+      descKey: 'departments.se.desc',
       stats: { staff: 20, courses: 40, labs: 4 }
     }
   ];
@@ -55,18 +55,18 @@ const Departments = () => {
     <div className="min-h-screen pt-24 pb-12 bg-slate-50 dark:bg-slate-950">
       <section className="bg-primary text-white py-16 mb-12">
         <div className="container mx-auto px-4 text-center">
-          <motion.h1 
+          <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="text-4xl md:text-5xl font-bold mb-4"
           >
             {t('nav.departments')}
           </motion.h1>
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
-            className="w-24 h-1 bg-accent mx-auto rounded-full mb-6" 
+            className="w-24 h-1 bg-accent mx-auto rounded-full mb-6"
           />
           <motion.p
             initial={{ opacity: 0 }}
@@ -74,7 +74,7 @@ const Departments = () => {
             transition={{ delay: 0.3 }}
             className="text-lg text-slate-200 max-w-2xl mx-auto"
           >
-            Discover our specialized academic departments driving innovation in computing.
+            {t('departments.intro')}
           </motion.p>
         </div>
       </section>
@@ -96,35 +96,35 @@ const Departments = () => {
                   <div className={`p-6 rounded-2xl ${dept.bgColor} ${dept.textColor} shrink-0 group-hover:scale-110 transition-transform`}>
                     <Icon size={48} />
                   </div>
-                  
+
                   <div className="flex-1">
                     <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-3 group-hover:text-primary dark:group-hover:text-accent transition-colors">
-                      {dept.name}
+                      {t(dept.nameKey)}
                     </h2>
                     <p className="text-slate-600 dark:text-slate-400 mb-6 line-clamp-2">
-                      {dept.desc}
+                      {t(dept.descKey)}
                     </p>
-                    
+
                     <div className="flex flex-wrap gap-4 mb-8">
                       <div className="bg-slate-50 dark:bg-slate-800 px-4 py-2 rounded-lg border border-slate-100 dark:border-slate-700">
                         <span className="block text-xl font-bold text-slate-800 dark:text-white">{dept.stats.staff}</span>
-                        <span className="text-xs text-slate-500 uppercase tracking-wider">Faculty</span>
+                        <span className="text-xs text-slate-500 uppercase tracking-wider">{t('departments.faculty')}</span>
                       </div>
                       <div className="bg-slate-50 dark:bg-slate-800 px-4 py-2 rounded-lg border border-slate-100 dark:border-slate-700">
                         <span className="block text-xl font-bold text-slate-800 dark:text-white">{dept.stats.courses}</span>
-                        <span className="text-xs text-slate-500 uppercase tracking-wider">Courses</span>
+                        <span className="text-xs text-slate-500 uppercase tracking-wider">{t('departments.courses')}</span>
                       </div>
                       <div className="bg-slate-50 dark:bg-slate-800 px-4 py-2 rounded-lg border border-slate-100 dark:border-slate-700">
                         <span className="block text-xl font-bold text-slate-800 dark:text-white">{dept.stats.labs}</span>
-                        <span className="text-xs text-slate-500 uppercase tracking-wider">Labs</span>
+                        <span className="text-xs text-slate-500 uppercase tracking-wider">{t('departments.labs')}</span>
                       </div>
                     </div>
-                    
-                    <Link 
+
+                    <Link
                       to={`/departments/${dept.id}`}
                       className={`inline-flex items-center gap-2 font-bold ${dept.textColor} hover:underline`}
                     >
-                      Explore Department {!isRTL && <ArrowRight size={20} />}
+                      {t('departments.explore')} {!isRTL ? <ArrowRight size={20} /> : <ArrowLeft size={20} />}
                     </Link>
                   </div>
                 </div>

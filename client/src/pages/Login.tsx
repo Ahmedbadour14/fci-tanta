@@ -10,7 +10,7 @@ const Login = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const { login } = useAuth();
-  
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -26,7 +26,7 @@ const Login = () => {
       login(response.data.token, response.data.user);
       navigate('/portal');
     } catch (err: any) {
-      setError(err.response?.data?.message || 'Failed to login. Please try again.');
+      setError(err.response?.data?.message || t('login.failedLogin'));
     } finally {
       setIsLoading(false);
     }
@@ -34,14 +34,14 @@ const Login = () => {
 
   return (
     <div className="min-h-screen pt-24 pb-12 flex items-center justify-center bg-slate-50 dark:bg-slate-950 px-4 relative">
-      <button 
-        onClick={() => navigate(-1)} 
+      <button
+        onClick={() => navigate(-1)}
         className="absolute top-24 start-4 md:start-8 flex items-center gap-2 text-slate-500 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-semibold"
       >
-        <ArrowLeft size={20} className="rtl:rotate-180" /> {t('back', 'العودة')}
+        <ArrowLeft size={20} className="rtl:rotate-180" /> {t('back')}
       </button>
 
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         className="w-full max-w-md bg-white dark:bg-slate-900 rounded-2xl shadow-xl overflow-hidden border border-slate-100 dark:border-slate-800"
@@ -50,12 +50,12 @@ const Login = () => {
           <div className="w-16 h-16 bg-white dark:bg-slate-800 border-2 border-slate-100 dark:border-slate-700 rounded-full flex items-center justify-center text-blue-500 shadow-sm mx-auto mb-6">
             <LogIn size={28} className="ms-1" />
           </div>
-          
+
           <h2 className="text-2xl font-bold text-center text-slate-800 dark:text-white mb-2">
-            Welcome Back
+            {t('login.title')}
           </h2>
           <p className="text-center text-slate-500 dark:text-slate-400 mb-8">
-            Please sign in to access your portal
+            {t('login.subtitle')}
           </p>
 
           {error && (
@@ -67,7 +67,7 @@ const Login = () => {
           <form onSubmit={handleSubmit} className="space-y-5">
             <div>
               <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
-                Email Address
+                {t('login.emailLabel')}
               </label>
               <div className="relative">
                 <div className="absolute inset-y-0 start-0 ps-3 flex items-center pointer-events-none text-slate-400">
@@ -87,9 +87,9 @@ const Login = () => {
             <div>
               <div className="flex justify-between items-center mb-1">
                 <label className="block text-sm font-medium text-slate-700 dark:text-slate-300">
-                  Password
+                  {t('login.passwordLabel')}
                 </label>
-                <a href="#" className="text-sm text-primary hover:underline ms-auto">Forgot password?</a>
+                <a href="#" className="text-sm text-primary hover:underline ms-auto">{t('login.forgotPassword')}</a>
               </div>
               <div className="relative">
                 <div className="absolute inset-y-0 start-0 ps-3 flex items-center pointer-events-none text-slate-400">
@@ -111,15 +111,15 @@ const Login = () => {
               disabled={isLoading}
               className="w-full bg-primary hover:bg-primary/90 text-white font-bold py-3 px-4 rounded-lg transition-colors flex justify-center items-center"
             >
-              {isLoading ? 'Signing in...' : 'Sign In'}
+              {isLoading ? t('login.signingIn') : t('login.signIn')}
             </button>
           </form>
 
           <div className="mt-8 text-center">
             <p className="text-slate-600 dark:text-slate-400 text-sm">
-              Don't have an account?{' '}
+              {t('login.noAccount')}{' '}
               <Link to="/register" className="text-primary font-bold hover:underline">
-                Register now
+                {t('login.registerNow')}
               </Link>
             </p>
           </div>

@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Megaphone, X } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 const DISMISS_KEY = 'fci_announcement_dismissed_v1';
-const MESSAGE = 'يسعدنا الإعلان عن فتح باب القبول في برامج الماجستير الجديدة! 🎓 — سارع بالتقديم قبل 30 يونيو 2026';
 
 const AnnouncementBanner: React.FC = () => {
+  const { t } = useTranslation();
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -32,7 +33,7 @@ const AnnouncementBanner: React.FC = () => {
           <div className="container mx-auto px-4 py-2.5 flex items-center justify-between gap-4">
             <div className="flex items-center gap-3 min-w-0">
               <Megaphone size={16} className="text-white/80 shrink-0" />
-              <p className="text-white text-sm font-medium truncate">{MESSAGE}</p>
+              <p className="text-white text-sm font-medium truncate">{t('announcement.message')}</p>
             </div>
             <button
               onClick={dismiss}

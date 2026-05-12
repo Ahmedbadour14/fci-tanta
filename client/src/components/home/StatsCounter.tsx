@@ -1,9 +1,10 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import api from '../../services/api';
 
 interface StatItem {
-  label: string;
+  labelKey: string;
   value: number;
   suffix?: string;
   color: string;
@@ -30,20 +31,22 @@ const Counter: React.FC<{ target: number; suffix?: string }> = ({ target, suffix
 };
 
 const StatsCounter = () => {
+  const { t } = useTranslation();
+
   const [stats, setStats] = useState<StatItem[]>([
-    { label: 'طالب مسجل', value: 5000, suffix: '+', color: 'from-blue-500 to-blue-600' },
-    { label: 'عضو هيئة تدريس', value: 150, suffix: '+', color: 'from-violet-500 to-violet-600' },
-    { label: 'برنامج أكاديمي', value: 12, color: 'from-emerald-500 to-emerald-600' },
-    { label: 'ورقة بحثية', value: 1500, suffix: '+', color: 'from-orange-500 to-orange-600' },
+    { labelKey: 'home.stats.students', value: 5000, suffix: '+', color: 'from-blue-500 to-blue-600' },
+    { labelKey: 'home.stats.staff', value: 150, suffix: '+', color: 'from-violet-500 to-violet-600' },
+    { labelKey: 'home.stats.programs', value: 12, color: 'from-emerald-500 to-emerald-600' },
+    { labelKey: 'home.stats.papers', value: 1500, suffix: '+', color: 'from-orange-500 to-orange-600' },
   ]);
 
   useEffect(() => {
     api.get('/stats').then(({ data }) => {
       setStats([
-        { label: 'طالب مسجل', value: data.totalStudents || 5000, suffix: '+', color: 'from-blue-500 to-blue-600' },
-        { label: 'عضو هيئة تدريس', value: data.totalStaff || 150, suffix: '+', color: 'from-violet-500 to-violet-600' },
-        { label: 'قسم أكاديمي', value: data.totalDepartments || 4, color: 'from-emerald-500 to-emerald-600' },
-        { label: 'ورقة بحثية', value: data.totalResearch || 1500, suffix: '+', color: 'from-orange-500 to-orange-600' },
+        { labelKey: 'home.stats.students', value: data.totalStudents || 5000, suffix: '+', color: 'from-blue-500 to-blue-600' },
+        { labelKey: 'home.stats.staff', value: data.totalStaff || 150, suffix: '+', color: 'from-violet-500 to-violet-600' },
+        { labelKey: 'home.stats.departments', value: data.totalDepartments || 4, color: 'from-emerald-500 to-emerald-600' },
+        { labelKey: 'home.stats.papers', value: data.totalResearch || 1500, suffix: '+', color: 'from-orange-500 to-orange-600' },
       ]);
     }).catch(() => {});
   }, []);
@@ -60,7 +63,7 @@ const StatsCounter = () => {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
           {stats.map((stat, idx) => (
             <motion.div
-              key={stat.label}
+              key={stat.labelKey}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -72,7 +75,7 @@ const StatsCounter = () => {
                 <div className={`text-4xl md:text-5xl font-black bg-gradient-to-br ${stat.color} bg-clip-text text-transparent mb-2`}>
                   <Counter target={stat.value} suffix={stat.suffix} />
                 </div>
-                <p className="text-slate-600 dark:text-slate-400 font-semibold text-sm">{stat.label}</p>
+                <p className="text-slate-600 dark:text-slate-400 font-semibold text-sm">{t(stat.labelKey)}</p>
               </div>
             </motion.div>
           ))}

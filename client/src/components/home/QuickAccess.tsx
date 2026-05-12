@@ -8,17 +8,17 @@ const QuickAccess = () => {
   const { t } = useTranslation();
 
   const links = [
-    { id: 1, title: 'Student Portal', icon: UserCircle, path: '/portal', desc: 'Course registration, grades, and schedule' },
-    { id: 2, title: 'Faculty Portal', icon: Briefcase, path: '/portal/staff', desc: 'Manage courses and research publications' },
-    { id: 3, title: 'Graduate Studies', icon: GraduationCap, path: '/programs', desc: 'Masters and PhD programs information' },
-    { id: 4, title: 'Training Programs', icon: LayoutDashboard, path: '/community', desc: 'Community service and specialized training' },
+    { id: 1, titleKey: 'quickAccess.studentPortal', icon: UserCircle, path: '/portal', descKey: 'quickAccess.studentPortalDesc' },
+    { id: 2, titleKey: 'quickAccess.facultyPortal', icon: Briefcase, path: '/portal/staff', descKey: 'quickAccess.facultyPortalDesc' },
+    { id: 3, titleKey: 'quickAccess.graduateStudies', icon: GraduationCap, path: '/programs', descKey: 'quickAccess.graduateStudiesDesc' },
+    { id: 4, titleKey: 'quickAccess.trainingPrograms', icon: LayoutDashboard, path: '/community', descKey: 'quickAccess.trainingProgramsDesc' },
   ];
 
   return (
     <section className="py-16 bg-neutral dark:bg-slate-950">
       <div className="container mx-auto px-4 md:px-6">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-slate-800 dark:text-white mb-4">Quick Access</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-slate-800 dark:text-white mb-4">{t('home.quickAccess')}</h2>
           <div className="w-24 h-1 bg-accent mx-auto rounded-full" />
         </div>
 
@@ -33,7 +33,7 @@ const QuickAccess = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                <Link 
+                <Link
                   to={link.path}
                   className="block p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-xl hover:border-accent/50 dark:hover:border-accent/50 transition-all group"
                 >
@@ -41,10 +41,10 @@ const QuickAccess = () => {
                     <Icon size={28} />
                   </div>
                   <h3 className="text-xl font-bold text-slate-800 dark:text-white mb-2 group-hover:text-primary dark:group-hover:text-accent transition-colors">
-                    {link.title}
+                    {t(link.titleKey)}
                   </h3>
                   <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">
-                    {link.desc}
+                    {t(link.descKey)}
                   </p>
                 </Link>
               </motion.div>

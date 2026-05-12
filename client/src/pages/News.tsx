@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { Calendar, Search, ChevronLeft, ChevronRight, Image as ImageIcon } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import api from '../services/api';
 import PageHeader from '../components/ui/PageHeader';
 import { NewsCardSkeleton } from '../components/ui/SkeletonLoader';
@@ -25,6 +26,8 @@ const categoryColors: Record<string, string> = {
 };
 
 const News = () => {
+  const { t, i18n } = useTranslation();
+  const isRTL = i18n.language === 'ar';
   const [news, setNews] = useState<NewsItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [category, setCategory] = useState('All');
@@ -56,7 +59,7 @@ const News = () => {
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950">
-      <PageHeader title="الأخبار والفعاليات" subtitle="ابق على اطلاع بآخر أخبار الكلية وفعالياتها" breadcrumb="المستجدات" />
+      <PageHeader title={t('news.title')} subtitle={t('news.subtitle')} breadcrumb={t('news.breadcrumb')} />
 
       <div className="container mx-auto px-4 md:px-6 py-12">
         {/* Tabs */}
@@ -66,7 +69,7 @@ const News = () => {
               <button key={tab} onClick={() => setActiveTab(tab)}
                 className={`px-5 py-2 rounded-full font-bold text-sm transition-all ${activeTab === tab ? 'text-white shadow-lg' : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700'}`}
                 style={activeTab === tab ? { background: 'linear-gradient(135deg, #1d4ed8, #3b82f6)' } : {}}>
-                {tab === 'news' ? '📰 الأخبار' : '🖼 المعرض'}
+                {tab === 'news' ? t('news.newsTab') : t('news.galleryTab')}
               </button>
             ))}
           </div>
@@ -78,7 +81,7 @@ const News = () => {
                 type="text"
                 value={searchInput}
                 onChange={(e) => setSearchInput(e.target.value)}
-                placeholder="ابحث في الأخبار..."
+                placeholder={t('news.search')}
                 className="input-field ps-9 pe-4 py-2 text-sm w-52"
               />
             </form>
@@ -93,7 +96,7 @@ const News = () => {
                 <button key={cat} onClick={() => setCategory(cat)}
                   className={`px-4 py-1.5 rounded-full text-xs font-bold transition-all ${category === cat ? 'text-white shadow-md' : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700 hover:border-blue-400'}`}
                   style={category === cat ? { background: 'linear-gradient(135deg, #1d4ed8, #3b82f6)' } : {}}>
-                  {cat === 'All' ? 'الكل' : cat}
+                  {cat === 'All' ? t('news.all') : cat}
                 </button>
               ))}
             </div>
@@ -102,7 +105,7 @@ const News = () => {
               {loading
                 ? [1,2,3,4,5,6].map(i => <NewsCardSkeleton key={i} />)
                 : news.length === 0
-                  ? <div className="col-span-3 text-center py-20 text-slate-400">لا توجد نتائج</div>
+                  ? <div className="col-span-3 text-center py-20 text-slate-400">{t('news.noResults')}</div>
                   : news.map((item, idx) => (
                     <motion.div key={item.id}
                       initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
@@ -119,7 +122,7 @@ const News = () => {
                       <div className="p-5">
                         <div className="flex items-center gap-2 text-slate-400 text-xs mb-2">
                           <Calendar size={12} />
-                          {new Date(item.publishedAt).toLocaleDateString('ar-EG', { year: 'numeric', month: 'long', day: 'numeric' })}
+                          {new Date(item.publishedAt).toLocaleDateString(isRTL ? 'ar-EG' : 'en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
                         </div>
                         <h3 className="font-bold text-slate-800 dark:text-white line-clamp-2 mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">{item.title}</h3>
                         <p className="text-slate-500 dark:text-slate-400 text-sm line-clamp-2">{item.content}</p>

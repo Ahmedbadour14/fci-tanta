@@ -16,7 +16,7 @@ interface NewsItem {
 }
 
 const NewsSection = () => {
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   const isRTL = i18n.language === 'ar';
   const [news, setNews] = useState<NewsItem[]>([]);
   const [loading, setLoading] = useState(true);
@@ -47,7 +47,7 @@ const NewsSection = () => {
               viewport={{ once: true }}
               className="section-title mb-2"
             >
-              آخر الأخبار والفعاليات
+              {t('home.latestNews')}
             </motion.h2>
             <motion.div
               initial={{ scaleX: 0 }}
@@ -61,7 +61,7 @@ const NewsSection = () => {
             to="/news"
             className="flex items-center gap-2 text-blue-600 dark:text-blue-400 font-semibold hover:gap-3 transition-all text-sm"
           >
-            عرض الكل
+            {t('home.viewAll')}
             {isRTL ? <ArrowLeft size={16} /> : <ArrowRight size={16} />}
           </Link>
         </div>
@@ -92,7 +92,7 @@ const NewsSection = () => {
                 <div className="p-5">
                   <div className="flex items-center gap-2 text-slate-400 text-xs mb-3">
                     <Calendar size={13} />
-                    {new Date(item.publishedAt).toLocaleDateString('ar-EG', { year: 'numeric', month: 'long', day: 'numeric' })}
+                    {new Date(item.publishedAt).toLocaleDateString(isRTL ? 'ar-EG' : 'en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
                   </div>
                   <h3 className="font-bold text-slate-800 dark:text-white leading-snug line-clamp-2 mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                     {item.title}

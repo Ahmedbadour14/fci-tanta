@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Cookie, X, Check } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 const COOKIE_KEY = 'fci_cookie_consent';
 
 const CookieBanner: React.FC = () => {
+  const { t } = useTranslation();
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -39,11 +41,11 @@ const CookieBanner: React.FC = () => {
               </div>
               <div className="flex-1 min-w-0">
                 <h3 className="font-bold text-slate-800 dark:text-white text-sm mb-1">
-                  نستخدم ملفات الارتباط (Cookies)
+                  {t('cookie.title')}
                 </h3>
                 <p className="text-slate-500 dark:text-slate-400 text-xs leading-relaxed">
-                  نستخدم الكوكيز لتحسين تجربتك على الموقع وتحليل الزيارات وتخصيص المحتوى.{' '}
-                  <button className="text-primary hover:underline font-medium">سياسة الخصوصية</button>
+                  {t('cookie.desc')}{' '}
+                  <button className="text-primary hover:underline font-medium">{t('cookie.privacy')}</button>
                 </p>
               </div>
               <button onClick={decline} className="text-slate-400 hover:text-slate-600 shrink-0">
@@ -55,7 +57,7 @@ const CookieBanner: React.FC = () => {
                 onClick={decline}
                 className="px-4 py-2 text-xs font-semibold text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
               >
-                رفض
+                {t('cookie.decline')}
               </button>
               <button
                 onClick={accept}
@@ -63,7 +65,7 @@ const CookieBanner: React.FC = () => {
                 style={{ background: 'linear-gradient(135deg, #1d4ed8, #3b82f6)' }}
               >
                 <Check size={14} />
-                قبول الكل
+                {t('cookie.acceptAll')}
               </button>
             </div>
           </div>

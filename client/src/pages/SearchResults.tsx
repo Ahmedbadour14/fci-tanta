@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useSearchParams, Link } from 'react-router-dom';
 import { Search, FileText, BookOpen, User, Calendar, ArrowLeft } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import api from '../services/api';
 import { Skeleton } from '../components/ui/SkeletonLoader';
 
@@ -16,6 +17,8 @@ interface SearchResults {
 }
 
 const SearchResults = () => {
+  const { t, i18n } = useTranslation();
+  const isRTL = i18n.language === 'ar';
   const [params] = useSearchParams();
   const q = params.get('q') || '';
   const [results, setResults] = useState<SearchResults | null>(null);
@@ -28,9 +31,9 @@ const SearchResults = () => {
     setError('');
     api.get(`/search?q=${encodeURIComponent(q)}`)
       .then(({ data }) => setResults(data))
-      .catch(() => setError('حدث خطأ أثناء البحث. يرجى المحاولة مرة أخرى.'))
+      .catch(() => setError(t('search.error')))
       .finally(() => setLoading(false));
-  }, [q]);
+  }, [q, t]);
 
   const Section: React.FC<{ title: string; icon: React.ReactNode; children: React.ReactNode; count: number }> = ({ title, icon, children, count }) => (
     <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm overflow-hidden">
@@ -50,12 +53,12 @@ const SearchResults = () => {
         {/* Search bar */}
         <div className="mb-8">
           <Link to="/" className="flex items-center gap-2 text-slate-500 hover:text-blue-600 text-sm mb-6 transition-colors w-fit">
-            <ArrowLeft size={15} /> العودة للرئيسية
+            <ArrowLeft size={15} className="rtl:rotate-180" /> {t('search.backHome')}
           </Link>
           <h1 className="text-2xl font-black text-slate-800 dark:text-white mb-1">
-            نتائج البحث عن: <span className="gradient-text">"{q}"</span>
+            {t('search.resultsFor')} <span className="gradient-text">"{q}"</span>
           </h1>
-          {results && <p className="text-slate-500 text-sm">{results.total} نتيجة</p>}
+          {results && <p className="text-slate-500 text-sm">{results.total} {t('search.results')}</p>}
         </div>
 
         {loading && (
@@ -74,8 +77,8 @@ const SearchResults = () => {
         {!loading && results && results.total === 0 && (
           <div className="text-center py-16">
             <Search size={48} className="mx-auto mb-4 text-slate-300" />
-            <h2 className="text-xl font-bold text-slate-800 dark:text-white mb-2">لا توجد نتائج</h2>
-            <p className="text-slate-500">لم يُعثر على نتائج لـ "{q}". جرّب كلمات أخرى.</p>
+            <h2 className="text-xl font-bold text-slate-800 dark:text-white mb-2">{t('search.noResults')}</h2>
+            <p className="text-slate-500">{t('search.noResultsDesc').replace('{q}', q)}</p>
           </div>
         )}
 
@@ -83,7 +86,7 @@ const SearchResults = () => {
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-6">
 
             {results.results.news.length > 0 && (
-              <Section title="الأخبار" icon={<FileText size={18} />} count={results.results.news.length}>
+              <Section title={t('search.news')} icon={<FileText size={18} />} count={results.results.news.length}>
                 {results.results.news.map((item: any) => (
                   <Link key={item.id} to="/news"
                     className="flex gap-4 p-4 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors group">
@@ -94,7 +97,7 @@ const SearchResults = () => {
                       <p className="font-semibold text-slate-800 dark:text-white text-sm group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors line-clamp-1">{item.title}</p>
                       <p className="text-slate-400 text-xs mt-1 flex items-center gap-1">
                         <Calendar size={11} />
-                        {new Date(item.publishedAt).toLocaleDateString('ar-EG')}
+                        {new Date(item.publishedAt).toLocaleDateString(isRTL ? 'ar-EG' : 'en-US')}
                         <span className="mx-1">·</span>
                         {item.category}
                       </p>
@@ -105,7 +108,7 @@ const SearchResults = () => {
             )}
 
             {results.results.research.length > 0 && (
-              <Section title="الأبحاث العلمية" icon={<BookOpen size={18} />} count={results.results.research.length}>
+              <Section title={t('search.researchPapers')} icon={<BookOpen size={18} />} count={results.results.research.length}>
                 {results.results.research.map((item: any) => (
                   <div key={item.id} className="p-4 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
                     <p className="font-semibold text-slate-800 dark:text-white text-sm line-clamp-1">{item.title}</p>
@@ -116,7 +119,7 @@ const SearchResults = () => {
             )}
 
             {results.results.staff.length > 0 && (
-              <Section title="أعضاء هيئة التدريس" icon={<User size={18} />} count={results.results.staff.length}>
+              <Section title={t('search.faculty')} icon={<User size={18} />} count={results.results.staff.length}>
                 {results.results.staff.map((item: any) => (
                   <div key={item.id} className="flex items-center gap-3 p-4 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
                     <div className="w-10 h-10 rounded-full flex items-center justify-center font-bold text-white text-sm shrink-0"

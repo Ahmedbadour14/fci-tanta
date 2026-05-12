@@ -24,16 +24,16 @@ const Footer = () => {
     { label: t('nav.programs'), path: '/programs' },
     { label: t('nav.research'), path: '/research' },
     { label: t('nav.news'), path: '/news' },
-    { label: 'تواصل معنا', path: '/contact' },
+    { label: t('nav.contact'), path: '/contact' },
   ];
 
   const studentLinks = [
-    { label: 'بوابة الطالب', path: '/portal' },
-    { label: 'متجر الكتب', path: '/store' },
-    { label: 'تسجيل المواد', path: '/portal/student/registration' },
-    { label: 'النتائج والدرجات', path: '/portal/student/grades' },
-    { label: 'أرشيف الامتحانات', path: '/exams' },
-    { label: 'لوحة التحكم', path: '/admin' },
+    { label: t('footer.studentPortal'), path: '/portal' },
+    { label: t('footer.bookStore'), path: '/store' },
+    { label: t('footer.courseRegistration'), path: '/portal/student/registration' },
+    { label: t('footer.gradesResults'), path: '/portal/student/grades' },
+    { label: t('footer.examArchive'), path: '/exams' },
+    { label: t('footer.adminPanel'), path: '/admin' },
   ];
 
   const socials = [
@@ -58,12 +58,12 @@ const Footer = () => {
                 FCI
               </div>
               <div>
-                <p className="text-white font-extrabold leading-tight">كلية الحاسبات</p>
-                <p className="text-slate-400 text-xs">جامعة طنطا</p>
+                <p className="text-white font-extrabold leading-tight">{t('footer.brand')}</p>
+                <p className="text-slate-400 text-xs">{t('footer.university')}</p>
               </div>
             </div>
             <p className="text-sm leading-relaxed text-slate-400 mb-6">
-              كلية رائدة في تعليم علوم الحاسب وتكنولوجيا المعلومات والبحث العلمي وخدمة المجتمع في منطقة الشرق الأوسط.
+              {t('footer.brandDesc')}
             </p>
             <div className="flex gap-2">
               {socials.map(s => (
@@ -83,7 +83,7 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-white font-bold mb-5 text-base">روابط سريعة</h3>
+            <h3 className="text-white font-bold mb-5 text-base">{t('footer.quickLinks')}</h3>
             <ul className="space-y-2.5">
               {quickLinks.map(l => (
                 <li key={l.path}>
@@ -101,7 +101,7 @@ const Footer = () => {
 
           {/* Student Links */}
           <div>
-            <h3 className="text-white font-bold mb-5 text-base">خدمات الطالب</h3>
+            <h3 className="text-white font-bold mb-5 text-base">{t('footer.studentServices')}</h3>
             <ul className="space-y-2.5">
               {studentLinks.map(l => (
                 <li key={l.path}>
@@ -119,11 +119,11 @@ const Footer = () => {
 
           {/* Contact + Newsletter */}
           <div>
-            <h3 className="text-white font-bold mb-5 text-base">{t('nav.contact')}</h3>
+            <h3 className="text-white font-bold mb-5 text-base">{t('footer.contactUs')}</h3>
             <ul className="space-y-3 mb-6">
               <li className="flex items-start gap-3">
                 <MapPin className="text-blue-400 shrink-0 mt-0.5" size={16} />
-                <span className="text-sm text-slate-400">حرم جامعة طنطا الطبي، شارع الجيش، طنطا، الغربية</span>
+                <span className="text-sm text-slate-400">{t('contact.addressValue')}</span>
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="text-blue-400 shrink-0" size={16} />
@@ -137,14 +137,14 @@ const Footer = () => {
 
             {/* Newsletter */}
             <div>
-              <h4 className="text-white font-semibold mb-3 text-sm">النشرة البريدية</h4>
+              <h4 className="text-white font-semibold mb-3 text-sm">{t('footer.newsletter')}</h4>
               {subscribed ? (
                 <motion.p
                   initial={{ opacity: 0, y: 5 }}
                   animate={{ opacity: 1, y: 0 }}
                   className="text-green-400 text-sm font-medium"
                 >
-                  ✓ تم الاشتراك بنجاح!
+                  {t('footer.subscribed')}
                 </motion.p>
               ) : (
                 <form onSubmit={handleNewsletter} className="flex gap-2">
@@ -152,7 +152,7 @@ const Footer = () => {
                     type="email"
                     value={email}
                     onChange={e => setEmail(e.target.value)}
-                    placeholder="بريدك الإلكتروني"
+                    placeholder={t('footer.newsletterPlaceholder')}
                     className="flex-1 px-3 py-2 rounded-lg bg-slate-800 border border-slate-700 text-slate-200 placeholder:text-slate-500 text-sm outline-none focus:border-blue-500 transition-colors"
                   />
                   <button
@@ -171,13 +171,13 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="border-t border-slate-800 pt-6 flex flex-col md:flex-row items-center justify-between gap-3">
           <p className="text-xs text-slate-500">
-            © {new Date().getFullYear()} جامعة طنطا — كلية الحاسبات والمعلومات. جميع الحقوق محفوظة.
+            © {new Date().getFullYear()} {t('footer.copyright')}
           </p>
           <div className="flex gap-5 text-xs text-slate-500">
-            <a href="/privacy-policy" className="hover:text-slate-300 transition-colors">سياسة الخصوصية</a>
-            <a href="/terms" className="hover:text-slate-300 transition-colors">شروط الاستخدام</a>
+            <a href="/privacy-policy" className="hover:text-slate-300 transition-colors">{t('footer.privacy')}</a>
+            <a href="/terms" className="hover:text-slate-300 transition-colors">{t('footer.terms')}</a>
             <a href="/sitemap.xml" className="hover:text-slate-300 transition-colors flex items-center gap-1">
-              خريطة الموقع <ExternalLink size={11} />
+              {t('footer.sitemap')} <ExternalLink size={11} />
             </a>
           </div>
         </div>

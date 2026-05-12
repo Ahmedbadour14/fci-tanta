@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Menu, X, Moon, Sun, Search, BookOpen, GraduationCap, ClipboardList, FileText } from 'lucide-react';
+import { Menu, X, Moon, Sun, Search } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import AnnouncementBanner from '../ui/AnnouncementBanner';
 
@@ -34,17 +34,13 @@ const Navbar = () => {
   }, [isDark]);
 
   useEffect(() => {
-    document.documentElement.dir = i18n.language === 'ar' ? 'rtl' : 'ltr';
-    document.documentElement.lang = i18n.language;
-  }, [i18n.language]);
-
-  useEffect(() => {
     setIsOpen(false);
     setShowSearch(false);
   }, [location]);
 
   const toggleLanguage = () => {
-    i18n.changeLanguage(i18n.language === 'ar' ? 'en' : 'ar');
+    const newLang = i18n.language === 'ar' ? 'en' : 'ar';
+    i18n.changeLanguage(newLang);
   };
 
   const handleSearch = (e: React.FormEvent) => {
@@ -61,11 +57,11 @@ const Navbar = () => {
     { name: t('nav.about'), path: '/about' },
     { name: t('nav.departments'), path: '/departments' },
     { name: t('nav.programs'), path: '/programs' },
-    { name: 'بحوث', path: '/research' },
+    { name: t('nav.research'), path: '/research' },
     { name: t('nav.news'), path: '/news' },
-    { name: 'متجر', path: '/store' },
-    { name: 'امتحانات', path: '/exams' },
-    { name: 'تواصل', path: '/contact' },
+    { name: t('nav.store'), path: '/store' },
+    { name: t('nav.exams'), path: '/exams' },
+    { name: t('nav.contact'), path: '/contact' },
   ];
 
   const scrolled = isScrolled || location.pathname !== '/';
@@ -100,8 +96,8 @@ const Navbar = () => {
                 FCI
               </div>
               <div className={`font-bold leading-tight hidden sm:block text-slate-900 dark:text-white ${!scrolled && 'dark:drop-shadow-md'}`}>
-                <span className="block text-sm font-extrabold">كلية الحاسبات</span>
-                <span className="block text-xs opacity-70">جامعة طنطا</span>
+                <span className="block text-sm font-extrabold">{t('footer.brand')}</span>
+                <span className="block text-xs opacity-70">{t('footer.university')}</span>
               </div>
             </Link>
 
@@ -143,7 +139,7 @@ const Navbar = () => {
                       autoFocus
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
-                      placeholder="ابحث..."
+                      placeholder={i18n.language === 'ar' ? 'ابحث...' : 'Search...'}
                       className="w-full px-3 py-1.5 text-sm rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-800 dark:text-white outline-none focus:ring-2 focus:ring-blue-500"
                     />
                   </motion.form>
@@ -236,7 +232,7 @@ const Navbar = () => {
                 <div className="border-t border-slate-100 dark:border-slate-800 pt-3 mt-3 flex items-center justify-between px-2">
                   <button onClick={() => setIsDark(!isDark)} className="flex items-center gap-2 text-slate-600 dark:text-slate-400 text-sm font-medium">
                     {isDark ? <Sun size={16} /> : <Moon size={16} />}
-                    {isDark ? 'الوضع الفاتح' : 'الوضع الداكن'}
+                    {isDark ? t('lightMode') : t('darkMode')}
                   </button>
                   <button onClick={toggleLanguage} className="text-slate-600 dark:text-slate-400 text-sm font-bold border border-slate-200 dark:border-slate-700 px-3 py-1 rounded-lg">
                     {i18n.language === 'ar' ? 'EN' : 'عربي'}
