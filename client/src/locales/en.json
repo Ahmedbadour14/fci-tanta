@@ -12,7 +12,11 @@
     "logout": "Logout",
     "portal": "Student Portal",
     "store": "Store",
-    "exams": "Exams"
+    "exams": "Exams",
+    "brand": "FCI Tanta",
+    "brandSub": "Faculty of Computers & Information",
+    "search": "Search",
+    "searchPlaceholder": "Search for courses, news, faculty..."
   },
   "home": {
     "heroTitle": "Faculty of Computers and Information",
@@ -466,6 +470,89 @@
     "gallery": {
       "title": "Manage Gallery",
       "uploadImage": "Upload Image"
+    }
+  },
+  "megaMenu": {
+    "about": {
+      "label": "About",
+      "history": "Faculty History",
+      "historyDesc": "Our founding story and key milestones",
+      "vision": "Vision & Mission",
+      "visionDesc": "Our guiding principles and strategic goals",
+      "dean": "Dean's Message",
+      "deanDesc": "Welcome message from our faculty dean",
+      "orgChart": "Org Chart",
+      "orgChartDesc": "Administrative and academic structure",
+      "accreditation": "Accreditation & Quality",
+      "accreditationDesc": "Quality assurance and program accreditations"
+    },
+    "departments": {
+      "label": "Departments",
+      "cs": "Computer Science",
+      "csDesc": "Algorithms, AI, and computing theory",
+      "is": "Information Systems",
+      "isDesc": "Business processes and technical solutions",
+      "it": "Information Technology",
+      "itDesc": "Networks, cloud infrastructure, and cybersecurity",
+      "se": "Software Engineering",
+      "seDesc": "Software design, development, and testing"
+    },
+    "academic": {
+      "label": "Academic",
+      "programs": "Academic Programs",
+      "programsDesc": "Undergraduate and postgraduate offerings",
+      "schedules": "Class Schedules",
+      "schedulesDesc": "Weekly timetables and exam schedules",
+      "postgraduate": "Postgraduate Studies",
+      "postgraduateDesc": "Masters and PhD programs",
+      "fieldTraining": "Field Training",
+      "fieldTrainingDesc": "Internships and practical training programs"
+    },
+    "research": {
+      "label": "Research",
+      "groups": "Research Groups",
+      "groupsDesc": "Active research teams and specialized labs",
+      "papers": "Published Papers",
+      "papersDesc": "Scientific publications by faculty members",
+      "graduation": "Graduation Projects",
+      "graduationDesc": "Senior and postgraduate project archive",
+      "conferences": "Conferences",
+      "conferencesDesc": "Academic events and conference proceedings"
+    },
+    "studentServices": {
+      "label": "Student Services",
+      "portal": "Student Portal",
+      "portalDesc": "Your academic dashboard and profile",
+      "registration": "Course Registration",
+      "registrationDesc": "Register for current semester courses",
+      "grades": "Grades & Results",
+      "gradesDesc": "View your transcript and GPA",
+      "exams": "Exam Archive",
+      "examsDesc": "Past exam papers by course and year",
+      "excuse": "Excuse Request",
+      "excuseDesc": "Submit absence or medical excuse requests",
+      "store": "Book Store",
+      "storeDesc": "Buy academic textbooks and resources"
+    },
+    "community": {
+      "label": "Community",
+      "service": "Community Service",
+      "serviceDesc": "Faculty outreach and social initiatives",
+      "training": "Training Unit",
+      "trainingDesc": "Specialized IT and professional skill courses",
+      "alumni": "Alumni Follow-up",
+      "alumniDesc": "Connect with our graduate network",
+      "crisis": "Crisis Management",
+      "crisisDesc": "Emergency procedures and support services"
+    },
+    "news": {
+      "label": "News & Events",
+      "latest": "Latest News",
+      "latestDesc": "Stay up to date with faculty announcements",
+      "events": "Events",
+      "eventsDesc": "Upcoming seminars, workshops, and activities",
+      "gallery": "Photo Gallery",
+      "galleryDesc": "Campus life and faculty event photos"
     }
   }
 }
