@@ -52,13 +52,13 @@ const Footer = () => {
           <div>
             <div className="flex items-center gap-3 mb-5">
               <img
-                src="/images/fci-logo.png"
-                alt="FCI Logo"
+                src="/images/uni-logo.png"
+                alt="Tanta University Logo"
                 className="h-12 w-12 rounded-full object-cover ring-2 ring-white/20 shadow-lg shrink-0"
               />
               <img
-                src="/images/uni-logo.png"
-                alt="Tanta University Logo"
+                src="/images/fci-logo.png"
+                alt="FCI Logo"
                 className="h-12 w-12 rounded-full object-cover ring-2 ring-white/20 shadow-lg shrink-0"
               />
               <div>

@@ -180,20 +180,20 @@ const Navbar: React.FC = () => {
 
           {/* Logo */}
           <Link to="/" className="flex items-center gap-1.5 shrink-0">
-            {/* FCI logo — always visible */}
-            <img
-              src="/images/fci-logo.png"
-              alt="FCI Logo"
-              className="h-9 w-9 rounded-full object-cover ring-2 ring-white/60 dark:ring-white/20 shadow-md"
-            />
-            {/* University logo + divider — lg+ only */}
-            <span className="hidden lg:block w-px h-7 bg-slate-300 dark:bg-slate-700 mx-0.5" />
+            {/* University logo — always visible (leftmost) */}
             <img
               src="/images/uni-logo.png"
               alt="Tanta University Logo"
+              className="h-9 w-9 rounded-full object-cover ring-2 ring-white/60 dark:ring-white/20 shadow-md"
+            />
+            {/* Divider + FCI logo — lg+ only */}
+            <span className="hidden lg:block w-px h-7 bg-slate-300 dark:bg-slate-700 mx-0.5" />
+            <img
+              src="/images/fci-logo.png"
+              alt="FCI Logo"
               className="hidden lg:block h-9 w-9 rounded-full object-cover ring-2 ring-white/60 dark:ring-white/20 shadow-md"
             />
-            {/* Faculty name text — lg+ only, hidden on smaller screens */}
+            {/* Faculty name text — lg+ only */}
             <div className="hidden lg:block leading-none ms-1 max-w-[140px]">
               <p className="font-black text-xs text-slate-900 dark:text-white truncate">{t('nav.brandSub')}</p>
               <p className="text-[9px] text-slate-500 dark:text-slate-400">{t('nav.brand')}</p>
