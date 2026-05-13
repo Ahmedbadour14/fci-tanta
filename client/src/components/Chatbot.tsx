@@ -56,7 +56,7 @@ const Chatbot: React.FC = () => {
             "Content-Type": "application/json"
           },
           body: JSON.stringify({
-            model: "llama3-8b-8192",
+            model: "llama-3.3-70b-versatile",
             messages: [
               { role: "system", content: "You are a helpful assistant for Faculty of Computers and Information, Tanta University. Answer in the same language the user writes in." },
               ...newHistory.map(msg => ({
