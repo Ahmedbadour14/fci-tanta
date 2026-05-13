@@ -52,7 +52,7 @@ const Chatbot: React.FC = () => {
       console.log('[Chatbot] Sending request to Gemini…', newHistory);
 
       const response = await fetch(
-        'https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=AIzaSyDlCdmDCvooypLz4bLVvdPigO0l5IIN1pU',
+        'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyDlCdmDCvooypLz4bLVvdPigO0l5IIN1pU',
         {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -219,8 +219,8 @@ const Chatbot: React.FC = () => {
                   >
                     {/* Avatar */}
                     <div className={`w-7 h-7 rounded-full flex items-center justify-center shrink-0 mb-0.5 ${isUser
-                        ? 'bg-slate-200 dark:bg-slate-700'
-                        : 'bg-gradient-to-br from-blue-600 to-purple-600'
+                      ? 'bg-slate-200 dark:bg-slate-700'
+                      : 'bg-gradient-to-br from-blue-600 to-purple-600'
                       }`}>
                       {isUser
                         ? <User size={13} className="text-slate-600 dark:text-slate-300" />
@@ -230,8 +230,8 @@ const Chatbot: React.FC = () => {
 
                     {/* Bubble */}
                     <div className={`max-w-[80%] px-4 py-2.5 rounded-2xl text-sm leading-relaxed whitespace-pre-wrap shadow-sm ${isUser
-                        ? 'rounded-br-sm text-white'
-                        : 'rounded-bl-sm bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-100 border border-slate-100 dark:border-slate-700'
+                      ? 'rounded-br-sm text-white'
+                      : 'rounded-bl-sm bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-100 border border-slate-100 dark:border-slate-700'
                       }`}
                       style={isUser ? { background: 'linear-gradient(135deg,#1d4ed8,#7c3aed)' } : {}}
                     >
