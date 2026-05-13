@@ -58,7 +58,7 @@ const Chatbot: React.FC = () => {
           body: JSON.stringify({
             model: "llama-3.3-70b-versatile",
             messages: [
-              { role: "system", content: "You are a helpful assistant for Faculty of Computers and Information, Tanta University. Answer in the same language the user writes in." },
+              { role: "system", content: "You are a helpful assistant for Faculty of Computers and Information, Tanta University. You MUST always respond in the same language the user writes in. If the user writes in Arabic, respond ONLY in Arabic. If the user writes in English, respond ONLY in English. Never respond in any other language like Chinese or Japanese." },
               ...newHistory.map(msg => ({
                 role: msg.role === 'assistant' ? 'assistant' : 'user',
                 content: msg.content
