@@ -28,6 +28,7 @@ import ProtectedRoute from './components/layout/ProtectedRoute';
 import LoadingScreen from './components/ui/LoadingScreen';
 import CookieBanner from './components/ui/CookieBanner';
 import { ErrorBoundary } from './components/ui/ErrorBoundary';
+import Chatbot from './components/Chatbot';
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -54,6 +55,7 @@ function App() {
             }}
           />
           <CookieBanner />
+          <Chatbot />
           <Routes>
             <Route path="/" element={<Layout />}>
               {/* Public pages */}
