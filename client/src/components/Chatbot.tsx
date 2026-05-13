@@ -48,8 +48,19 @@ const Chatbot: React.FC = () => {
     setError(null);
     setLoading(true);
 
+    // Inject system instructions into the first message so no top-level system field is needed
+    const SYSTEM_PREFIX =
+      'You are a helpful assistant for Faculty of Computers and Information, Tanta University. ' +
+      'Answer in the same language the user writes in. Be concise and friendly.\n\n';
+
+    const apiMessages: Message[] = newHistory.map((msg, idx) =>
+      idx === 0 && msg.role === 'user'
+        ? { role: 'user', content: SYSTEM_PREFIX + msg.content }
+        : msg
+    );
+
     try {
-      console.log('[Chatbot] Sending request to AgentRouter…', { model: 'claude-haiku-4-5', messages: newHistory });
+      console.log('[Chatbot] Sending request to AgentRouter…', { model: 'claude-haiku-4-5', messages: apiMessages });
 
       const response = await fetch('https://agentrouter.org/v1/messages', {
         method: 'POST',
@@ -61,9 +72,7 @@ const Chatbot: React.FC = () => {
         body: JSON.stringify({
           model: 'claude-haiku-4-5',
           max_tokens: 1024,
-          system:
-            'You are a helpful assistant for Faculty of Computers and Information, Tanta University. Answer in the same language the user writes in. Be concise and friendly.',
-          messages: newHistory,
+          messages: apiMessages,
         }),
       });
 
