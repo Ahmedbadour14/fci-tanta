@@ -22,7 +22,7 @@ const Home = () => {
             <div className="w-full md:w-1/3">
               <div className="rounded-2xl overflow-hidden shadow-xl border-4 border-white dark:border-slate-800">
                 <img
-                  src="/images/dean.jpg"
+                  src="/images/dean.jpg?v=2"
                   alt={t('home.deanName')}
                   className="w-full h-auto object-cover"
                 />
