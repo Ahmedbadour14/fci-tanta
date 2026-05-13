@@ -111,8 +111,8 @@ const Portal = () => {
               <motion.button
                 key={idx}
                 onClick={() => {
+                  window.scrollTo(0, 0);
                   navigate(link.path);
-                  setTimeout(() => window.scrollTo(0, 0), 100);
                 }}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
