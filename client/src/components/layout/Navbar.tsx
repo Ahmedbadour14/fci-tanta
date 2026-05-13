@@ -171,12 +171,12 @@ const Navbar: React.FC = () => {
     : 'bg-white dark:bg-slate-950';
 
   return (
-    <div className="fixed top-0 w-full z-50">
+    <div className="fixed top-0 w-full px-0 z-50">
       <AnnouncementBanner />
 
       {/* ── Header ── */}
       <header className={`transition-all duration-300 border-b border-slate-200/70 dark:border-slate-800/70 ${navBg}`}>
-        <div className="container mx-auto px-4 md:px-6 h-16 flex items-center gap-3">
+        <div className="w-full px-6 h-16 flex items-center gap-3">
 
           {/* Logo */}
           <Link to="/" className="flex items-center gap-1.5 shrink-0">
@@ -271,7 +271,7 @@ const Navbar: React.FC = () => {
           {showSearch && (
             <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }}
               className="overflow-hidden border-t border-slate-100 dark:border-slate-800/80">
-              <form onSubmit={handleSearch} className="container mx-auto px-4 md:px-6 py-3 flex items-center gap-3">
+              <form onSubmit={handleSearch} className="w-full px-6 py-3 flex items-center gap-3">
                 <Search size={16} className="text-slate-400 shrink-0" />
                 <input autoFocus value={searchQuery} onChange={e => setSearchQuery(e.target.value)}
                   placeholder={t('nav.searchPlaceholder')}
@@ -304,7 +304,7 @@ const Navbar: React.FC = () => {
 
             {/* Dropdown panel */}
             <div className="bg-white/98 dark:bg-slate-950/98 backdrop-blur-xl border-b border-slate-200/60 dark:border-slate-800/60">
-              <div className="container mx-auto px-6 py-6">
+              <div className="w-full px-6 py-6">
                 <div className={`grid gap-1.5 ${activeGroup.items.length <= 4 ? 'grid-cols-2 md:grid-cols-4' : 'grid-cols-2 md:grid-cols-3'}`}>
                   {activeGroup.items.map((item, i) => {
                     const Icon = item.icon;
