@@ -82,10 +82,7 @@ const CourseRegistration: React.FC = () => {
 
   return (
     <div className="bg-slate-50 dark:bg-slate-950 min-h-screen scroll-mt-0" style={{ marginTop: 0, paddingTop: 0 }}>
-      <div className="pt-8 pb-2 container mx-auto px-4 text-center">
-        <h1 className="text-3xl font-black text-slate-900 dark:text-white mb-2">{t('courseReg.title')}</h1>
-        <p className="text-slate-600 dark:text-slate-400">{t('courseReg.subtitle')}</p>
-      </div>
+      <PageHeader title={t('courseReg.title')} subtitle={t('courseReg.subtitle')} breadcrumb={t('courseReg.breadcrumb')} />
 
       <div className="container mx-auto px-4 pt-6">
         <button
