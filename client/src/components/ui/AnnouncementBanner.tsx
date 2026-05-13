@@ -30,7 +30,7 @@ const AnnouncementBanner: React.FC = () => {
           className="relative z-40 overflow-hidden"
           style={{ background: 'linear-gradient(90deg, #1d4ed8, #7c3aed)' }}
         >
-          <div className="container mx-auto px-4 py-2.5 flex items-center justify-between gap-4">
+          <div className="w-full px-6 py-2.5 flex items-center justify-between gap-4">
             <div className="flex items-center gap-3 min-w-0">
               <Megaphone size={16} className="text-white/80 shrink-0" />
               <p className="text-white text-sm font-medium truncate">{t('announcement.message')}</p>
