@@ -49,6 +49,8 @@ const Chatbot: React.FC = () => {
     setLoading(true);
 
     try {
+      console.log('[Chatbot] Sending request to AgentRouter…', { model: 'claude-haiku-4-5', messages: newHistory });
+
       const response = await fetch('https://agentrouter.org/v1/messages', {
         method: 'POST',
         headers: {
@@ -65,14 +67,33 @@ const Chatbot: React.FC = () => {
         }),
       });
 
-      if (!response.ok) throw new Error(`HTTP ${response.status}`);
-      const data = await response.json();
-      const reply = data.content[0].text;
+      const rawText = await response.text();
+      console.log(`[Chatbot] Response status: ${response.status}`);
+      console.log('[Chatbot] Response body (raw):', rawText);
+
+      if (!response.ok) {
+        let parsed: unknown;
+        try { parsed = JSON.parse(rawText); } catch { parsed = rawText; }
+        console.error('[Chatbot] API Error:', response.status, parsed);
+        throw new Error(`HTTP ${response.status}: ${rawText.slice(0, 200)}`);
+      }
+
+      const data = JSON.parse(rawText);
+      console.log('[Chatbot] Parsed response:', data);
+
+      const reply: string = data?.content?.[0]?.text ?? '';
+      if (!reply) throw new Error('Empty reply from API');
 
       setHistory(prev => [...prev, { role: 'assistant', content: reply }]);
       if (!open) setHasNewMsg(true);
     } catch (err) {
-      setError(isRTL ? 'حدث خطأ. يرجى المحاولة مجدداً.' : 'Something went wrong. Please try again.');
+      const msg = err instanceof Error ? err.message : String(err);
+      console.error('[Chatbot] Caught error:', msg);
+      setError(
+        isRTL
+          ? `حدث خطأ: ${msg.slice(0, 80)}`
+          : `Error: ${msg.slice(0, 100)}`
+      );
     } finally {
       setLoading(false);
     }
