@@ -176,7 +176,7 @@ const Navbar: React.FC = () => {
 
       {/* ── Header ── */}
       <header className={`transition-all duration-300 border-b border-slate-200/70 dark:border-slate-800/70 ${navBg}`}>
-        <div className="w-full px-6 h-16 flex items-center gap-3">
+        <div className="w-full px-4 lg:px-8 h-16 flex items-center justify-between gap-3">
 
           {/* Logo */}
           <Link to="/" className="flex items-center gap-1.5 shrink-0">
@@ -194,8 +194,8 @@ const Navbar: React.FC = () => {
               className="hidden lg:block h-9 w-9 rounded-full object-cover ring-2 ring-white/60 dark:ring-white/20 shadow-md"
             />
             {/* Faculty name text — lg+ only */}
-            <div className="hidden lg:block leading-none ms-1 max-w-[140px]">
-              <p className="font-black text-xs text-slate-900 dark:text-white truncate">{t('nav.brandSub')}</p>
+            <div className="hidden lg:block leading-none ms-1">
+              <p className="font-black text-xs text-slate-900 dark:text-white">{t('nav.brandSub')}</p>
               <p className="text-[9px] text-slate-500 dark:text-slate-400">{t('nav.brand')}</p>
             </div>
           </Link>
