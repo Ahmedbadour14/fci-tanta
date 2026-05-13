@@ -177,13 +177,6 @@ const Footer = () => {
           <p className="text-xs text-slate-500">
             © {new Date().getFullYear()} {t('footer.copyright')}
           </p>
-          <div className="flex gap-5 text-xs text-slate-500">
-            <a href="/privacy-policy" className="hover:text-slate-300 transition-colors">{t('footer.privacy')}</a>
-            <a href="/terms" className="hover:text-slate-300 transition-colors">{t('footer.terms')}</a>
-            <a href="/sitemap.xml" className="hover:text-slate-300 transition-colors flex items-center gap-1">
-              {t('footer.sitemap')} <ExternalLink size={11} />
-            </a>
-          </div>
         </div>
       </div>
     </footer>

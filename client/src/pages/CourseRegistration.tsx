@@ -50,7 +50,9 @@ const CourseRegistration: React.FC = () => {
   const [conflicts, setConflicts] = useState<string[]>([]);
   const [expanded, setExpanded] = useState<string | null>(null);
 
-  useEffect(() => { window.scrollTo(0, 0); }, []);
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }, []);
 
   const totalHours = selected.reduce((s, id) => s + (COURSES.find(c => c.id === id)?.creditHours || 0), 0);
 
