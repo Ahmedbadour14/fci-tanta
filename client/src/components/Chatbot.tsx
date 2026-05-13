@@ -68,9 +68,13 @@ const Chatbot: React.FC = () => {
         }
       );
 
+      const rawText = await response.text();
+      console.log('[Chatbot] Response status:', response.status);
+      console.log('[Chatbot] Response body:', rawText);
+
       if (!response.ok) throw new Error(`Status: ${response.status}`);
 
-      const data = await response.json();
+      const data = JSON.parse(rawText);
       const reply = data.choices[0].message.content;
 
       setHistory(prev => [...prev, { role: 'assistant', content: reply }]);
