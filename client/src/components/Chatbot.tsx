@@ -52,7 +52,7 @@ const Chatbot: React.FC = () => {
       console.log('[Chatbot] Sending request to Gemini…', newHistory);
 
       const response = await fetch(
-        'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyDZbMIXPkXUPbzj6Wrg3GlLkCo6CThK41o',
+        'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyDlCdmDCvooypLz4bLVvdPigO0l5IIN1pU',
         {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
