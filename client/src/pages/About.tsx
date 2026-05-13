@@ -121,7 +121,7 @@ const About = () => {
           <div className="flex flex-col md:flex-row">
             <div className="w-full md:w-2/5 relative h-64 md:h-auto">
               <img
-                src="/images/197933259.png"
+                src="/images/dean.jpg"
                 alt={t('home.deanName')}
                 className="absolute inset-0 w-full h-full object-cover"
               />
