@@ -57,15 +57,20 @@ const Chatbot: React.FC = () => {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            contents: newHistory.map(msg => ({
-              role: msg.role === 'assistant' ? 'model' : 'user',
-              parts: [{ text: msg.content }],
-            })),
-            systemInstruction: {
-              parts: [{
-                text: 'You are a helpful assistant for Faculty of Computers and Information, Tanta University. Answer in the same language the user writes in. Be concise and friendly.',
-              }],
-            },
+            contents: [
+              {
+                role: 'user',
+                parts: [{ text: 'You are a helpful assistant for Faculty of Computers and Information, Tanta University. Answer in the same language the user writes in. Be concise and friendly. Confirm you understood.' }],
+              },
+              {
+                role: 'model',
+                parts: [{ text: 'Understood! I am ready to help.' }],
+              },
+              ...newHistory.map(msg => ({
+                role: msg.role === 'assistant' ? 'model' : 'user',
+                parts: [{ text: msg.content }],
+              })),
+            ],
           }),
         }
       );
@@ -213,11 +218,10 @@ const Chatbot: React.FC = () => {
                     className={`flex items-end gap-2 ${isUser ? (isRTL ? 'flex-row' : 'flex-row-reverse') : (isRTL ? 'flex-row-reverse' : 'flex-row')}`}
                   >
                     {/* Avatar */}
-                    <div className={`w-7 h-7 rounded-full flex items-center justify-center shrink-0 mb-0.5 ${
-                      isUser
+                    <div className={`w-7 h-7 rounded-full flex items-center justify-center shrink-0 mb-0.5 ${isUser
                         ? 'bg-slate-200 dark:bg-slate-700'
                         : 'bg-gradient-to-br from-blue-600 to-purple-600'
-                    }`}>
+                      }`}>
                       {isUser
                         ? <User size={13} className="text-slate-600 dark:text-slate-300" />
                         : <Bot size={13} className="text-white" />
@@ -225,12 +229,11 @@ const Chatbot: React.FC = () => {
                     </div>
 
                     {/* Bubble */}
-                    <div className={`max-w-[80%] px-4 py-2.5 rounded-2xl text-sm leading-relaxed whitespace-pre-wrap shadow-sm ${
-                      isUser
+                    <div className={`max-w-[80%] px-4 py-2.5 rounded-2xl text-sm leading-relaxed whitespace-pre-wrap shadow-sm ${isUser
                         ? 'rounded-br-sm text-white'
                         : 'rounded-bl-sm bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-100 border border-slate-100 dark:border-slate-700'
-                    }`}
-                    style={isUser ? { background: 'linear-gradient(135deg,#1d4ed8,#7c3aed)' } : {}}
+                      }`}
+                      style={isUser ? { background: 'linear-gradient(135deg,#1d4ed8,#7c3aed)' } : {}}
                     >
                       {msg.content}
                     </div>
