@@ -65,7 +65,7 @@ const Chatbot: React.FC = () => {
       const response = await fetch('https://agentrouter.org/v1/messages', {
         method: 'POST',
         headers: {
-          'x-api-key': API_KEY,
+          'x-api-key': 'sk-rzvi8079bAwJ3yBL1uBLY3Hgg8T5Omfi3ymyA5XwAoFgTXCJ',
           'Content-Type': 'application/json',
           'anthropic-version': '2023-06-01',
         },
