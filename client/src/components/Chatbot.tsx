@@ -121,14 +121,16 @@ const Chatbot: React.FC = () => {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.92, y: 24 }}
             dir={isRTL ? 'rtl' : 'ltr'}
-            className="fixed bottom-24 end-6 z-[60] w-[360px] max-w-[calc(100vw-24px)] flex flex-col rounded-2xl overflow-hidden shadow-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700"
+            className="fixed bottom-24 end-6 z-[60] w-[360px] max-w-[calc(100vw-24px)] flex flex-col rounded-2xl overflow-hidden shadow-2xl bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl border border-white/20 dark:border-slate-700/50"
             style={{ height: '520px' }}
           >
-            <div className="flex items-center gap-3 px-4 py-3 shrink-0" style={{ background: 'linear-gradient(135deg,#1d4ed8,#7c3aed)' }}>
-              <div className="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center shrink-0">
+            <div className="flex items-center gap-3 px-4 py-3 shrink-0 relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #1e3a8a, #3b82f6, #8b5cf6)' }}>
+              <div className="absolute inset-0 opacity-20 bg-[url('/images/grid.svg')] mix-blend-overlay"></div>
+              <img src="/images/uni-logo.png" alt="Tanta Uni" className="w-8 h-8 object-contain drop-shadow-md z-10" />
+              <div className="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center shrink-0 z-10">
                 <Bot size={18} className="text-white" />
               </div>
-              <div className="flex-1 min-w-0 text-white">
+              <div className="flex-1 min-w-0 text-white z-10">
                 <p className="font-bold text-sm leading-tight">{isRTL ? 'مساعد كلية الحاسبات' : 'FCI Assistant'}</p>
                 <p className="text-blue-200 text-xs">{isRTL ? 'متصل الآن' : 'Online now'}</p>
               </div>
@@ -137,11 +139,11 @@ const Chatbot: React.FC = () => {
               )}
             </div>
 
-            <div className="flex-1 overflow-y-auto px-4 py-4 space-y-4 bg-slate-50 dark:bg-slate-900">
+            <div className="flex-1 overflow-y-auto px-4 py-4 space-y-4 bg-slate-50/50 dark:bg-slate-800/50">
               {history.length === 0 && (
                 <div className={`flex items-end gap-2 ${isRTL ? 'flex-row-reverse' : ''}`}>
                   <div className="w-7 h-7 rounded-full bg-blue-600 flex items-center justify-center shrink-0 mb-0.5"><Bot size={13} className="text-white" /></div>
-                  <div className="max-w-[80%] px-4 py-2.5 rounded-2xl bg-white dark:bg-slate-800 text-sm shadow-sm border border-slate-100 dark:border-slate-700">{greeting}</div>
+                  <div className="max-w-[80%] px-4 py-2.5 rounded-2xl bg-white dark:bg-slate-700 text-sm shadow-md border border-slate-200 dark:border-slate-600">{greeting}</div>
                 </div>
               )}
 
@@ -167,9 +169,9 @@ const Chatbot: React.FC = () => {
                     </div>
 
                     {/* Bubble */}
-                    <div className={`max-w-[80%] px-4 py-2.5 rounded-2xl text-sm leading-relaxed whitespace-pre-wrap shadow-sm ${isUser
+                    <div className={`max-w-[80%] px-4 py-2.5 rounded-2xl text-sm leading-relaxed whitespace-pre-wrap shadow-md ${isUser
                       ? 'rounded-br-sm text-white'
-                      : 'rounded-bl-sm bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-100 border border-slate-100 dark:border-slate-700'
+                      : 'rounded-bl-sm bg-white dark:bg-slate-700 text-slate-800 dark:text-slate-100 border border-slate-200 dark:border-slate-600'
                       }`}
                       style={isUser ? { background: 'linear-gradient(135deg,#1d4ed8,#7c3aed)' } : {}}
                     >
@@ -185,7 +187,21 @@ const Chatbot: React.FC = () => {
               <div ref={bottomRef} />
             </div>
 
-            <div className="px-3 py-3 bg-white dark:bg-slate-950 border-t flex items-end gap-2 shrink-0">
+            {history.length === 0 && (
+              <div className="px-4 pb-2 flex flex-wrap gap-2 justify-start">
+                {[(isRTL ? 'كيف أسجل موادي؟' : 'How to register courses?'), (isRTL ? 'مواعيد الامتحانات' : 'Exam schedules')].map((prompt, idx) => (
+                  <button 
+                    key={idx} 
+                    onClick={() => setInput(prompt)} 
+                    className="text-xs px-3 py-1.5 rounded-full border border-blue-200 dark:border-blue-800 text-blue-700 dark:text-blue-300 bg-blue-50 dark:bg-blue-900/30 hover:bg-blue-100 dark:hover:bg-blue-800/50 transition-colors shadow-sm"
+                  >
+                    {prompt}
+                  </button>
+                ))}
+              </div>
+            )}
+
+            <div className="px-3 py-3 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-t dark:border-slate-700/50 flex items-end gap-2 shrink-0">
               <textarea
                 ref={inputRef}
                 value={input}
@@ -193,10 +209,10 @@ const Chatbot: React.FC = () => {
                 onKeyDown={handleKey}
                 rows={1}
                 placeholder={isRTL ? 'اكتب رسالتك...' : 'Type a message...'}
-                className="flex-1 resize-none rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-sm px-3 py-2 outline-none focus:border-blue-500 transition-colors"
+                className="flex-1 resize-none rounded-full border border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-700 text-sm px-4 py-2.5 outline-none focus:border-blue-500 transition-colors"
               />
-              <button onClick={sendMessage} disabled={!input.trim() || loading} className="w-10 h-10 rounded-xl flex items-center justify-center text-white" style={{ background: 'linear-gradient(135deg,#1d4ed8,#7c3aed)' }}>
-                <Send size={16} className={isRTL ? 'rotate-180' : ''} />
+              <button onClick={sendMessage} disabled={!input.trim() || loading} className="w-10 h-10 rounded-full flex items-center justify-center text-white shrink-0 shadow-md" style={{ background: 'linear-gradient(135deg,#1d4ed8,#7c3aed)' }}>
+                <Send size={16} className={isRTL ? 'rotate-180 -ml-1' : ''} />
               </button>
             </div>
           </motion.div>
