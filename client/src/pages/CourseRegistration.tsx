@@ -212,7 +212,7 @@ const CourseRegistration: React.FC = () => {
               )}
 
               {saved && (
-                <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex items-center gap-2 text-green-600 mb-4 text-sm font-medium">
+                <motion.div initial={{ opacity: 1 }} animate={{ opacity: 1 }} className="flex items-center gap-2 text-green-600 mb-4 text-sm font-medium">
                   <CheckCircle size={16} /> {t('courseReg.savedSuccess')}
                 </motion.div>
               )}

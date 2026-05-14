@@ -47,7 +47,6 @@ const PageHeader: React.FC<PageHeaderProps> = ({ title, subtitle, breadcrumb }) 
         <motion.p
           initial={{ opacity: 0, y: 0 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
           className="text-slate-600 dark:text-slate-300 text-lg max-w-2xl mx-auto"
         >
           {subtitle}
@@ -56,7 +55,7 @@ const PageHeader: React.FC<PageHeaderProps> = ({ title, subtitle, breadcrumb }) 
       <motion.div
         initial={{ scaleX: 0 }}
         animate={{ scaleX: 1 }}
-        transition={{ delay: 0.3, duration: 0.5 }}
+        transition={{ duration: 0.5 }}
         className="w-20 h-1 mx-auto mt-6 rounded-full"
         style={{ background: 'linear-gradient(90deg, #3b82f6, #8b5cf6)' }}
       />
