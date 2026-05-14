@@ -179,24 +179,24 @@ const Navbar: React.FC = () => {
         <div className="w-full px-4 lg:px-8 h-16 flex items-center justify-between gap-3">
 
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-1.5 shrink-0">
+          <Link to="/" className="flex items-center gap-2 shrink-0">
             {/* University logo — always visible (leftmost) */}
             <img
               src="/images/uni-logo.png"
               alt="Tanta University Logo"
-              className="h-9 w-9 rounded-full object-cover ring-2 ring-white/60 dark:ring-white/20 shadow-md"
+              className="h-10 w-10 rounded-full object-cover ring-2 ring-white/60 dark:ring-white/20 shadow-md"
             />
             {/* Divider + FCI logo — lg+ only */}
-            <span className="hidden lg:block w-px h-7 bg-slate-300 dark:bg-slate-700 mx-0.5" />
+            <span className="hidden lg:block w-px h-8 bg-slate-300 dark:bg-slate-700 mx-1" />
             <img
               src="/images/fci-logo.png"
               alt="FCI Logo"
-              className="hidden lg:block h-9 w-9 rounded-full object-cover ring-2 ring-white/60 dark:ring-white/20 shadow-md"
+              className="hidden lg:block h-10 w-10 rounded-full object-cover ring-2 ring-white/60 dark:ring-white/20 shadow-md"
             />
             {/* Faculty name text — lg+ only */}
-            <div className="hidden lg:block leading-none ms-1">
-              <p className="font-black text-xs text-slate-900 dark:text-white">{t('nav.brandSub')}</p>
-              <p className="text-[9px] text-slate-500 dark:text-slate-400">{t('nav.brand')}</p>
+            <div className="hidden lg:block leading-tight ms-1">
+              <p className="font-black text-sm text-slate-900 dark:text-white tracking-tight">{t('nav.brandSub')}</p>
+              <p className="text-[10px] text-slate-500 dark:text-slate-400 mt-0.5">{t('nav.brand')}</p>
             </div>
           </Link>
 
