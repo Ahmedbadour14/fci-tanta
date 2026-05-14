@@ -8,7 +8,7 @@ const departmentData: Record<string, any> = {
     name: 'Computer Science',
     image: '/images/dept-cs.jpg',
     icon: Monitor,
-    head: 'Prof. Dr. Mahmoud El-Sayed',
+    head: 'Prof. Dr. Mohamed Tarek',
     vision: 'To be a center of excellence in computer science education and research locally and internationally.',
     courses: ['Algorithms', 'Data Structures', 'Artificial Intelligence', 'Operating Systems', 'Computer Graphics'],
     research: ['Machine Learning', 'Computer Vision', 'Natural Language Processing'],
@@ -18,7 +18,7 @@ const departmentData: Record<string, any> = {
     name: 'Information Systems',
     image: '/images/dept-is.jpg',
     icon: Database,
-    head: 'Prof. Dr. Mona Ali',
+    head: 'Prof. Dr. Mahmoud Khaled',
     vision: 'To lead in the integration of business processes and technological solutions.',
     courses: ['Database Management', 'Systems Analysis', 'Data Mining', 'E-Business', 'Information Security'],
     research: ['Big Data Analytics', 'Health Informatics', 'Enterprise Systems'],
@@ -28,7 +28,7 @@ const departmentData: Record<string, any> = {
     name: 'Information Technology',
     image: '/images/dept-it.jpg',
     icon: Network,
-    head: 'Prof. Dr. Tarek Hassan',
+    head: 'Prof. Dr. Mano',
     vision: 'To prepare skilled professionals capable of designing and managing modern IT infrastructure.',
     courses: ['Computer Networks', 'Cloud Computing', 'Cybersecurity', 'IoT', 'Network Administration'],
     research: ['Wireless Networks', 'Information Security', 'Distributed Systems'],
@@ -38,7 +38,7 @@ const departmentData: Record<string, any> = {
     name: 'Software Engineering',
     image: '/images/dept-se.jpg',
     icon: Code2,
-    head: 'Prof. Dr. Salma Ibrahim',
+    head: 'Prof. Dr. Mahmoud Ahmed',
     vision: 'To engineer reliable, scalable, and secure software systems for the future.',
     courses: ['Software Architecture', 'Agile Development', 'Software Testing', 'Requirements Engineering', 'DevOps'],
     research: ['Software Quality', 'Empirical Software Engineering', 'Automated Testing'],
@@ -69,7 +69,7 @@ const DepartmentDetail = () => {
               <img src={dept.image} alt={dept.name} className="w-full h-full object-cover" />
             </div>
             <div>
-              <motion.h1 
+              <motion.h1
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 className="text-4xl md:text-5xl font-bold mb-2"
@@ -84,10 +84,10 @@ const DepartmentDetail = () => {
 
       <div className="container mx-auto px-4 md:px-6">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          
+
           {/* Main Content */}
           <div className="lg:col-span-2 space-y-8">
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               className="bg-white dark:bg-slate-900 p-8 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800"
@@ -99,7 +99,7 @@ const DepartmentDetail = () => {
               </p>
             </motion.div>
 
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
@@ -119,7 +119,7 @@ const DepartmentDetail = () => {
               </div>
             </motion.div>
 
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
@@ -143,7 +143,7 @@ const DepartmentDetail = () => {
 
           {/* Sidebar */}
           <div className="space-y-8">
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               className="bg-white dark:bg-slate-900 p-8 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800 text-center"
@@ -158,7 +158,7 @@ const DepartmentDetail = () => {
               </button>
             </motion.div>
 
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.1 }}
