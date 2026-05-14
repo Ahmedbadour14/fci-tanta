@@ -7,7 +7,7 @@ const Community = () => {
   const { t } = useTranslation();
 
   return (
-    <div className="min-h-screen pt-24 pb-12 bg-slate-50 dark:bg-slate-950">
+    <div className="min-h-screen pt-8 pb-12 bg-slate-50 dark:bg-slate-950">
       <section className="bg-primary text-white py-16 mb-12">
         <div className="container mx-auto px-4 text-center">
           <motion.h1

@@ -33,7 +33,7 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen pt-24 pb-12 flex items-center justify-center bg-slate-50 dark:bg-slate-950 px-4 relative">
+    <div className="min-h-screen pt-8 pb-12 flex items-center justify-center bg-slate-50 dark:bg-slate-950 px-4 relative">
       <button
         onClick={() => navigate(-1)}
         className="absolute top-24 start-4 md:start-8 flex items-center gap-2 text-slate-500 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-semibold"

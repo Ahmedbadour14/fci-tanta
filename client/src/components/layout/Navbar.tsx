@@ -171,7 +171,7 @@ const Navbar: React.FC = () => {
     : 'bg-white dark:bg-slate-950';
 
   return (
-    <div className="fixed top-0 w-full px-0 z-50">
+    <div className="sticky top-0 w-full px-0 z-50">
       <AnnouncementBanner />
 
       {/* ── Header ── */}

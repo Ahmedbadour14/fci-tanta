@@ -53,7 +53,7 @@ const DepartmentDetail = () => {
   const Icon = dept.icon;
 
   return (
-    <div className="min-h-screen pt-24 pb-12 bg-slate-50 dark:bg-slate-950">
+    <div className="min-h-screen pt-8 pb-12 bg-slate-50 dark:bg-slate-950">
       {/* Header */}
       <section className={`${dept.color} text-white py-16 mb-12`}>
         <div className="container mx-auto px-4">

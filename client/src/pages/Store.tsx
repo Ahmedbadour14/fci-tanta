@@ -108,7 +108,7 @@ const Store: React.FC = () => {
   );
 
   if (checkoutStep === 'checkout') return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 pt-24 pb-16">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 pt-8 pb-16">
       <PageHeader title={t('store.checkoutTitle')} breadcrumb={t('store.checkoutBreadcrumb')} />
       <div className="container mx-auto px-4 max-w-xl mt-10">
         <form onSubmit={handleCheckout} className="bg-white dark:bg-slate-900 rounded-2xl p-8 shadow-lg space-y-4">
@@ -140,7 +140,7 @@ const Store: React.FC = () => {
   );
 
   if (checkoutStep === 'cart') return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 pt-24 pb-16">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 pt-8 pb-16">
       <PageHeader title={t('store.cartTitle')} breadcrumb={t('store.cartBreadcrumb')} />
       <div className="container mx-auto px-4 max-w-2xl mt-10">
         {cart.length === 0 ? (

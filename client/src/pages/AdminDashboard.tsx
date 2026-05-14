@@ -71,7 +71,7 @@ const AdminDashboard = () => {
   ] : [];
 
   return (
-    <div className="min-h-screen pt-24 pb-12 bg-slate-50 dark:bg-slate-950 flex flex-col md:flex-row">
+    <div className="min-h-screen pt-8 pb-12 bg-slate-50 dark:bg-slate-950 flex flex-col md:flex-row">
       {/* Sidebar */}
       <aside className="hidden md:flex flex-col w-64 bg-white dark:bg-slate-900 border-e border-slate-200 dark:border-slate-800 p-5 shrink-0">
         <button onClick={() => navigate(-1)} className="flex items-center gap-2 text-slate-500 hover:text-blue-600 transition-colors text-sm font-semibold mb-6">

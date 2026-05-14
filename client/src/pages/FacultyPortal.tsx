@@ -9,7 +9,7 @@ const FacultyPortal = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen pt-24 pb-12 bg-slate-50 dark:bg-slate-950">
+    <div className="min-h-screen pt-8 pb-12 bg-slate-50 dark:bg-slate-950">
       <div className="container mx-auto px-4 md:px-6">
         
         {/* Header Section */}
