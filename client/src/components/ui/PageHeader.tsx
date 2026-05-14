@@ -8,7 +8,7 @@ interface PageHeaderProps {
 }
 
 const PageHeader: React.FC<PageHeaderProps> = ({ title, subtitle, breadcrumb }) => (
-  <section className="relative py-10 overflow-hidden bg-gradient-to-br from-slate-100 to-slate-200 dark:from-[#1e3a5f] dark:to-[#1a1040]">
+  <section className="relative pt-4 pb-4 overflow-hidden bg-gradient-to-br from-slate-100 to-slate-200 dark:from-[#1e3a5f] dark:to-[#1a1040]">
     {/* Decorative orbs */}
     <div className="absolute inset-0 pointer-events-none overflow-hidden">
       <div className="absolute -top-20 -right-20 w-96 h-96 rounded-full opacity-10"
@@ -28,7 +28,7 @@ const PageHeader: React.FC<PageHeaderProps> = ({ title, subtitle, breadcrumb }) 
     <div className="container mx-auto px-4 text-center relative z-10">
       {breadcrumb && (
         <motion.p
-          initial={{ opacity: 0, y: -10 }}
+          initial={{ opacity: 0, y: 0 }}
           animate={{ opacity: 1, y: 0 }}
           className="text-blue-600 dark:text-blue-300 text-sm font-medium uppercase tracking-widest mb-3"
         >
@@ -36,7 +36,7 @@ const PageHeader: React.FC<PageHeaderProps> = ({ title, subtitle, breadcrumb }) 
         </motion.p>
       )}
       <motion.h1
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 0 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
         className="text-4xl md:text-5xl lg:text-6xl font-black text-slate-900 dark:text-white mb-4"
@@ -45,7 +45,7 @@ const PageHeader: React.FC<PageHeaderProps> = ({ title, subtitle, breadcrumb }) 
       </motion.h1>
       {subtitle && (
         <motion.p
-          initial={{ opacity: 0, y: 10 }}
+          initial={{ opacity: 0, y: 0 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
           className="text-slate-600 dark:text-slate-300 text-lg max-w-2xl mx-auto"

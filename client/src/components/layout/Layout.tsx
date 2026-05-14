@@ -6,9 +6,9 @@ import Footer from './Footer';
 import ScrollToTop from '../ui/ScrollToTop';
 
 const pageVariants = {
-  initial: { opacity: 0, y: 16 },
+  initial: { opacity: 0, y: 0 },
   animate: { opacity: 1, y: 0 },
-  exit: { opacity: 0, y: -16 },
+  exit: { opacity: 0, y: 0 },
 };
 
 const Layout = () => {
