@@ -6,6 +6,7 @@ import { Monitor, Database, Network, Code2, Users, BookOpen, FlaskConical, Chevr
 const departmentData: Record<string, any> = {
   cs: {
     name: 'Computer Science',
+    image: '/images/dept-cs.jpg',
     icon: Monitor,
     head: 'Prof. Dr. Mahmoud El-Sayed',
     vision: 'To be a center of excellence in computer science education and research locally and internationally.',
@@ -15,6 +16,7 @@ const departmentData: Record<string, any> = {
   },
   is: {
     name: 'Information Systems',
+    image: '/images/dept-is.jpg',
     icon: Database,
     head: 'Prof. Dr. Mona Ali',
     vision: 'To lead in the integration of business processes and technological solutions.',
@@ -24,6 +26,7 @@ const departmentData: Record<string, any> = {
   },
   it: {
     name: 'Information Technology',
+    image: '/images/dept-it.jpg',
     icon: Network,
     head: 'Prof. Dr. Tarek Hassan',
     vision: 'To prepare skilled professionals capable of designing and managing modern IT infrastructure.',
@@ -33,6 +36,7 @@ const departmentData: Record<string, any> = {
   },
   se: {
     name: 'Software Engineering',
+    image: '/images/dept-se.jpg',
     icon: Code2,
     head: 'Prof. Dr. Salma Ibrahim',
     vision: 'To engineer reliable, scalable, and secure software systems for the future.',
@@ -61,8 +65,8 @@ const DepartmentDetail = () => {
             <ChevronLeft size={20} /> Back to Departments
           </Link>
           <div className="flex items-center gap-6">
-            <div className="p-4 bg-white/20 rounded-2xl backdrop-blur-sm">
-              <Icon size={48} />
+            <div className="w-24 h-24 bg-white/20 rounded-2xl backdrop-blur-sm overflow-hidden border-2 border-white/30">
+              <img src={dept.image} alt={dept.name} className="w-full h-full object-cover" />
             </div>
             <div>
               <motion.h1 

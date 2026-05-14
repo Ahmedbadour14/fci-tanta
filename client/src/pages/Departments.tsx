@@ -13,6 +13,7 @@ const Departments = () => {
       id: 'cs',
       nameKey: 'departments.cs.name',
       icon: Monitor,
+      image: '/images/dept-cs.jpg',
       color: 'bg-blue-500',
       textColor: 'text-blue-500',
       bgColor: 'bg-blue-50 dark:bg-blue-900/10',
@@ -23,6 +24,7 @@ const Departments = () => {
       id: 'is',
       nameKey: 'departments.is.name',
       icon: Database,
+      image: '/images/dept-is.jpg',
       color: 'bg-emerald-500',
       textColor: 'text-emerald-500',
       bgColor: 'bg-emerald-50 dark:bg-emerald-900/10',
@@ -33,6 +35,7 @@ const Departments = () => {
       id: 'it',
       nameKey: 'departments.it.name',
       icon: Network,
+      image: '/images/dept-it.jpg',
       color: 'bg-orange-500',
       textColor: 'text-orange-500',
       bgColor: 'bg-orange-50 dark:bg-orange-900/10',
@@ -43,6 +46,7 @@ const Departments = () => {
       id: 'se',
       nameKey: 'departments.se.name',
       icon: Code2,
+      image: '/images/dept-se.jpg',
       color: 'bg-purple-500',
       textColor: 'text-purple-500',
       bgColor: 'bg-purple-50 dark:bg-purple-900/10',
@@ -93,8 +97,8 @@ const Departments = () => {
                 className="bg-white dark:bg-slate-900 rounded-3xl p-8 shadow-sm border border-slate-100 dark:border-slate-800 hover:shadow-xl transition-all group"
               >
                 <div className="flex flex-col md:flex-row gap-8 items-start">
-                  <div className={`p-6 rounded-2xl ${dept.bgColor} ${dept.textColor} shrink-0 group-hover:scale-110 transition-transform`}>
-                    <Icon size={48} />
+                  <div className={`w-32 h-32 rounded-2xl overflow-hidden shrink-0 group-hover:scale-110 transition-transform`}>
+                    <img src={dept.image} alt={t(dept.nameKey)} className="w-full h-full object-cover" />
                   </div>
 
                   <div className="flex-1">
