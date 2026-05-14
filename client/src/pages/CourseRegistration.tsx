@@ -45,6 +45,11 @@ const CourseRegistration: React.FC = () => {
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const isRTL = i18n.language === 'ar';
+  
+  useEffect(() => {
+    console.log('CourseRegistration mounted');
+  }, []);
+
   const [selected, setSelected] = useState<string[]>([]);
   const [saved, setSaved] = useState(false);
   const [conflicts, setConflicts] = useState<string[]>([]);
