@@ -9,7 +9,7 @@ interface PageHeaderProps {
 
 const PageHeader: React.FC<PageHeaderProps> = ({ title, subtitle, breadcrumb }) => (
   <section
-    className="relative pt-24 pb-8 overflow-hidden bg-gradient-to-br from-slate-100 to-slate-200 dark:from-[#1e3a5f] dark:to-[#1a1040]"
+    className="relative pt-20 pb-8 overflow-hidden bg-gradient-to-br from-slate-100 to-slate-200 dark:from-[#1e3a5f] dark:to-[#1a1040]"
   >
     {/* Decorative orbs */}
     <div className="absolute inset-0 pointer-events-none overflow-hidden">
